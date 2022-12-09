@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<div id="top-header" th:fragment="headerusername">
+    <div class="container">
+        <ul class="header-links pull-left">
+            <li><a href="#"><i class="fa fa-phone"></i> 0347268701</a></li>
+            <li><a href="#"><i class="fa fa-envelope-o"></i> daotai2309@email.com</a></li>
+
+        </ul>
+        <ul class="header-links pull-right">
+            <li><a href="/testuser"><i class="fa fa-dollar"></i> USD</a></li>
+            <li><a href="#" > <i class="fa fa-user-o"></i> <label th:text="${session.username}"></label></a></li>
+            <form th:action="@{/logout}" method="post"><input type="submit" value="Logout"> </form>
+
+        </ul>
+    </div>
+</div>
+</html>

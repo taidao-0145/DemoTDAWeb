@@ -22,5 +22,5 @@ public class Product {
     private String img;
     private int price;
     private int sale;
-    private String nhacungcap;
+
 }

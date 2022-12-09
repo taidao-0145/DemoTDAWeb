@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +17,8 @@ import java.beans.BeanProperty;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig  {
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -25,7 +27,9 @@ public class SecurityConfig {
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests().antMatchers("/store","/viewcart","/checkout","/viewhome").authenticated()
+        http.authorizeHttpRequests().antMatchers("/store","/viewcart","/checkout","/viewhome",
+                        "/oder").authenticated()
+//                .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().permitAll().and().csrf().disable()
                 .formLogin().loginPage("/login").passwordParameter("pass")
                 .permitAll().defaultSuccessUrl("/user", true)
@@ -33,4 +37,7 @@ public class SecurityConfig {
                 .and().logout().permitAll();
         return http.build();
     }
+
+
+
 }

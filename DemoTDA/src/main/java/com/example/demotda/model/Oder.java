@@ -1,14 +1,14 @@
 package com.example.demotda.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @RequiredArgsConstructor
@@ -26,10 +26,18 @@ public class Oder {
     private String city;
     private Long idproduct;
     private int quantity;
-    private String date;
-    private String nameproduct;
 
-    public Oder(String username, String fullname, String email, String phone, String address, String city, Long idproduct, int quantity, String date,String nameproduct) {
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+    private Date date;
+    private String nameproduct;
+    private String img;
+    private int total;
+
+    private int idstatus;
+
+    public Oder(String username, String fullname, String email, String phone,
+                String address, String city, Long idproduct, int quantity,
+                Date date,String nameproduct,String img, int total,int idstatus) {
         this.username = username;
         this.fullname = fullname;
         this.email = email;
@@ -40,5 +48,8 @@ public class Oder {
         this.quantity = quantity;
         this.date = date;
         this.nameproduct=nameproduct;
+        this.img=img;
+        this.total=total;
+        this.idstatus=idstatus;
     }
 }
