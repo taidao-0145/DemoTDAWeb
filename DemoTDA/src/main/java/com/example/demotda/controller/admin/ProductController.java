@@ -17,11 +17,11 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/productadmin")
-    public String productad(Model model){
-        return listbyPage(model,1);
+    public String productAdmin(Model model){
+        return listByPage(model,1);
     }
     @GetMapping("/page")
-    public String listbyPage(Model model,@RequestParam("page") int currentPage){
+    public String listByPage(Model model,@RequestParam("page") int currentPage){
 
         Page<Product> page= productService.listAll(currentPage);
         long totalItems= page.getTotalElements();

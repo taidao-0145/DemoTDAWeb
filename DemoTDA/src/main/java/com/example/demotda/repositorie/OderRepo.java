@@ -33,5 +33,8 @@ public interface OderRepo extends JpaRepository<Oder,Long> {
     @Query(value="UPDATE oder set idstatus=4 where  id=?", nativeQuery=true)
     void doneship(Long id);
 
-
+    @Transactional
+    @Modifying
+    @Query(value="SELECT count(*) FROM oder WHERE idproduct =?;", nativeQuery=true)
+    int countquantityoder();
 }

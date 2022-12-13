@@ -1,4 +1,4 @@
-package com.example.demotda.controller;
+package com.example.demotda.controller.user;
 
 import com.example.demotda.model.Product;
 import com.example.demotda.repositorie.ProductRepo;

@@ -13,7 +13,7 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-@RequestMapping("viewcart")
+@RequestMapping("/viewcart")
 public class ViewCartController {
     private CartRepo cartRepo;
     @Autowired

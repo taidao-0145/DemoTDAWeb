@@ -16,7 +16,7 @@
       </ul>
       <ul class="header-links pull-right">
         <li><a href="/testuser"><i class="fa fa-dollar"></i> USD</a></li>
-        <li><a href="#" > <i class="fa fa-user-o"></i> <label th:text="${username}"></label></a></li>
+        <li><a href="/userProfile" > <i class="fa fa-user-o"></i> <label th:text="${username}"></label></a></li>
         <form th:action="@{/logout}" method="post"><input type="submit" value="Logout"> </form>
 
       </ul>
@@ -43,7 +43,7 @@
         <li class="active"><a href="/user">Home</a></li>
         <li><a href="/store">Store</a></li>
         <li><a href="/viewcart">Cart</a></li>
-        <li><a href="/checkout">CheckOut</a></li>
+
         <li><a href="/oder">Oder</a></li>
         <li><a href="/odercancel">OderCancel</a></li>
         <li><a href="/odership">OderShip</a></li>

@@ -3,10 +3,8 @@ package com.example.demotda.model;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @RequiredArgsConstructor
@@ -22,5 +20,33 @@ public class Product {
     private String img;
     private int price;
     private int sale;
+    private Date dateadd;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoryId")
+    private Category category;
+
+
+    public Product(String nameproduct, String typeproduct, int soluong, String hangsp, String img, int price, int sale, Date dateadd) {
+        this.nameproduct = nameproduct;
+        this.typeproduct = typeproduct;
+        this.soluong = soluong;
+        this.hangsp = hangsp;
+        this.img = img;
+        this.price = price;
+        this.sale = sale;
+        this.dateadd = dateadd;
+    }
+
+    public Product(String nameproduct, String typeproduct, int soluong, String hangsp, String img, int price, int sale, Date dateadd, Category category) {
+        this.nameproduct = nameproduct;
+        this.typeproduct = typeproduct;
+        this.soluong = soluong;
+        this.hangsp = hangsp;
+        this.img = img;
+        this.price = price;
+        this.sale = sale;
+        this.dateadd = dateadd;
+        this.category = category;
+    }
 }

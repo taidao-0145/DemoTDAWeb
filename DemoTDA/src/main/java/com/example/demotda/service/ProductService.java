@@ -19,7 +19,12 @@ public class ProductService {
         return productRepo.findAll();
     }
     public Page<Product> listAll(int pageNumber){
-        Pageable pageable = PageRequest.of(pageNumber-1, 3);
+        Pageable pageable = PageRequest.of(pageNumber-1, 5);
         return  productRepo.findAll(pageable);
+    }
+
+    public Page<Product> listStoreAll(int pageNumber){
+        Pageable pageableStore = PageRequest.of(pageNumber-1, 6);
+        return  productRepo.findAll(pageableStore);
     }
 }

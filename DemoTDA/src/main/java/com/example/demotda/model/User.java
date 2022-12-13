@@ -1,13 +1,11 @@
 package com.example.demotda.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -24,6 +22,12 @@ public class User {
     private String img;
 
     private String role;
+
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "user")
+    @JsonBackReference
+    private UserProfile userProfile;
 
     public User(String username, String email, int phone, String pass, String img) {
         this.username = username;

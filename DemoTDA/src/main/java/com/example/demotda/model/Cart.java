@@ -1,13 +1,12 @@
 package com.example.demotda.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @RequiredArgsConstructor
@@ -25,6 +24,11 @@ public class Cart {
     private int quantity;
 
     private int total;
+
+//    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    private Set<Product> products;
+
 
     public Cart(String username, Long idproduct, String nameprodcut, String img, int price, int quantity, int total) {
         this.username = username;

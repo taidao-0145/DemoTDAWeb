@@ -1,9 +1,8 @@
-package com.example.demotda.controller;
+package com.example.demotda.controller.Login;
 
 import com.example.demotda.config.MailConfig;
 import com.example.demotda.model.User;
 import com.example.demotda.repositorie.UserRepo;
-import com.example.demotda.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.regex.Pattern;
 
 @Controller
@@ -25,7 +23,7 @@ public class RegisterController {
     private UserRepo userRepo;
     @GetMapping
     public String reg(){
-        return "register";
+        return "login/register";
     }
     @PostMapping
     public String signup(@ModelAttribute User user,
@@ -56,7 +54,7 @@ public class RegisterController {
             model.addAttribute("email",user.getEmail());
             model.addAttribute("phone",user.getPhone());
             model.addAttribute("pass",user.getPass());
-            return "register";
+            return "login/register";
         }
 
         else {
@@ -72,7 +70,7 @@ public class RegisterController {
             msg.setText("Mã xác thực là: "+ code1);
             mailConfig.get().send(msg);
             session.setAttribute("code",code1);
-            return "checkmail";
+            return "login/checkmail";
         }
 
     }

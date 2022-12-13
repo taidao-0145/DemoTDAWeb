@@ -27,8 +27,11 @@ public interface ProductRepo extends  JpaRepository<Product,Long> {
     @Transactional
     @Modifying
     @Query(value="SELECT count(*) FROM product WHERE soluong <5;", nativeQuery=true)
-    void checkcountquantity(int quantity,Long id);
+    void checkcountquantity();
 
-
+    @Transactional
+    @Modifying
+    @Query(value="select id product ORDER BY 1 DESC limit 1", nativeQuery=true)
+    Integer checkid();
 
 }

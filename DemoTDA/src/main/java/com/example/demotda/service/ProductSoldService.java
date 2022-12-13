@@ -15,7 +15,7 @@ public class ProductSoldService {
     private ProductSoldRepo productSoldRepo;
 
     public Page<ProductSold> listAll(int pageNumber){
-        Pageable pageable = PageRequest.of(pageNumber-1, 3);
+        Pageable pageable = PageRequest.of(pageNumber-1, 5);
         return  productSoldRepo.findAll(pageable);
     }
 }

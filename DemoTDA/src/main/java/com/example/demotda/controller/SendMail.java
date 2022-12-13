@@ -24,15 +24,12 @@ public class SendMail {
     public String mail(@RequestParam("email") String email,
                        @RequestParam("sj") String sj,
                        @RequestParam("mess") String mess, Model model){
-
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom("daotai23092001@gmail.com");
         msg.setTo(email);
         msg.setSubject(sj);
         msg.setText(mess);
         mailConfig.get().send(msg);
-
-
         return "login";
     }
 }

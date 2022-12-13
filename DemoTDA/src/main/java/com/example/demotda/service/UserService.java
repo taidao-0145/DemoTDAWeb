@@ -9,11 +9,18 @@ import java.util.List;
 
 @Service
 public class UserService {
-    private UserRepo userRepo;
     @Autowired
-    public UserService(UserRepo userRepo){
-        this.userRepo=userRepo;
-    }
+    private UserRepo userRepo;
+
+   public User findUserAndEmail(String username, String email){
+       return userRepo.findByUsernameAndEmail(username,email);
+   }
+   public User findUserByUsername(String username){
+       return userRepo.findUserByUsername(username);
+   }
+   public void save(User user){
+        userRepo.save(user); 
+   }
 
 
 }
