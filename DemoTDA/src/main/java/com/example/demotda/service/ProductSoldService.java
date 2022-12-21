@@ -1,21 +1,16 @@
 package com.example.demotda.service;
 
-import com.example.demotda.model.Product;
 import com.example.demotda.model.ProductSold;
-import com.example.demotda.repositorie.ProductSoldRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
-@Service
-public class ProductSoldService {
-    @Autowired
-    private ProductSoldRepo productSoldRepo;
+import java.util.List;
 
-    public Page<ProductSold> listAll(int pageNumber){
-        Pageable pageable = PageRequest.of(pageNumber-1, 5);
-        return  productSoldRepo.findAll(pageable);
-    }
+public interface ProductSoldService {
+    Page<ProductSold> listAll(int pageNumber);
+    void save(ProductSold productSold);
+    List<ProductSold> listSoldDay(String today);
+    List<ProductSold> listSoldWeek();
+    long revenueYesterday(String today1, String today2);
+    List<ProductSold> findAll();
+    List<ProductSold> searchDateProductSold(String startDate, String endDate);
 }

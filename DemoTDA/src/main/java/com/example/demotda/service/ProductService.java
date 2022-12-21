@@ -1,30 +1,26 @@
 package com.example.demotda.service;
 
 import com.example.demotda.model.Product;
-import com.example.demotda.repositorie.ProductRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
-@Service
-public class ProductService {
-    @Autowired
-    private ProductRepo productRepo;
 
-    public List<Product> listProduct(){
+public interface ProductService {
 
-        return productRepo.findAll();
-    }
-    public Page<Product> listAll(int pageNumber){
-        Pageable pageable = PageRequest.of(pageNumber-1, 5);
-        return  productRepo.findAll(pageable);
-    }
+    List<Product> listProduct();
+    Product getProduct(Long id);
+    void save(Product product);
+    Page<Product> listAll(int pageNumber);
+    Page<Product> listStoreAll(int pageNumber);
+    void saveProduct(Product product);
+    void UpdateExport(int quantity,Long idProduct);
+    List<Product> listHet();
+    List<Product> checkInventory();
+    void Delete(Long id);
+    List<Product> listNew();
+    List<Product> listSale();
+    List<Product> searchProduct(String keyword);
 
-    public Page<Product> listStoreAll(int pageNumber){
-        Pageable pageableStore = PageRequest.of(pageNumber-1, 6);
-        return  productRepo.findAll(pageableStore);
-    }
 }
+

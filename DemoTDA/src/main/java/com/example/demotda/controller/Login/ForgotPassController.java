@@ -39,8 +39,8 @@ public class ForgotPassController {
             return "login/forgotpass";
         }
         else {
-            int codemail= (int) (Math.random()*1000000);
-            String code2= Integer.toString(codemail);
+            int codeMail= (int) (Math.random()*1000000);
+            String code2= Integer.toString(codeMail);
             SimpleMailMessage msg = new SimpleMailMessage();
             msg.setFrom("daotai23092001@gmail.com");
             msg.setTo(email);

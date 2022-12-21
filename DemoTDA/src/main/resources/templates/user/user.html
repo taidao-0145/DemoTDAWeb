@@ -42,11 +42,11 @@
       <ul class="main-nav nav navbar-nav">
         <li class="active"><a href="/user">Home</a></li>
         <li><a href="/store">Store</a></li>
-        <li><a href="/viewcart">Cart</a></li>
+        <li><a href="/viewCart">Cart</a></li>
 
         <li><a href="/oder">Oder</a></li>
-        <li><a href="/odercancel">OderCancel</a></li>
-        <li><a href="/odership">OderShip</a></li>
+        <li><a href="/oderCancel">OderCancel</a></li>
+        <li><a href="/oderShip">OderShip</a></li>
         <li><a href="/admin">Admin</a></li>
       </ul>
       <!-- /NAV -->
@@ -57,11 +57,7 @@
 </nav>
 <!-- /NAVIGATION -->
 
-<!-- SECTION -->
 
-<!-- /SECTION -->
-
-<!-- SECTION -->
 <div class="section">
   <!-- container -->
   <div class="container">
@@ -91,8 +87,8 @@
             <!-- tab -->
             <div id="tab1" class="tab-pane active">
               <div class="products-slick" data-nav="#slick-nav-1">
-                <!--   product <th:block th:each="product : ${listproduct}">   -->
-                <th:block th:each="product : ${listnew}">
+
+                <th:block th:each="product : ${listNew}">
                   <div class="product">
 
                     <div class="product-img">
@@ -104,7 +100,7 @@
                     </div>
                     <div class="product-body">
 
-                      <a th:href="@{/viewproduct(id=${product.id})}">	<h3 class="product-name" th:text="${product.nameproduct}" ></h3> </a>
+                      <a th:href="@{/viewProduct(id=${product.id})}">	<h3 class="product-name" th:text="${product.nameproduct}" ></h3> </a>
                       <div class="product-price" ><label th:text="${product.price}-(${product.price}*${product.sale}/100)"></label> <del class="product-old-price" th:text="${product.price}"></del></div>
                       <label>Số lượng còn :</label> <lable  th:text="${product.soluong}"></lable>
 
@@ -115,7 +111,7 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <a th:href="@{/addcart(id=${product.id})}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+                      <a th:href="@{/addToCart(id=${product.id})}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
                     </div>
 
                   </div>
@@ -165,7 +161,7 @@
             <div id="tab2" class="tab-pane fade in active">
               <div class="products-slick" data-nav="#slick-nav-2">
                 <!-- product -->
-                <th:block th:each="product : ${listsale}">
+                <th:block th:each="product : ${listSale}">
                   <div class="product">
 
                     <div class="product-img">
@@ -177,8 +173,8 @@
                     </div>
                     <div class="product-body">
 
-                      <a th:href="@{/viewproduct(id=${product.id})}">	<h3 class="product-name" th:text="${product.nameproduct}" ></h3> </a>
-                      <h4 class="product-price">$980.00 <del class="product-old-price" th:text="${product.price}"></del></h4>
+                      <a th:href="@{/viewProduct(id=${product.id})}">	<h3 class="product-name" th:text="${product.nameproduct}" ></h3> </a>
+                      <div class="product-price" ><label th:text="${product.price}-(${product.price}*${product.sale}/100)"></label> <del class="product-old-price" th:text="${product.price}"></del></div>
                       <label>Số lượng còn :</label> <lable  th:text="${product.soluong}"></lable>
 
                       <div class="product-btns">
@@ -188,27 +184,13 @@
                       </div>
                     </div>
                     <div class="add-to-cart">
-                      <a th:href="@{/addcart(id=${product.id})}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+                      <a th:href="@{/addToCart(id=${product.id})}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
                     </div>
 
                   </div>
                 </th:block >
-                <!-- /product -->
-
-                <!-- product -->
-
-                <!-- /product -->
-
-                <!-- product -->
-
-                <!-- /product -->
-
-                <!-- product -->
-
-                <!-- /product -->
 
 
-                <!-- /product -->
               </div>
               <div id="slick-nav-2" class="products-slick-nav"></div>
             </div>

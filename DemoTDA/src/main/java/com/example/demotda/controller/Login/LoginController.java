@@ -16,23 +16,9 @@ public class LoginController {
         this.userRepo=userRepo;
     }
     @GetMapping
-    public String viewlogin(Model model){
+    public String ViewLogin(Model model){
 //        model.addAttribute("mess",mess);
 
         return "login/login";
     }
-//    @PostMapping
-//    public String login(@RequestParam("username") String username,
-//                        @RequestParam("pass") String pass,
-//                        Model model){
-//        if(userRepo.findUserByUsernameAndPass(username,pass)==null){
-//            model.addAttribute("mess", "Sai thông tin đăng nhập");
-//            return "login";
-//        }
-//        else {
-//            return "index";
-//        }
-//
-//
-//    }
 }

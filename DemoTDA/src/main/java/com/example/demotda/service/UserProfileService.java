@@ -1,22 +1,14 @@
 package com.example.demotda.service;
 
+import com.example.demotda.model.User;
 import com.example.demotda.model.UserProfile;
-import com.example.demotda.repositorie.UserProfileRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class UserProfileService {
-    @Autowired
-    private UserProfileRepo userProfileRepo;
 
-    public void addUserprofile(UserProfile userProfile){
 
-        userProfileRepo.save(userProfile);
-    }
-    public void UpdateProfile(UserProfile userProfile){
+public interface UserProfileService {
 
-        userProfileRepo.save(userProfile);
-    }
+    void addUserprofile(UserProfile userProfile);
+    void UpdateProfile(UserProfile userProfile);
+    UserProfile findUserProfileByUser(User user);
 
 }

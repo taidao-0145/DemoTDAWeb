@@ -17,8 +17,11 @@ import java.util.List;
 @Service
 @Transactional
 public class LoginService implements UserDetailsService {
+    private  UserRepo userRepo;
     @Autowired
-    UserRepo userRepo;
+    public LoginService(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username)
@@ -32,7 +35,6 @@ public class LoginService implements UserDetailsService {
         }
         org.springframework.security.core.userdetails.User currentUser= new org.springframework.security.core.userdetails.User(username,u.getPass(),grantList);
         return currentUser;
-
 
     }
 }

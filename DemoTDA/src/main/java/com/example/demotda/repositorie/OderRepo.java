@@ -1,5 +1,6 @@
 package com.example.demotda.repositorie;
 
+import com.example.demotda.model.Cart;
 import com.example.demotda.model.Oder;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,25 +17,33 @@ public interface OderRepo extends JpaRepository<Oder,Long> {
     @Transactional
     @Modifying
     @Query(value="UPDATE oder set idstatus=2 where  id=?", nativeQuery=true)
-    void canceloder(Long id);
+    void cancelOder(Long id);
 
     List<Oder> getOderByUsernameAndIdstatus(String username, int id);
     List<Oder> getOderByIdstatus(int id);
 
+    List<Oder> getOderByCartAndIdstatus(Cart cart, int idStatus);
+
     List<Oder> getOderByIdproduct(Long id);
+
+    Oder findOderByCart(Cart cart);
+    Oder findOderById(Long id);
 
     @Transactional
     @Modifying
     @Query(value="UPDATE oder set idstatus=3 where  id=?", nativeQuery=true)
-    void shiploder(Long id);
+    void shipOder(Long id);
 
     @Transactional
     @Modifying
     @Query(value="UPDATE oder set idstatus=4 where  id=?", nativeQuery=true)
-    void doneship(Long id);
+    void doneShip(Long id);
 
     @Transactional
-    @Modifying
-    @Query(value="SELECT count(*) FROM oder WHERE idproduct =?;", nativeQuery=true)
-    int countquantityoder();
+    @Query(value="SELECT count(*) FROM oder WHERE idstatus =1;", nativeQuery=true)
+    long countOder();
+
+    @Transactional
+    @Query(value="SELECT count(*) FROM oder WHERE idstatus =3;", nativeQuery=true)
+    long countOderShip();
 }

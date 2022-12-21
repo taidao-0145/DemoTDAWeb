@@ -19,23 +19,23 @@ public class ProductSold {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long idproduct;
-    private String nameproduct;
-    private String typeproduct;
+    private Long idProduct;
+    private String nameProduct;
+    private String category;
     private int quantity;
     private String supplier;
     private int total;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm")
-    private Date exportdate;
+    private Date exportDate;
 
-    public ProductSold(Long idproduct, String nameproduct, String typeproduct, int quantity, String supplier, int total, Date exportdate) {
-        this.idproduct = idproduct;
-        this.nameproduct = nameproduct;
-        this.typeproduct = typeproduct;
+    public ProductSold(Long idProduct, String nameProduct, String category, int quantity, String supplier, int total, Date exportDate) {
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.category = category;
         this.quantity = quantity;
         this.supplier = supplier;
         this.total = total;
-        this.exportdate = exportdate;
+        this.exportDate = exportDate;
     }
 }

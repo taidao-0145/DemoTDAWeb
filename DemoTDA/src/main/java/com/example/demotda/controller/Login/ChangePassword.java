@@ -22,7 +22,7 @@ public class ChangePassword {
     }
 
     @PostMapping
-    public String channgepass(@RequestParam("pass") String pass, Model model, HttpSession session){
+    public String ChangePass(@RequestParam("pass") String pass, Model model, HttpSession session){
         String pass_pattern="(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
         if(Pattern.matches(pass_pattern,pass)==false){
             model.addAttribute("mess","Mật khẩu chưa đủ mạnh(> 8 ký tự,hoa,thường,kí tự...");
@@ -30,8 +30,8 @@ public class ChangePassword {
         }
         else {
             String username= (String) session.getAttribute("usernameforgot");
-            String passencode= new BCryptPasswordEncoder().encode(pass);
-            userRepo.changepassword(passencode,username);
+            String passSenCode= new BCryptPasswordEncoder().encode(pass);
+            userRepo.changepassword(passSenCode,username);
         }
         return "login/login";
     }

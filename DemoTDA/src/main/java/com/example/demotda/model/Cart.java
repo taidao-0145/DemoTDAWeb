@@ -1,12 +1,13 @@
 package com.example.demotda.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
+
 
 @Data
 @RequiredArgsConstructor
@@ -18,25 +19,32 @@ public class Cart {
     private Long id;
     private String username;
     private Long idproduct;
-    private String nameprodcut;
-    private String img;
-    private int price;
+
     private int quantity;
 
-    private int total;
+    private int status;
+
+//    @OneToMany(mappedBy = "cart",cascade =CascadeType.ALL)
+//    @JsonManagedReference
+//    private List<Product> products;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productId")
+    private Product product;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
+    private User user;
 
 //    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
 //    @JsonManagedReference
 //    private Set<Product> products;
 
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "cart")
+    @JsonBackReference
+    private Oder oder;
 
-    public Cart(String username, Long idproduct, String nameprodcut, String img, int price, int quantity, int total) {
-        this.username = username;
-        this.idproduct = idproduct;
-        this.nameprodcut = nameprodcut;
-        this.img = img;
-        this.price = price;
-        this.quantity = quantity;
-        this.total= total;
-    }
+
 }

@@ -74,10 +74,10 @@
             <ul class="main-nav nav navbar-nav">
                 <li class="active"><a href="/user">Home</a></li>
                 <li><a href="/store">Store</a></li>
-                <li><a href="/viewcart">Cart</a></li>
+                <li><a href="/viewCart">Cart</a></li>
                 <li><a href="/oder">Oder</a></li>
-                <li><a href="/odercancel">OderCancel</a></li>
-                <li><a href="/odership">OderShip</a></li>
+                <li><a href="/oderCancel">OderCancel</a></li>
+                <li><a href="/oderShip">OderShip</a></li>
             </ul>
             <!-- /NAV -->
         </div>
@@ -105,24 +105,28 @@
                         <h3 class="title">Billing address</h3>
                     </div>
                     <form action="/checkout" method="post">
-                    <div class="form-group">
-                        <input class="input" type="text" name="fullname" placeholder="Full Name"required >
-                    </div>
                         <div class="form-group">
-                            <input class="input" type="hidden" name="idcart" placeholder="Id Cart" th:value="${idcart}" required >
+                            <input class="input" type="hidden" name="cartId"  th:value="${cart.id}" required >
                         </div>
+                        <label>Full Name</label>
                     <div class="form-group">
-                        <input class="input" type="email" name="email" placeholder="Email" required>
+                        <input class="input" type="text" name="fullname"  th:value="${user.userProfile.fullName}" required >
                     </div>
+                        <label>Email</label>
                     <div class="form-group">
-                        <input class="input" type="text" name="address" placeholder="Address" required>
+                        <input class="input" type="email" name="email"  th:value="${user.email}"  required>
                     </div>
+                        <label>Address (mặc định)</label>
                     <div class="form-group">
-                        <input class="input" type="text" name="city" placeholder="City" required>
+                        <input class="input" type="text" name="address"  th:value="${user.userProfile.address1}"  required>
                     </div>
-
+                        <label>City</label>
                     <div class="form-group">
-                        <input class="input" type="tel" name="phone" placeholder="Telephone" required>
+                        <input class="input" type="text" name="city" th:value="${user.userProfile.city}"   required>
+                    </div>
+                        <label>Phone</label>
+                    <div class="form-group">
+                        <input class="input" type="tel" name="phone" th:value="${user.phone}"   required>
                     </div>
                     <button type="submit" class="primary-btn order-submit">Place order</button>
                     </form>
@@ -143,37 +147,10 @@
                             <span></span>
                             Ship to a diffrent address?
                         </label>
-                        <div class="caption">
-                            <div class="form-group">
-                                <input class="input" type="text" name="first-name" placeholder="First Name">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="last-name" placeholder="Last Name">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="email" name="email" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="address" placeholder="Address">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="city" placeholder="City">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="country" placeholder="Country">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="tel" name="tel" placeholder="Telephone">
-                            </div>
-                        </div>
+
                     </div>
                 </div>
-                <!-- /Shiping Details -->
 
-                <!-- Order notes -->
                 <div class="order-notes">
                     <textarea class="input" placeholder="Order Notes"></textarea>
                 </div>
@@ -192,8 +169,8 @@
                     </div>
                     <div class="order-products">
                         <div class="order-col">
-                            <div th:text="${quantity}"></div> <div> x</div><div th:text="${nameproduct}"></div>
-                            <div th:text="${total}"></div>
+                            <div th:text="${cart.quantity}"></div> <div> x</div><div th:text="${cart.product.nameproduct}"></div>
+                            <div th:text="${cart.product.price*cart.quantity}"></div>
                         </div>
 
                     </div>

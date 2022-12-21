@@ -74,13 +74,13 @@
     <div id="responsive-nav">
       <!-- NAV -->
       <ul class="main-nav nav navbar-nav">
-        <li class="active"><a href="/user">Home</a></li>
+        <li ><a href="/user">Home</a></li>
         <li><a href="/store">Store</a></li>
-        <li><a href="/viewcart">Cart</a></li>
+        <li><a href="/viewCart">Cart</a></li>
 
         <li><a href="/oder">Oder</a></li>
-        <li><a href="/odercancel">OderCancel</a></li>
-        <li><a href="/odership">OderShip</a></li>
+        <li><a href="/oderCancel">OderCancel</a></li>
+        <li class="active"><a href="/oderShip">OderShip</a></li>
       </ul>
       <!-- /NAV -->
     </div>
@@ -114,24 +114,23 @@
             <th class="text-center">STATUS</th>
             <th class="text-center">QUANTITY</th>
             <th class="text-center">TOTAL</th>
-            <th class="text-center">CANCEL</th>
+            <th class="text-center">CONTACT</th>
           </tr>
           </thead>
           <tbody>
-          <th:block th:each="cart : ${listship}">
+          <th:block th:each="oder : ${listShip}">
             <tr>
-              <td class="image" data-title="No"><img th:src="${cart.img}" alt="#"></td>
+              <td class="image" data-title="No"><img th:src="${oder.cart.product.img}" alt="#"></td>
               <td class="product-des" data-title="Description">
-                <p class="product-name"><a th:href="@{/che(idproduct=${cart.idproduct},
-                total=${cart.quantity},idcart=${cart.id})}"><span th:text="${cart.nameproduct}"> </span></a></p>
+                <p class="product-name"><a th:href="@{/che(idproduct=${oder.id})}"><span th:text="${oder.cart.product.nameproduct}"> </span></a></p>
               </td>
               <td class="price" data-title="Price"><span style="color: green">Đang giao hàng </span></td>
-              <td class="price" data-title="Price"><span th:text="${cart.quantity}"> </span></td>
+              <td class="price" data-title="Price"><span th:text="${oder.cart.quantity}"> </span></td>
 
 
 
-              <td class="total-amount" data-title="Total"><span th:text="${cart.total}"> </span><span>vnđ</span></td>
-              <td class="action" data-title="Remove"><a th:href="@{/canceloder(id=${cart.id})}"><i style="color: red">Hủy đơn hàng</i></a></td>
+              <td class="total-amount" data-title="Total"><span th:text="${oder.cart.quantity*oder.cart.product.price}"> </span><span>vnđ</span></td>
+              <td class="action" data-title="Remove"><a th:href="@{/cance(id=${oder.id})}"><i style="color: red">Liên hệ Shipper</i></a></td>
             </tr>
           </th:block>
 

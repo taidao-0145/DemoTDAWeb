@@ -21,5 +21,11 @@ public interface UserRepo extends JpaRepository<User,Long> {
     @Query(value="UPDATE user set pass=? where  username=?", nativeQuery=true)
     void changepassword(String pass,String username);
 
+    User findUserById(Long id);
+
+    @Transactional
+    @Modifying
+    @Query(value="select * from demotda.user where username like %?%", nativeQuery=true)
+    List<User> Search(String name);
 
 }

@@ -41,11 +41,11 @@
       <ul class="main-nav nav navbar-nav">
         <li class="active"><a href="/user">Home</a></li>
         <li><a href="/store">Store</a></li>
-        <li><a href="/viewcart">Cart</a></li>
+        <li><a href="/viewCart">Cart</a></li>
 
         <li><a href="/oder">Oder</a></li>
-        <li><a href="/odercancel">OderCancel</a></li>
-        <li><a href="/odership">OderShip</a></li>
+        <li><a href="/oderCancel">OderCancel</a></li>
+        <li><a href="/oderShip">OderShip</a></li>
       </ul>
       <!-- /NAV -->
     </div>
@@ -134,8 +134,8 @@
 
           <ul class="product-links">
             <li>Category:</li>
-            <li th:text="${product.typeproduct}"></li>
-            <li th:text="${product.hangsp}"></li>
+            <li th:text="${product.category.name}"></li>
+            <li th:text="${product.supplier.supplier}"></li>
           </ul>
 
           <ul class="product-links">

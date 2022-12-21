@@ -74,13 +74,13 @@
     <div id="responsive-nav">
       <!-- NAV -->
       <ul class="main-nav nav navbar-nav">
-        <li class="active"><a href="/user">Home</a></li>
+        <li ><a href="/user">Home</a></li>
         <li><a href="/store">Store</a></li>
-        <li><a href="/viewcart">Cart</a></li>
+        <li><a href="/viewCart">Cart</a></li>
 
-        <li><a href="/oder">Oder</a></li>
-        <li><a href="/odercancel">OderCancel</a></li>
-        <li><a href="/odership">OderShip</a></li>
+        <li class="active"><a href="/oder">Oder</a></li>
+        <li><a href="/oderCancel">OderCancel</a></li>
+        <li><a href="/oderShip">OderShip</a></li>
       </ul>
       <!-- /NAV -->
     </div>
@@ -97,7 +97,9 @@
 <!-- SECTION -->
 <div class="shopping-cart section">
   <div class="container">
-
+    <div class="row justify-content-center">
+      <h5 style="color: green;text-align: center" th:if="${param.oder}"><span>Đặt hàng thành công</span></h5 >
+    </div>
       <h4 style="color: green;text-align: center" ><span>DANH SÁCH ĐƠN ĐẶT HÀNG</span></h4 >
 
     <div class="row">
@@ -118,20 +120,19 @@
           </tr>
           </thead>
           <tbody>
-          <th:block th:each="cart : ${listoder}">
+          <th:block th:each="oder : ${listOderUser}">
             <tr>
-              <td class="image" data-title="No"><img th:src="${cart.img}" alt="#"></td>
+              <td class="image" data-title="No"><img th:src="${oder.cart.product.img}" alt="#"></td>
               <td class="product-des" data-title="Description">
-                <p class="product-name"><a th:href="@{/che(idproduct=${cart.idproduct},
-                total=${cart.quantity},idcart=${cart.id})}"><span th:text="${cart.nameproduct}"> </span></a></p>
+                <p class="product-name"><a th:href="@{/che(idproduct=${oder.id})}"><span th:text="${oder.cart.product.nameproduct}"> </span></a></p>
               </td>
               <td class="price" data-title="Price"><span style="color: green">Đang đặt hàng </span></td>
-              <td class="price" data-title="Price"><span th:text="${cart.quantity}"> </span></td>
+              <td class="price" data-title="Price"><span th:text="${oder.cart.quantity}"> </span></td>
 
 
 
-              <td class="total-amount" data-title="Total"><span th:text="${cart.total}"> </span><span>vnđ</span></td>
-              <td class="action" data-title="Remove"><a th:href="@{/canceloder(id=${cart.id})}"><i style="color: red">Hủy đơn hàng</i></a></td>
+              <td class="total-amount" data-title="Total"><span th:text="${oder.cart.product.price*oder.cart.quantity}"> </span><span>vnđ</span></td>
+              <td class="action" data-title="Remove"><a th:href="@{/cancelOder(id=${oder.id})}"><i style="color: red">Hủy đơn hàng</i></a></td>
             </tr>
           </th:block>
 

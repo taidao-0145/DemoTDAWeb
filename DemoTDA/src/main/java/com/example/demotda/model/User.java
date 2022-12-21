@@ -1,6 +1,7 @@
 package com.example.demotda.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,6 +29,10 @@ public class User {
             mappedBy = "user")
     @JsonBackReference
     private UserProfile userProfile;
+
+    @OneToMany(mappedBy = "user",cascade =CascadeType.ALL)
+    @JsonManagedReference
+    private List<Cart> carts;
 
     public User(String username, String email, int phone, String pass, String img) {
         this.username = username;

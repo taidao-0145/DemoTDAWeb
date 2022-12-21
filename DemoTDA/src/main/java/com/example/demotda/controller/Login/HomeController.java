@@ -3,6 +3,8 @@ package com.example.demotda.controller.Login;
 import com.example.demotda.model.Product;
 import com.example.demotda.repositorie.ProductRepo;
 import com.example.demotda.repositorie.UserRepo;
+import com.example.demotda.service.ProductService;
+import com.example.demotda.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,20 +17,19 @@ import java.util.List;
 @RequestMapping("/")
 
 public class HomeController {
-    private ProductRepo productRepo;
-    private UserRepo userRepo;
+    private ProductService productService;
+    private UserService userService;
     @Autowired
-    public HomeController(ProductRepo productRepo,UserRepo userRepo){
-        this.userRepo= userRepo;
-        this.productRepo=productRepo;
+    public HomeController(ProductService productService,UserService userService){
+        this.userService= userService;
+        this.productService=productService;
     }
-
     @GetMapping
     public String home(Model model){
-            List<Product> listnew= productRepo.listnew();
-            model.addAttribute("listnew",listnew);
-            List<Product> listsale= productRepo.listsale();
-            model.addAttribute("listsale",listsale);
+            List<Product> listNew= productService.listNew();
+            model.addAttribute("listNew",listNew);
+            List<Product> listSale= productService.listSale();
+            model.addAttribute("listSale",listSale);
         return "login/home";
     }
 }
