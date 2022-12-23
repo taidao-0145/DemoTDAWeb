@@ -13,4 +13,5 @@ public interface ProductSoldService {
     long revenueYesterday(String today1, String today2);
     List<ProductSold> findAll();
     List<ProductSold> searchDateProductSold(String startDate, String endDate);
+    List<ProductSold> TopSelling();
 }

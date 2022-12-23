@@ -32,4 +32,14 @@ public interface CartRepo extends JpaRepository<Cart,Long> {
     @Transactional
     @Query(value="SELECT count(*) FROM cart WHERE product_id=? and status =0;", nativeQuery=true)
     int countOderById(Long idProduct);
+
+    @Transactional
+    @Modifying
+    @Query(value="UPDATE cart set quantity=quantity+1 where id=?", nativeQuery=true)
+    void updatePlusQuantity(Long id);
+
+    @Transactional
+    @Modifying
+    @Query(value="UPDATE cart set quantity=quantity-1 where id=?", nativeQuery=true)
+    void updateMinusQuantity(Long id);
 }

@@ -40,7 +40,8 @@ public class AdminController {
         long countOder= oderService.countOder();
         model.addAttribute("countOder",countOder);
         long revenueYesterday= productSoldService.revenueYesterday(today1,today1);
-        model.addAttribute("revenueYesterday",revenueYesterday);
+        String newNumber=String.format("%,d",revenueYesterday);
+        model.addAttribute("revenueYesterday",newNumber);
         long countOderShip= oderService.countOderShip();
         model.addAttribute("countOderShip",countOderShip);
         return "admin/admin";

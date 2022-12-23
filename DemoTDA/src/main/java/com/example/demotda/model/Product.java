@@ -34,14 +34,10 @@ public class Product {
 //    @JoinColumn(name = "cartId")
 //    private Cart cart;
 
-    @OneToMany(mappedBy = "product",cascade =CascadeType.ALL)
-    @JsonManagedReference
-    private List<Cart> carts;
 
     public Product(String nameproduct, int soluong, String img, int price, int sale, Date dateadd) {
         this.nameproduct = nameproduct;
         this.soluong = soluong;
-
         this.img = img;
         this.price = price;
         this.sale = sale;

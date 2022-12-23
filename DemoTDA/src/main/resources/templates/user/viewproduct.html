@@ -119,12 +119,12 @@
             <div class="qty-label">
               Qty
               <div class="input-number">
-                <input type="number" value="1" name="num">
+                <input type="number" th:value="${num}" name="num">
                 <span class="qty-up">+</span>
                 <span class="qty-down">-</span>
               </div>
             </div>
-            <a th:href="@{/addcartview(id=${product.id})}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
+            <a th:href="@{/addToCart(id=${product.id})}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
           </div>
 
           <ul class="product-btns">

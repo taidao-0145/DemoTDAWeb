@@ -20,6 +20,7 @@ public class ProductSold {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long idProduct;
+    private Long idUser;
     private String nameProduct;
     private String category;
     private int quantity;
@@ -29,7 +30,7 @@ public class ProductSold {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private Date exportDate;
 
-    public ProductSold(Long idProduct, String nameProduct, String category, int quantity, String supplier, int total, Date exportDate) {
+    public ProductSold(Long idProduct, String nameProduct, String category, int quantity, String supplier, int total, Date exportDate,Long idUser) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.category = category;
@@ -37,5 +38,6 @@ public class ProductSold {
         this.supplier = supplier;
         this.total = total;
         this.exportDate = exportDate;
+        this.idUser=idUser;
     }
 }

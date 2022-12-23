@@ -108,5 +108,19 @@ public class CartController {
             return "redirect:/oder?oder= Dat hang thanh cong";
         }
     }
-
+    @GetMapping("/numCart")
+    public String NumCart(@RequestParam("id") Long id,@RequestParam("check") String check,@RequestParam("num") int num){
+        if(check.equals("plus")){
+            cartService.updatePlusQuantity(id);
+        }
+        else{
+            if(num<2){
+                return "redirect:/viewCart";
+            }
+            else {
+                cartService.updateMinusQuantity(id);
+            }
+        }
+        return "redirect:/viewCart";
+    }
 }

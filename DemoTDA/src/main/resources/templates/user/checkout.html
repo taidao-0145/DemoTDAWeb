@@ -180,7 +180,7 @@
                     </div>
                     <div class="order-col">
                         <div><strong>TOTAL</strong></div>
-                        <div><strong class="order-total" th:text="${total}"></strong></div>
+                        <div><strong class="order-total" th:text="${cart.product.price*cart.quantity}"></strong></div>
                     </div>
                 </div>
                 <div class="payment-method">

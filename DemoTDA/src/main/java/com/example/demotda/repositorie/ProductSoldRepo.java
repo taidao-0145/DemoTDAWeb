@@ -42,8 +42,9 @@ public interface ProductSoldRepo extends JpaRepository<ProductSold,Long> {
     @Modifying
     @Query(value="SELECT * FROM demotda.product_sold where export_date between ? and ?", nativeQuery=true)
     List<ProductSold> searchDateProductSold(String startDate, String endDate);
-//    @Transactional
-//    @Query(value="select id_product,name_product,sum(quantity) FROM demotda.product_sold group by id_product,name_product order by sum(quantity) desc ;", nativeQuery=true)
-//    List<ProductSold> TopSelling();
+
+    @Transactional
+    @Query(value="select id_product,name_product,sum(quantity) FROM product_sold group by id_product,name_product order by sum(quantity) desc", nativeQuery=true)
+    List<ProductSold> TopSelling();
 
 }

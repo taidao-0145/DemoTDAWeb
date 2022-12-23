@@ -33,7 +33,6 @@ public class ProductSoldServiceImpl implements ProductSoldService {
     }
     @Override
     public List<ProductSold> listSoldWeek(){
-
         return productSoldRepo.listSoldWeek();
     }
     @Override
@@ -48,5 +47,9 @@ public class ProductSoldServiceImpl implements ProductSoldService {
     public List<ProductSold> searchDateProductSold(String startDate, String endDate){
         return productSoldRepo.searchDateProductSold(startDate,endDate);
 
+    }
+    @Override
+    public List<ProductSold> TopSelling() {
+        return productSoldRepo.TopSelling();
     }
 }

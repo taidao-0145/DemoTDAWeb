@@ -130,10 +130,9 @@
                 <div class="quantity buttons_added">
 
 
-                  <span>  <a class="plus" th:href="@{/numCart(id=${cart.id},num=${cart.quantity}, check=plus, idpro=${cart.idproduct})}" style="display: block; background-color: #D10024;color: white; width: 20px; text-decoration: none">+</a> </span>
+                  <span>  <a class="plus" th:href="@{/numCart(id=${cart.id},num=${cart.quantity}, check=plus)}" style="display: block; background-color: #D10024;color: white; width: 20px; text-decoration: none">+</a> </span>
                   <input type="text"  size="4" class="input-text qty text" title="Qty" th:value="${cart.quantity}" >
-
-                  <span>       <a class="plus"th:href="@{/numCart(id=${cart.id},num=${cart.quantity},check=minus, idpro=${cart.idproduct})}" style="display: block; background-color: #D10024;color: white; width: 20px; text-decoration: none">-</a> </span>
+                  <span>  <a class="plus"th:href="@{/numCart(id=${cart.id},num=${cart.quantity},check=minus)}" style="display: block; background-color: #D10024;color: white; width: 20px; text-decoration: none">-</a> </span>
                 </div>
                 <!--/ End Input Order -->
               </td>

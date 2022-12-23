@@ -1,4 +1,5 @@
 package com.example.demotda.controller;
+import com.example.demotda.dto.ProductSoldDto;
 import com.example.demotda.model.Oder;
 import com.example.demotda.model.ProductSold;
 import com.example.demotda.util.SoldDayExcel;
@@ -6,12 +7,12 @@ import com.example.demotda.util.UserExcelExporter;
 import com.example.demotda.service.OderService;
 import com.example.demotda.service.ProductService;
 import com.example.demotda.service.ProductSoldService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,10 +21,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 
 public class ProductSoldController {
+    @Autowired
+    private ModelMapper modelMapper;
     private OderService oderService;
     private ProductService productService;
     private ProductSoldService productSoldService;
@@ -55,11 +59,12 @@ public class ProductSoldController {
         Oder oder= oderService.findOderById(idOder);
         String category= oder.getCart().getProduct().getCategory().getName();
         Long idProduct= oder.getCart().getProduct().getId();
+        Long idUser=oder.getCart().getUser().getId();
         String nameProduct= oder.getCart().getProduct().getNameproduct();
         String supplier=oder.getCart().getProduct().getSupplier().getSupplier();
         int quantity= oder.getCart().getQuantity();
         int toTal=oder.getTotal();
-        ProductSold productSold= new ProductSold(idProduct,nameProduct,category,quantity,supplier,toTal,new Date());
+        ProductSold productSold= new ProductSold(idProduct,nameProduct,category,quantity,supplier,toTal,new Date(),idUser);
         productSoldService.save(productSold);
         oderService.deleteOder(idOder);
         productService.UpdateExport(quantity,idProduct);
@@ -126,16 +131,13 @@ public class ProductSoldController {
         return "redirect:/productSold";
     }
 
-
-
-
-
-
-
-    @GetMapping("/sellingProduct")
-    public String SellingProduct(Model model){
-        return "admin/sellingProduct";
-    }
+        @GetMapping("/sellingProduct")
+        public String SellingProduct(Model model){
+//            List<ProductSoldDto> topSelling= productSoldService.TopSelling().stream().map(selling -> modelMapper.map(selling,ProductSoldDto.class)).collect(Collectors.toList());
+            List<ProductSold> topSelling= productSoldService.TopSelling();
+            model.addAttribute("topSelling",topSelling);
+            return "admin/sellingProduct";
+        }
 
 
 }

@@ -1,7 +1,6 @@
 package com.example.demotda.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +23,6 @@ public class Cart {
 
     private int status;
 
-//    @OneToMany(mappedBy = "cart",cascade =CascadeType.ALL)
-//    @JsonManagedReference
-//    private List<Product> products;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productId")
     private Product product;
@@ -36,9 +31,6 @@ public class Cart {
     @JoinColumn(name = "userId")
     private User user;
 
-//    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-//    @JsonManagedReference
-//    private Set<Product> products;
 
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,

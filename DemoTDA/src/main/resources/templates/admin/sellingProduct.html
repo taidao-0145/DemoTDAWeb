@@ -246,15 +246,15 @@
                   <tr>
                     <th class="cell">ID Product</th>
                     <th class="cell">Name Product</th>
-                    <th class="cell">Quantity</th>
+
                   </tr>
                   </thead>
                   <tbody>
-                  <th:block th:each=" sell: ${sellingProduct}">
+                  <th:block th:each=" sell: ${topSelling}">
                     <tr>
                       <td class="cell" ><span th:text="${sell.idProduct}"> </span></td>
                       <td class="cell"><span th:text="${sell.nameProduct}"> </span></td>
-                      <td class="cell"><span th:text="${sell.quantity}"> </span></td>
+
                     </tr>
                   </th:block>
                   </tbody>

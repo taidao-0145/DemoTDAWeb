@@ -57,4 +57,13 @@ public class CartServiceImpl implements CartService {
         return cartRepo.countOderById(idProduct);
     }
 
+    @Override
+    public void updatePlusQuantity(Long id) {
+        cartRepo.updatePlusQuantity(id);
+    }
+    @Override
+    public void updateMinusQuantity(Long id) {
+        cartRepo.updateMinusQuantity(id);
+    }
+
 }
