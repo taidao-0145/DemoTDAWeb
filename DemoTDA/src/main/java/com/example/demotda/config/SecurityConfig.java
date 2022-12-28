@@ -23,7 +23,7 @@ public class SecurityConfig  {
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests().antMatchers("/store", "/viewCart","/checkout","/viewhome",
-                        "/oder").authenticated()
+                        "/oder","/user").authenticated()
 //                .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().permitAll().and().csrf().disable()
                 .formLogin().loginPage("/login").passwordParameter("pass")

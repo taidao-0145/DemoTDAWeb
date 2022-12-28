@@ -1,4 +1,4 @@
-package com.example.demotda.controller.Login;
+package com.example.demotda.controller.login;
 
 import com.example.demotda.config.MailConfig;
 import com.example.demotda.model.User;
@@ -27,7 +27,7 @@ public class ForgotPassController {
     }
 
     @GetMapping
-    public String viewforgot(){
+    public String viewForgot(){
         return "login/forgotpass";
     }
     @PostMapping

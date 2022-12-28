@@ -1,4 +1,4 @@
-package com.example.demotda.controller.Login;
+package com.example.demotda.controller.login;
 
 import com.example.demotda.model.User;
 import com.example.demotda.model.UserProfile;
@@ -20,17 +20,15 @@ public class VerifyEmailController {
     @Autowired
     private UserRepo userRepo;
 
-    @Autowired
-    private UserProfileService userProfileService;
     @GetMapping
     public String mail(){
         return "login/checkmail";
     }
     @PostMapping
-    public String verify(HttpSession session, @RequestParam("code") String codeuser, Model model){
+    public String verify(HttpSession session, @RequestParam("code") String codeUser, Model model){
         String codeVerify= (String) session.getAttribute("code");
         User user= (User) session.getAttribute("user");
-        if(codeuser.equals(codeVerify)){
+        if(codeUser.equals(codeVerify)){
             UserProfile userProfile= new UserProfile("update","update","update","update","update");
             user.setUserProfile(userProfile);
             userProfile.setUser(user);

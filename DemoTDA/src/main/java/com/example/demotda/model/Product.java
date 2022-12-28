@@ -30,21 +30,12 @@ public class Product {
     @JoinColumn(name = "supplierId")
     private Supplier supplier;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "cartId")
-//    private Cart cart;
+    @OneToMany(mappedBy = "product",cascade =CascadeType.ALL)
+    @JsonManagedReference
+    private List<ImportProduct> importProducts;
 
 
-    public Product(String nameproduct, int soluong, String img, int price, int sale, Date dateadd) {
-        this.nameproduct = nameproduct;
-        this.soluong = soluong;
-        this.img = img;
-        this.price = price;
-        this.sale = sale;
-        this.dateadd = dateadd;
-    }
-
-    public Product(String nameproduct, int soluong, String img, int price, int sale, Date dateadd, Category category) {
+    public Product(String nameproduct, int soluong, String img, int price, int sale, Date dateadd, Category category, Supplier supplier) {
         this.nameproduct = nameproduct;
         this.soluong = soluong;
         this.img = img;
@@ -52,5 +43,19 @@ public class Product {
         this.sale = sale;
         this.dateadd = dateadd;
         this.category = category;
+        this.supplier = supplier;
+    }
+
+    public Product(Long id, String nameproduct, int soluong, String img, int price, int sale, Date dateadd, Category category, Supplier supplier) {
+        this.id = id;
+        this.nameproduct = nameproduct;
+        this.soluong = soluong;
+        this.img = img;
+        this.price = price;
+        this.sale = sale;
+        this.dateadd = dateadd;
+        this.category = category;
+        this.supplier = supplier;
+
     }
 }

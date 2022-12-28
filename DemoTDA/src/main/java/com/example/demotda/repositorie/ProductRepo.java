@@ -12,10 +12,6 @@ import java.util.List;
 @Repository
 public interface ProductRepo extends  JpaRepository<Product,Long> {
 
-//    @Transactional
-//    @Modifying
-//    @Query(value="select * from demotda.product where nameproduct like %?%", nativeQuery=true)
-//    List<Product> findAll(String keyword);
 
     @Query(value="SELECT * FROM product order by id DESC limit 0,8", nativeQuery=true)
     List<Product> listNew();

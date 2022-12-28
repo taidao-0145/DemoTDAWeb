@@ -1,13 +1,10 @@
 package com.example.demotda.controller;
-import com.example.demotda.dto.ProductSoldDto;
-import com.example.demotda.model.Oder;
-import com.example.demotda.model.ProductSold;
+import com.example.demotda.model.*;
 import com.example.demotda.util.SoldDayExcel;
 import com.example.demotda.util.UserExcelExporter;
 import com.example.demotda.service.OderService;
 import com.example.demotda.service.ProductService;
 import com.example.demotda.service.ProductSoldService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -21,13 +18,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 
 public class ProductSoldController {
-    @Autowired
-    private ModelMapper modelMapper;
     private OderService oderService;
     private ProductService productService;
     private ProductSoldService productSoldService;
@@ -40,6 +34,7 @@ public class ProductSoldController {
     }
     @GetMapping("/productSold")
     public String viewSold(Model model){
+
         return listByPage(model,1);
     }
     @GetMapping("/pageSold")
@@ -55,7 +50,7 @@ public class ProductSoldController {
         return "admin/productsold";
     }
     @GetMapping("/exportProduct")
-    public String ExportProduct(@RequestParam("idOder") Long idOder){
+    public String exportProduct(@RequestParam("idOder") Long idOder){
         Oder oder= oderService.findOderById(idOder);
         String category= oder.getCart().getProduct().getCategory().getName();
         Long idProduct= oder.getCart().getProduct().getId();
@@ -67,12 +62,12 @@ public class ProductSoldController {
         ProductSold productSold= new ProductSold(idProduct,nameProduct,category,quantity,supplier,toTal,new Date(),idUser);
         productSoldService.save(productSold);
         oderService.deleteOder(idOder);
-        productService.UpdateExport(quantity,idProduct);
+        productService.updateExport(quantity,idProduct);
         return "redirect:/productSold";
     }
 
     @GetMapping("/productSoldDay")
-    public String ProductSolDay(Model model){
+    public String productSolDay(Model model){
         Date date = new Date();
         String today = new SimpleDateFormat("dd/MM/yyyy").format(date.getTime());
         String today1 = new SimpleDateFormat("yyyy/MM/dd").format(date.getTime());
@@ -83,7 +78,7 @@ public class ProductSoldController {
     }
 
     @GetMapping("/productSoldWeek")
-    public String ProductSoldWeek(Model model){
+    public String productSoldWeek(Model model){
         List<ProductSold> listSoldWeek= productSoldService.listSoldWeek();
         model.addAttribute("listSoldWeek",listSoldWeek);
         return "admin/productsoldweek";
@@ -91,7 +86,6 @@ public class ProductSoldController {
 
     @GetMapping("/exportExcelSold")
     public void exSold(HttpServletResponse response) throws IOException {
-
         response.setContentType("application/octet-stream");
         String headerKey= "Content-Disposition";
         String headerValue="attachment; filename=Danh sách bán hàng.xlsx";
@@ -100,7 +94,6 @@ public class ProductSoldController {
         UserExcelExporter excelExporter= new UserExcelExporter(listProductSold);
         excelExporter.export(response);
     }
-
     @GetMapping("exportExcelSoldDay")
     public void exSoldDay(HttpServletResponse response) throws IOException{
         Date date= new Date();
@@ -117,27 +110,35 @@ public class ProductSoldController {
     }
 
     @PostMapping("/searchDateProductSold")
-    public String SearchProductSold(@RequestParam("startDate") String startDate,
+    public String searchProductSold(@RequestParam("startDate") String startDate,
                                     @RequestParam("endDate") String endDate,Model model){
-
-        List<ProductSold> searchProductSold;
+        List<ProductSold> listSold;
         if(startDate.equals(endDate)){
-            searchProductSold = productSoldService.listSoldDay(startDate);
+            listSold = productSoldService.listSoldDay(startDate);
         }
         else {
-            searchProductSold = productSoldService.searchDateProductSold(startDate, endDate);
+            listSold = productSoldService.searchDateProductSold(startDate, endDate);
         }
-        model.addAttribute("searchProductSold",searchProductSold);
-        return "redirect:/productSold";
+        model.addAttribute("listSold",listSold);
+        return "redirect:/productSold?search=true";
     }
-
-        @GetMapping("/sellingProduct")
-        public String SellingProduct(Model model){
-//            List<ProductSoldDto> topSelling= productSoldService.TopSelling().stream().map(selling -> modelMapper.map(selling,ProductSoldDto.class)).collect(Collectors.toList());
-            List<ProductSold> topSelling= productSoldService.TopSelling();
-            model.addAttribute("topSelling",topSelling);
-            return "admin/sellingProduct";
-        }
-
+    @GetMapping("/sellingProduct")
+    public String sellingProduct(Model model){
+        List<TopSellingg> topSelling= productSoldService.topSelling();
+        model.addAttribute("topSelling",topSelling);
+        return "admin/sellingProduct";
+    }
+    @GetMapping("/topUser")
+    public String topUser(Model model){
+        List<TopUser> topUsers=productSoldService.topUser();
+        model.addAttribute("topUsers",topUsers);
+        return "admin/topuser";
+    }
+    @GetMapping("/revenueStatistic")
+    public String revenueStatistic(Model model){
+        List<Revenue> revenues= productSoldService.revenue();
+        model.addAttribute("revenues",revenues);
+        return "admin/revenueStatistics";
+    }
 
 }

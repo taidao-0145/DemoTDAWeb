@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>ADMIN</title>
 
@@ -209,6 +209,9 @@
               <form class="settings-form" action="/updateProduct" method="post">
                 <div class="mb-3">
                   <input type="hidden" name="id" class="form-control" th:value="${product.id}" required>
+                </div>
+                <div class="mb-3">
+                  <input type="hidden" name="img" class="form-control" th:value="${product.img}" required>
                 </div>
                 <div class="mb-3">
                   <label  class="form-label">Name Product</label>

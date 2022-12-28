@@ -15,7 +15,6 @@ public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String fullName;
     private String address1;
     private String address2;
@@ -45,5 +44,13 @@ public class UserProfile {
         this.street = street;
         this.city = city;
         this.user = user;
+    }
+    public UserProfile(Long id,String fullName,String address1, String address2, String street, String city) {
+        this.id=id;
+        this.fullName=fullName;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.street = street;
+        this.city = city;
     }
 }

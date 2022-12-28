@@ -1,10 +1,7 @@
-package com.example.demotda.controller.Login;
+package com.example.demotda.controller.login;
 
 import com.example.demotda.model.Product;
-import com.example.demotda.repositorie.ProductRepo;
-import com.example.demotda.repositorie.UserRepo;
 import com.example.demotda.service.ProductService;
-import com.example.demotda.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +15,9 @@ import java.util.List;
 
 public class HomeController {
     private ProductService productService;
-    private UserService userService;
+
     @Autowired
-    public HomeController(ProductService productService,UserService userService){
-        this.userService= userService;
+    public HomeController(ProductService productService){
         this.productService=productService;
     }
     @GetMapping

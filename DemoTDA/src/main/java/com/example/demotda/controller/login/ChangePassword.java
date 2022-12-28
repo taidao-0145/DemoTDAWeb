@@ -1,4 +1,4 @@
-package com.example.demotda.controller.Login;
+package com.example.demotda.controller.login;
 
 import com.example.demotda.repositorie.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ public class ChangePassword {
     }
 
     @PostMapping
-    public String ChangePass(@RequestParam("pass") String pass, Model model, HttpSession session){
-        String pass_pattern="(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
-        if(Pattern.matches(pass_pattern,pass)==false){
+    public String changePass(@RequestParam("pass") String pass, Model model, HttpSession session){
+        String passPattern="(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
+        if(!Pattern.matches(passPattern,pass)){
             model.addAttribute("mess","Mật khẩu chưa đủ mạnh(> 8 ký tự,hoa,thường,kí tự...");
             return "login/changepassword";
         }

@@ -30,9 +30,6 @@ public class User {
     @JsonBackReference
     private UserProfile userProfile;
 
-    @OneToMany(mappedBy = "user",cascade =CascadeType.ALL)
-    @JsonManagedReference
-    private List<Cart> carts;
 
     public User(String username, String email, int phone, String pass, String img) {
         this.username = username;
@@ -41,9 +38,15 @@ public class User {
         this.pass = pass;
         this.img = img;
     }
-
     public User(String username, String pass, List<SimpleGrantedAuthority> list) {
         this.username = username;
         this.pass=pass;
+    }
+
+    public User(Long id, String username, String email, int phone) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.phone = phone;
     }
 }

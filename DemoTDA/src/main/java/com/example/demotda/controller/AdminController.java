@@ -1,5 +1,6 @@
 package com.example.demotda.controller;
 
+import com.example.demotda.model.Oder;
 import com.example.demotda.model.Product;
 import com.example.demotda.service.OderService;
 import com.example.demotda.service.ProductService;
@@ -39,11 +40,13 @@ public class AdminController {
         model.addAttribute("today",today);
         long countOder= oderService.countOder();
         model.addAttribute("countOder",countOder);
-        long revenueYesterday= productSoldService.revenueYesterday(today1,today1);
+        Long revenueYesterday= productSoldService.revenueYesterday(today1,today1);
         String newNumber=String.format("%,d",revenueYesterday);
         model.addAttribute("revenueYesterday",newNumber);
         long countOderShip= oderService.countOderShip();
         model.addAttribute("countOderShip",countOderShip);
+        List<Oder> oderNew=oderService.oderNew(today1);
+        model.addAttribute("oderNew",oderNew);
         return "admin/admin";
     }
 }

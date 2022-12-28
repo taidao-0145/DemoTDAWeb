@@ -15,7 +15,7 @@ public interface CartService {
     List<Cart> getCartByUserAndStatus(User user, int idStatus);
     Cart getCartByUserAndProductAndStatus(User user, Product product, int status);
     void updateCheck(Long userId,Long productId);
-    void DeleteCart(Long id);
+    void deleteCart(Long id);
     int countOderById(Long idProduct);
     void updatePlusQuantity(Long id);
     void updateMinusQuantity(Long id);

@@ -1,6 +1,5 @@
-package com.example.demotda.controller.Login;
+package com.example.demotda.controller.login;
 
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;

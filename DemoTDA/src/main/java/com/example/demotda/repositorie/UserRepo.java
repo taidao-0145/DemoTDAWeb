@@ -26,6 +26,6 @@ public interface UserRepo extends JpaRepository<User,Long> {
     @Transactional
     @Modifying
     @Query(value="select * from demotda.user where username like %?%", nativeQuery=true)
-    List<User> Search(String name);
+    List<User> search(String name);
 
 }

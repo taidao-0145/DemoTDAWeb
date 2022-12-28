@@ -108,12 +108,24 @@
               <span class="nav-link-text">Orders</span>
             </a><!--//nav-link-->
           </li><!--//nav-item-->
-
+          <li class="nav-item">
+            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+            <a class="nav-link" href="/importProduct">
+						        <span class="nav-icon">
+						        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building-add" viewBox="0 0 16 16">
+  <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Z"/>
+  <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6.5a.5.5 0 0 1-1 0V1H3v14h3v-2.5a.5.5 0 0 1 .5-.5H8v4H3a1 1 0 0 1-1-1V1Z"/>
+  <path d="M4.5 2a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Z"/>
+</svg>
+						         </span>
+              <span class="nav-link-text">Import Product</span>
+            </a><!--//nav-link-->
+          </li><!--//nav-item-->
 
 
           <li class="nav-item has-submenu">
             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-            <a class="nav-link submenu-toggle " href="#" data-bs-toggle="collapse" data-bs-target="#submenu-51" aria-expanded="true" aria-controls="submenu-1">
+            <a class="nav-link submenu-toggle " href="#" data-bs-toggle="collapse" data-bs-target="#submenu-51" aria-expanded="false" aria-controls="submenu-1">
 						        <span class="nav-icon">
 						        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 						        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
@@ -168,7 +180,7 @@
             <div id="submenu-22" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
               <ul class="submenu-list list-unstyled">
                 <li class="submenu-item"><a class="submenu-link" href="/revenueStatistic">Revenue Statistics</a></li>
-                <li class="submenu-item"><a class="submenu-link" href="/sellingProduct">Selling products</a></li>
+                <li class="submenu-item"><a class="submenu-link active" href="/sellingProduct">Selling products</a></li>
                 <li class="submenu-item"><a class="submenu-link" href="/topUser">Top User</a></li>
               </ul>
             </div>
@@ -231,7 +243,7 @@
 
 
       <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-        <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true"><span th:text="${today}"></span></a>
+        <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true"><span>Selling Products</span></a>
       </nav>
 
 
@@ -246,6 +258,7 @@
                   <tr>
                     <th class="cell">ID Product</th>
                     <th class="cell">Name Product</th>
+                    <th class="cell">Quantity</th>
 
                   </tr>
                   </thead>
@@ -254,6 +267,7 @@
                     <tr>
                       <td class="cell" ><span th:text="${sell.idProduct}"> </span></td>
                       <td class="cell"><span th:text="${sell.nameProduct}"> </span></td>
+                      <td class="cell"><span th:text="${sell.sum}"> </span></td>
 
                     </tr>
                   </th:block>
