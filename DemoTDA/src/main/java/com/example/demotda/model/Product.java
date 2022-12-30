@@ -22,6 +22,7 @@ public class Product {
     private int sale;
     private Date dateadd;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoryId")
     private Category category;

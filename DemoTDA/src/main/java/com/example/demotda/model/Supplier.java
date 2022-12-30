@@ -23,6 +23,10 @@ public class Supplier {
     @JsonManagedReference
     private List<Product> products;
 
+    @OneToMany(mappedBy = "supplier",cascade =CascadeType.ALL)
+    @JsonManagedReference
+    private List<ImportMaster> importMasters;
+
     public Supplier(String supplier, String address) {
         this.supplier = supplier;
         this.address = address;

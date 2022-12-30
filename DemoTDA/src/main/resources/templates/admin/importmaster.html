@@ -146,7 +146,7 @@
 
   <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
-      <h1 class="app-page-title">Add Product</h1>
+      <h1 class="app-page-title">Import Product Master</h1>
       <hr class="mb-4">
       <div class="row g-4 settings-section">
 
@@ -154,63 +154,24 @@
           <div class="app-card app-card-settings shadow-sm p-4">
 
             <div class="app-card-body">
-              <form class="settings-form" action="/addProduct" method="post">
-                <div class="mb-3">
-                  <label  class="form-label">Name Product</label>
-                  <input type="text" name="nameproduct" class="form-control" placeholder="name product..." required>
-                </div>
-                <div class="mb-3">
-                 <div> <label  class="form-label">Category</label>   <a class="badge bg-success" th:href="@{/addCategory}">New Category</a></div>
-                  <select name="category" class="form-select w-auto">
-                  <th:block th:each="category : ${categories}">
-                    <option th:value="${category.id}" th:text="${category.name}"></option>
-                  </th:block>
-                </select>
-                </div>
 
+              <form class="settings-form" action="/addImportMaster" method="post">
+                <div><label  class="form-label">Supplier</label> <a class="badge bg-success" th:href="@{/addSupplier}">New Supplier</a></div>
                 <div class="mb-3">
-                  <label class="form-label">Price</label>
-                  <input type="number" name="price" class="form-control" placeholder="VND" required>
-                </div>
-                <div class="mb-3">
-                  <label  class="form-label">Image</label>
-                  <input type="file" name="img" class="form-control"  required>
-                </div>
-                <div class="mb-3">
-                  <label  class="form-label">Amount</label>
-                  <input type="number" name="soluong" class="form-control"  required>
-                </div>
-                <div class="mb-3">
-                  <label  class="form-label">Sale</label>
-                  <input type="text" name="sale" class="form-control"  placeholder="%"  required>
-                </div>
-                <div class="mb-3">
-                 <div> <label  class="form-label">Supplier</label>  <a class="badge bg-success" th:href="@{/addSupplier}">New Supplier</a></div>
-                  <select name="supplier" class="form-select w-auto">
-                    <th:block th:each="supp : ${suppliers}">
-                      <option th:value="${supp.id}" th:text="${supp.supplier}"></option>
+                  <input type="text" list="supplier" name="supplier"  class="form-control"/>
+                  <datalist id="supplier">
+                    <th:block th:each="s:${suppliers}">
+                      <option  th:value="${s.id}"  th:text="${s.supplier}"></option>
                     </th:block>
-                  </select>
+                  </datalist>
                 </div>
-                <div class="mb-3">
-                  <label  class="form-label">New</label>
-                  <input type="text" name="new" class="form-control"   required>
-                </div>
-
-
-                <button type="submit" class="btn app-btn-primary" > ADD PRODUCT</button>
-
+                <button type="submit" class="btn app-btn-primary" > ADD IMPORT MASTER</button>
               </form>
-
             </div><!--//app-card-body-->
-
           </div><!--//app-card-->
-
         </div>
       </div><!--//row-->
       <hr class="my-4">
-
-
     </div><!--//container-fluid-->
   </div><!--//app-content-->
 

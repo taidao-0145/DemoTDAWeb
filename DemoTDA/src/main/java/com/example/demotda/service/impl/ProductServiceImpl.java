@@ -35,18 +35,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void save(ProductDto productDto){
         Date date= new Date();
+        String newString= productDto.getNewString();
         Product product= new Product(productDto.getNameproduct(),productDto.getSoluong(),productDto.getImg(),
                 productDto.getPrice(),productDto.getSale(),date,productDto.getCategory(),productDto.getSupplier());
-
         productRepo.save(product);
         ImportProduct importProduct= new ImportProduct();
         importProduct.setProduct(product);
         importProduct.setDateadd(date);
         importProduct.setQuantity(productDto.getSoluong());
         importProductRepo.save(importProduct);
-
     }
-
     @Override
     public void updateProduct(ProductDto productDto) {
         Product product= new Product(productDto.getId(),productDto.getNameproduct(),productDto.getSoluong(),productDto.getImg(),
@@ -66,7 +64,6 @@ public class ProductServiceImpl implements ProductService {
             productRepo.save(product);
         }
     }
-
     @Override
     public Page<Product> listAll(int pageNumber){
         Pageable pageable = PageRequest.of(pageNumber-1, 5);

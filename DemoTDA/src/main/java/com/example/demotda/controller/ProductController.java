@@ -71,8 +71,9 @@ public class ProductController {
     }
 
     @PostMapping("/addProduct")
-    public String addProduct(@ModelAttribute ProductDto productDto){
+    public String addProduct(@ModelAttribute ProductDto productDto,@RequestParam("new") String string){
         productService.save(productDto);
+        System.err.println(string);
         return "redirect:/productAdmin";
     }
     @GetMapping("/updateProduct")

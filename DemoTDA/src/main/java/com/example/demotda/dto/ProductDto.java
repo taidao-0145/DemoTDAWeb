@@ -21,4 +21,5 @@ public class ProductDto {
     private Date dateadd;
     private Category category;
     private Supplier supplier;
+    private String newString;
 }
