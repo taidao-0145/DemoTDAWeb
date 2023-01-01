@@ -44,4 +44,9 @@ public interface ProductRepo extends  JpaRepository<Product,Long> {
     @Modifying
     @Query(value="select * from demotda.product where nameproduct like %?%", nativeQuery=true)
     List<Product> searchProduct(String keyword);
+
+    @Transactional
+    @Modifying
+    @Query(value="UPDATE product set soluong=soluong+? where  id=?", nativeQuery=true)
+    void updateImport(int quantity,Long id);
 }

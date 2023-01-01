@@ -11,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class ImportProductImpl implements ImportProductService {
@@ -28,5 +30,10 @@ public class ImportProductImpl implements ImportProductService {
     public Page<ImportProduct> listAll(int pageNumber) {
         Pageable pageable= PageRequest.of(pageNumber-1,5);
         return importProductRepo.findAll(pageable);
+    }
+
+    @Override
+    public void saveAll(List<ImportProduct> importProducts) {
+        importProductRepo.saveAll(importProducts);
     }
 }

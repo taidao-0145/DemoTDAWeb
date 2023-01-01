@@ -29,6 +29,7 @@ public class ImportProductMasterController {
     public String formImportMaster(Model model){
         List<Supplier> suppliers=supplierService.listAll();
         model.addAttribute("suppliers",suppliers);
+
         return "admin/importmaster";
     }
 
@@ -37,7 +38,6 @@ public class ImportProductMasterController {
         Date date= new Date();
         ImportMaster importMaster= new ImportMaster();
         importMaster.setDateadd(date);
-        importMaster.setSupplier(supplier);
         importMasterService.save(importMaster);
         System.err.println(supplier.getId());
         return "redirect:/formImportProduct";

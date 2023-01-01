@@ -24,5 +24,7 @@ public interface ProductService {
     List<Product> listSale();
     List<Product> searchProduct(String keyword);
 
+    void updateImport(int quantity,Long id);
+
 }
 

@@ -1,18 +1,24 @@
 package com.example.demotda.dto;
 
-import lombok.AllArgsConstructor;
+import com.example.demotda.model.ImportProduct;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ImportProductDto {
-    private Long id;
-    private Date dateadd;
-    private int quantity;
-    private ProductDto productDto;
 
+    private List<ImportProduct> importProducts;
+
+    public ImportProductDto(){
+        this.importProducts=new ArrayList<>();
+    }
+    public ImportProductDto(List<ImportProduct> importProducts) {
+        this.importProducts = importProducts;
+    }
+
+    public void addImportProduct(ImportProduct importProduct){
+        this.importProducts.add(importProduct);
+    }
 }

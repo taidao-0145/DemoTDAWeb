@@ -220,12 +220,14 @@
                 </form>
               </div><!--//col-->
               <div class="col-auto">
-                <a class="btn app-btn-secondary" href="/formImportProduct">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
-                  </svg>
-                  Import Product
-                </a>
+                <form class="table-search-form row gx-1 align-items-center" th:action="@{/formImportProduct}"  method="post">
+                  <div class="col-auto">
+                    <input type="text"  name="num"  required>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn app-btn-secondary">Import Product</button>
+                  </div>
+                </form>
               </div>
             </div><!--//row-->
           </div><!--//table-utilities-->
@@ -252,7 +254,7 @@
                     <th class="cell">Category</th>
                     <th class="cell">Supplier</th>
                     <th class="cell">Quantity</th>
-                    <th class="cell">Import Date</th>
+<!--                    <th class="cell">Import Date</th>-->
                   </tr>
                   </thead>
                   <tbody>
@@ -264,7 +266,7 @@
                       <td class="cell"><span th:text="${import.product.category.name}"> </span></td>
                       <td class="cell"><span th:text="${import.product.supplier.supplier}"> </span></td>
                       <td class="cell"><span th:text="${import.quantity}"> </span></td>
-                      <td class="cell"><span th:text="${import.dateadd}"> </span></td>
+<!--                      <td class="cell"><span th:text="${import.dateadd}"> </span></td>-->
                     </tr>
                   </th:block>
                   </tbody>

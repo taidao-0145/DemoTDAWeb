@@ -41,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
         productRepo.save(product);
         ImportProduct importProduct= new ImportProduct();
         importProduct.setProduct(product);
-        importProduct.setDateadd(date);
+//        importProduct.setDateadd(date);
         importProduct.setQuantity(productDto.getSoluong());
         importProductRepo.save(importProduct);
     }
@@ -55,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
 
         if(num>0){
             importProduct.setProduct(product);
-            importProduct.setDateadd(new Date());
+//            importProduct.setDateadd(new Date());
             importProduct.setQuantity(num);
             importProductRepo.save(importProduct);
             productRepo.save(product);
@@ -106,6 +106,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> searchProduct(String keyword) {
         return productRepo.searchProduct(keyword);
+    }
+
+    @Override
+    public void updateImport(int quantity, Long id) {
+        productRepo.updateImport(quantity, id);
     }
 
 }
