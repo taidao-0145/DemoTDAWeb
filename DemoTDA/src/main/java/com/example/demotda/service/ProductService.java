@@ -24,7 +24,8 @@ public interface ProductService {
     List<Product> listSale();
     List<Product> searchProduct(String keyword);
 
-    void updateImport(int quantity,Long id);
-
+    void updateImport(int quantity,int canSell,Long id);
+    void updateExportProduct(int quantity,Long id);
+    void reportProduct(int quantity,Long id);
 }
 

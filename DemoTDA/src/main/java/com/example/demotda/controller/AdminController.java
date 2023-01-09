@@ -41,6 +41,9 @@ public class AdminController {
         long countOder= oderService.countOder();
         model.addAttribute("countOder",countOder);
         Long revenueYesterday= productSoldService.revenueYesterday(today1,today1);
+        if(revenueYesterday==null){
+            revenueYesterday= Long.valueOf(0);
+        }
         String newNumber=String.format("%,d",revenueYesterday);
         model.addAttribute("revenueYesterday",newNumber);
         long countOderShip= oderService.countOderShip();

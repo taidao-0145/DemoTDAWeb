@@ -1,10 +1,10 @@
 package com.example.demotda.repositorie;
 
-import com.example.demotda.model.StatusOder;
+import com.example.demotda.model.ExportMaster;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StatusOderRepo extends JpaRepository<StatusOder,Integer> {
-
+public interface ExportMasterRepo extends JpaRepository<ExportMaster,Long> {
 }

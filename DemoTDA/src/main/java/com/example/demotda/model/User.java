@@ -30,6 +30,14 @@ public class User {
     @JsonBackReference
     private UserProfile userProfile;
 
+    @OneToMany(mappedBy = "user",cascade =CascadeType.ALL)
+    @JsonManagedReference
+    private List<ImportMaster> importMasters;
+
+    @OneToMany(mappedBy = "user",cascade =CascadeType.ALL)
+    @JsonManagedReference
+    private List<ExportMaster> exportMasters;
+
 
     public User(String username, String email, int phone, String pass, String img) {
         this.username = username;

@@ -43,10 +43,12 @@ public class ProductSoldController {
         long totalItems= page.getTotalElements();
         int totalPages= page.getTotalPages();
         List<ProductSold> listAll= page.getContent();
+        long total= productSoldService.totalSold();
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("listSold", listAll);
+        model.addAttribute("total", total);
         return "admin/productsold";
     }
     @GetMapping("/exportProduct")
@@ -73,7 +75,12 @@ public class ProductSoldController {
         String today1 = new SimpleDateFormat("yyyy/MM/dd").format(date.getTime());
         model.addAttribute("today",today);
         List<ProductSold> listSoldDay=productSoldService.listSoldDay(today1);
+        long total=0;
+        for(ProductSold productSold:listSoldDay){
+            total+=productSold.getTotal();
+        }
         model.addAttribute("listSoldDay", listSoldDay);
+        model.addAttribute("total", total);
         return "admin/productsoldday";
     }
 
@@ -120,7 +127,7 @@ public class ProductSoldController {
             listSold = productSoldService.searchDateProductSold(startDate, endDate);
         }
         model.addAttribute("listSold",listSold);
-        return "redirect:/productSold?search=true";
+        return "admin/searchproductsold";
     }
     @GetMapping("/sellingProduct")
     public String sellingProduct(Model model){
@@ -139,6 +146,10 @@ public class ProductSoldController {
         List<Revenue> revenues= productSoldService.revenue();
         model.addAttribute("revenues",revenues);
         return "admin/revenueStatistics";
+    }
+    @GetMapping("/statistical")
+    public String statistical(){
+        return "admin/statistical";
     }
 
 }

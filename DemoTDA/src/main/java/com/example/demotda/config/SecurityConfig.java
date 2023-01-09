@@ -27,7 +27,7 @@ public class SecurityConfig  {
 //                .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().permitAll().and().csrf().disable()
                 .formLogin().loginPage("/login").passwordParameter("pass")
-                .permitAll().defaultSuccessUrl("/user", true)
+                .permitAll().defaultSuccessUrl("/admin", true)
                 .failureUrl("/login?e=Wrong login information")
                 .and().logout().permitAll();
         return http.build();

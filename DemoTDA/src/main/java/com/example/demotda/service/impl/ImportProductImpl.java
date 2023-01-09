@@ -36,4 +36,14 @@ public class ImportProductImpl implements ImportProductService {
     public void saveAll(List<ImportProduct> importProducts) {
         importProductRepo.saveAll(importProducts);
     }
+
+    @Override
+    public List<ImportProduct> findByMaster(Long id) {
+        return importProductRepo.findByMaster(id);
+    }
+
+    @Override
+    public Long countImport(Long id) {
+        return importProductRepo.countImport(id);
+    }
 }

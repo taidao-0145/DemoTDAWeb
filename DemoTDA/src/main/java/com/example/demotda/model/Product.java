@@ -21,6 +21,7 @@ public class Product {
     private int price;
     private int sale;
     private Date dateadd;
+    private int cansell;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,6 +35,14 @@ public class Product {
     @OneToMany(mappedBy = "product",cascade =CascadeType.ALL)
     @JsonManagedReference
     private List<ImportProduct> importProducts;
+
+    @OneToMany(mappedBy = "product",cascade =CascadeType.ALL)
+    @JsonManagedReference
+    private List<ReturnProduct> returnProducts;
+
+    @OneToMany(mappedBy = "product",cascade =CascadeType.ALL)
+    @JsonManagedReference
+    private List<ReportProduct> reportProducts;
 
 
     public Product(String nameproduct, int soluong, String img, int price, int sale, Date dateadd, Category category, Supplier supplier) {

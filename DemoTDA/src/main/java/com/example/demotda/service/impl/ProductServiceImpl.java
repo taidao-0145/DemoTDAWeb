@@ -35,15 +35,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void save(ProductDto productDto){
         Date date= new Date();
-        String newString= productDto.getNewString();
-        Product product= new Product(productDto.getNameproduct(),productDto.getSoluong(),productDto.getImg(),
+        Product product= new Product(productDto.getNameproduct(),0,"img/"+productDto.getImg(),
                 productDto.getPrice(),productDto.getSale(),date,productDto.getCategory(),productDto.getSupplier());
         productRepo.save(product);
-        ImportProduct importProduct= new ImportProduct();
-        importProduct.setProduct(product);
-//        importProduct.setDateadd(date);
-        importProduct.setQuantity(productDto.getSoluong());
-        importProductRepo.save(importProduct);
     }
     @Override
     public void updateProduct(ProductDto productDto) {
@@ -109,8 +103,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void updateImport(int quantity, Long id) {
-        productRepo.updateImport(quantity, id);
+    public void updateImport(int quantity, int canSell,Long id) {
+        productRepo.updateImport(quantity,canSell ,id);
+    }
+
+    @Override
+    public void updateExportProduct(int quantity, Long id) {
+        productRepo.updateExport(quantity, id);
+    }
+
+    @Override
+    public void reportProduct(int quantity, Long id) {
+        productRepo.reportProduct(quantity, id);
     }
 
 }

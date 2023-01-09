@@ -20,4 +20,8 @@ public interface ProductSoldService {
     List<TopUser> topUser();
     List<ProductSold> boughtProduct(Long id);
     List<Revenue> revenue();
+    long totalSold();
+    Long countSold(Long id);
+
+
 }

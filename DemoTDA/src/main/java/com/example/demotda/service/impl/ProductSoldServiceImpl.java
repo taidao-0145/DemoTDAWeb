@@ -69,4 +69,14 @@ public class ProductSoldServiceImpl implements ProductSoldService {
     public List<Revenue> revenue() {
         return productSoldRepo.revenue();
     }
+
+    @Override
+    public long totalSold() {
+        return productSoldRepo.totalSold();
+    }
+
+    @Override
+    public Long countSold(Long id) {
+        return productSoldRepo.countSold(id);
+    }
 }

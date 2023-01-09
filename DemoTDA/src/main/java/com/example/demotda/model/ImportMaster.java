@@ -16,17 +16,35 @@ public class ImportMaster {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date dateadd;
-
     private long total;
-    private String supplier;
+    private long debt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplierId")
+    private Supplier supplier;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
+    private User user;
+
+    private String note;
 
     @OneToMany(mappedBy = "importMaster",cascade =CascadeType.ALL)
     @JsonManagedReference
     private List<ImportProduct> importProducts;
 
-    public ImportMaster(Date dateadd, String supplier,long total) {
-        this.total=total;
+    public ImportMaster(Date dateadd, long total, long debt, Supplier supplier, User user, String note) {
         this.dateadd = dateadd;
+        this.total = total;
+        this.debt = debt;
         this.supplier = supplier;
+        this.user = user;
+        this.note = note;
     }
+
+    public ImportMaster(Date dateadd, String note, long debt) {
+        this.dateadd = dateadd;
+        this.note = note;
+        this.debt=debt;
+    }
+
 }

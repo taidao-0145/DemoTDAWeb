@@ -15,9 +15,13 @@ import java.util.List;
 public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String supplier;
     private String address;
+
+    private int phone;
+
+    private long debt;
 
     @OneToMany(mappedBy = "supplier",cascade =CascadeType.ALL)
     @JsonManagedReference
@@ -26,6 +30,7 @@ public class Supplier {
     @OneToMany(mappedBy = "supplier",cascade =CascadeType.ALL)
     @JsonManagedReference
     private List<ImportMaster> importMasters;
+
 
     public Supplier(String supplier, String address) {
         this.supplier = supplier;

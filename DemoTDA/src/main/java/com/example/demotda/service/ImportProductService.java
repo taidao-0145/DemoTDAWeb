@@ -12,4 +12,8 @@ public interface ImportProductService {
     Page<ImportProduct> listAll(int pageNumber);
 
     void saveAll(List<ImportProduct> importProducts);
+
+    List<ImportProduct> findByMaster(Long id);
+
+    Long countImport(Long id);
 }

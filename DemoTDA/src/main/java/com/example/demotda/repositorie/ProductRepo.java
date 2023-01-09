@@ -29,10 +29,6 @@ public interface ProductRepo extends  JpaRepository<Product,Long> {
     @Query(value="SELECT * FROM product WHERE soluong <10 order by soluong ASC limit 0,5", nativeQuery=true)
     List<Product> checkAmount();
 
-    @Transactional
-    @Modifying
-    @Query(value="select id product ORDER BY 1 DESC limit 1", nativeQuery=true)
-    Integer checkid();
 
     @Transactional
     @Modifying
@@ -47,6 +43,16 @@ public interface ProductRepo extends  JpaRepository<Product,Long> {
 
     @Transactional
     @Modifying
-    @Query(value="UPDATE product set soluong=soluong+? where  id=?", nativeQuery=true)
-    void updateImport(int quantity,Long id);
+    @Query(value="UPDATE product set soluong=soluong+?, cansell=cansell+? where  id=?", nativeQuery=true)
+    void updateImport(int quantity,int canSell,Long id);
+
+    @Transactional
+    @Modifying
+    @Query(value="UPDATE product set soluong=soluong-? where  id=?", nativeQuery=true)
+    void updateExport(int quantity,Long id);
+
+    @Transactional
+    @Modifying
+    @Query(value="UPDATE product set  cansell=cansell-? where  id=?", nativeQuery=true)
+    void reportProduct(int quantity,Long id);
 }

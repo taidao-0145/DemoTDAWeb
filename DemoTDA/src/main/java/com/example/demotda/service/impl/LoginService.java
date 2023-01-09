@@ -1,4 +1,4 @@
-package com.example.demotda.service;
+package com.example.demotda.service.impl;
 
 import com.example.demotda.model.User;
 import com.example.demotda.repositorie.UserRepo;

@@ -54,4 +54,13 @@ public interface ProductSoldRepo extends JpaRepository<ProductSold,Long> {
     @Query(value="SELECT * FROM demotda.product_sold where id_user=?", nativeQuery=true)
     List<ProductSold> boughtProduct(Long id);
 
+    @Transactional
+    @Query(value="SELECT sum(total) from demotda.product_sold", nativeQuery=true)
+    long totalSold();
+
+    @Transactional
+    @Query(value="select sum(quantity) FROM demotda.product_sold where id_product=?", nativeQuery=true)
+    Long countSold(Long id);
+
+
 }
