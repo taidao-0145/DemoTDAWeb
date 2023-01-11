@@ -27,5 +27,6 @@ public interface ProductService {
     void updateImport(int quantity,int canSell,Long id);
     void updateExportProduct(int quantity,Long id);
     void reportProduct(int quantity,Long id);
+    List<Product> outOfStock();
 }
 

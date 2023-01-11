@@ -1,14 +1,8 @@
 package com.example.demotda.controller;
 
 import com.example.demotda.dto.UserProfileDto;
-import com.example.demotda.model.Product;
-import com.example.demotda.model.ProductSold;
-import com.example.demotda.model.User;
-import com.example.demotda.model.UserProfile;
-import com.example.demotda.service.ProductService;
-import com.example.demotda.service.ProductSoldService;
-import com.example.demotda.service.UserProfileService;
-import com.example.demotda.service.UserService;
+import com.example.demotda.model.*;
+import com.example.demotda.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,13 +19,18 @@ public class UserController {
     private UserService userService;
     private UserProfileService userProfileService;
     private ProductSoldService productSoldService;
+    private ImportMasterService importMasterService;
+    private ExportMasterService exportMasterService;
     @Autowired
     public UserController(ProductService productService,UserService userService,
-                          UserProfileService userProfileService,ProductSoldService productSoldService){
+                          UserProfileService userProfileService,ProductSoldService productSoldService,
+                          ImportMasterService importMasterService,ExportMasterService exportMasterService){
         this.userService= userService;
         this.productService=productService;
         this.userProfileService=userProfileService;
         this.productSoldService=productSoldService;
+        this.importMasterService=importMasterService;
+        this.exportMasterService=exportMasterService;
     }
     @GetMapping("/user")
     public String viewUser(Model model,Principal principal){
@@ -89,6 +88,10 @@ public class UserController {
         User user= userService.findUserById(idUser);
         UserProfile userProfile=userProfileService.findUserProfileByUser(user);
         model.addAttribute("userProfile",userProfile);
+        List<ImportMaster> listImport= importMasterService.findByUser(idUser);
+        model.addAttribute("listImport",listImport);
+        List<ExportMaster> listExport= exportMasterService.findByUser(idUser);
+        model.addAttribute("listExport",listExport);
         return "admin/profileUserManagement";
     }
 
@@ -109,5 +112,9 @@ public class UserController {
             redirectAttributes.addAttribute("id",id);
             return "redirect:/viewProduct";
         }
+    }
+    @GetMapping("/help")
+    public String help(){
+        return "admin/help";
     }
 }

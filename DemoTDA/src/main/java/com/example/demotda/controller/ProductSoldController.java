@@ -7,6 +7,7 @@ import com.example.demotda.service.ProductService;
 import com.example.demotda.service.ProductSoldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -65,6 +70,7 @@ public class ProductSoldController {
         productSoldService.save(productSold);
         oderService.deleteOder(idOder);
         productService.updateExport(quantity,idProduct);
+        productService.reportProduct(quantity,idProduct);
         return "redirect:/productSold";
     }
 
@@ -119,16 +125,61 @@ public class ProductSoldController {
     @PostMapping("/searchDateProductSold")
     public String searchProductSold(@RequestParam("startDate") String startDate,
                                     @RequestParam("endDate") String endDate,Model model){
-        List<ProductSold> listSold;
-        if(startDate.equals(endDate)){
-            listSold = productSoldService.listSoldDay(startDate);
+        System.err.println(startDate);
+        System.err.println(endDate);
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate datetime = LocalDate.parse(endDate, pattern);
+            LocalDateTime localDateTime  = datetime.atTime(LocalTime.MAX);
+            LocalDate datetime1 = LocalDate.parse(startDate, pattern);
+            LocalDateTime localDateTime1  = datetime.atTime(LocalTime.MIN);
+            Instant instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant();
+            Instant instant1 = localDateTime1.atZone(ZoneId.systemDefault()).toInstant();
+            Date enDatee = Date.from(instant);
+            Date startDatee = Date.from(instant1);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String ennnDate = dateFormat.format(enDatee);
+            Date date = new Date();
+            String today = new SimpleDateFormat("yyyy-MM-dd").format(date.getTime());
+            System.out.println(ennnDate);
+            System.out.println(today);
+            List<ProductSold> listSold;
+
+            if(startDate==" " && endDate==" ") {
+                listSold = productSoldService.listSoldDay(today);
+            } else if (startDate!=" " && endDate==" ") {
+                listSold = productSoldService.searchDateProductSold(startDate, today);
+            } else if (startDate==" " && endDate!=" ") {
+                listSold = productSoldService.searchDateProductSold(today, endDate);
+            }
+            else {
+                if(startDate.equals(endDate)){
+                    listSold = productSoldService.searchDateProductSold(startDate, ennnDate);
+                }
+                else {
+                    listSold = productSoldService.searchDateProductSold(startDate, endDate);
+                }
+            }
+            model.addAttribute("listSold",listSold);
+            model.addAttribute("startDate",startDate);
+            model.addAttribute("endDate",endDate);
+        } catch (DateTimeParseException e) {
         }
-        else {
-            listSold = productSoldService.searchDateProductSold(startDate, endDate);
-        }
-        model.addAttribute("listSold",listSold);
         return "admin/searchproductsold";
     }
+
+    @GetMapping("exportExcelSearchSold")
+    public void exSoldSearch(HttpServletResponse response,@RequestParam("start") String start,@RequestParam("end") String end) throws IOException{
+        response.setContentType("application/octet-stream.");
+        String headerKey= "Content-Disposition";
+        String fileName= "DS bán hàng "+start+"đến"+end+".xlsx";
+        String headerValue="attachment; filename="+fileName;
+        response.setHeader(headerKey,headerValue);
+        List<ProductSold> listProductSold= productSoldService.searchDateProductSold(start,end);
+        SoldDayExcel soldDayExcel= new SoldDayExcel(listProductSold);
+        soldDayExcel.export(response);
+    }
+
     @GetMapping("/sellingProduct")
     public String sellingProduct(Model model){
         List<TopSellingg> topSelling= productSoldService.topSelling();
@@ -151,5 +202,6 @@ public class ProductSoldController {
     public String statistical(){
         return "admin/statistical";
     }
+
 
 }

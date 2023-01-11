@@ -22,4 +22,9 @@ public class ExportMasterServiceImpl implements ExportMasterService {
     public void save(ExportMaster exportMaster) {
         exportMasterRepo.save(exportMaster);
     }
+
+    @Override
+    public List<ExportMaster> findByUser(Long id) {
+        return exportMasterRepo.findByUser(id);
+    }
 }

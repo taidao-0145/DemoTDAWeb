@@ -11,4 +11,5 @@ public interface ImportMasterService {
     ImportMaster findById(Long id);
 
     List<ImportMaster> findBySupp(Long id);
+    List<ImportMaster> findByUser(Long id);
 }

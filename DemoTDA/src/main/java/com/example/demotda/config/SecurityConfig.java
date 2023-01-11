@@ -29,8 +29,16 @@ public class SecurityConfig  {
                 .formLogin().loginPage("/login").passwordParameter("pass")
                 .permitAll().defaultSuccessUrl("/admin", true)
                 .failureUrl("/login?e=Wrong login information")
-                .and().logout().permitAll();
+                .and().logout().permitAll().and().rememberMe().key("AbcdefgHiJKlmnOpqrsut0123456789").tokenValiditySeconds(3*24*60*60);
         return http.build();
+//        http.authorizeHttpRequests()
+//                .antMatchers("/admin").hasAuthority("ADMIN")
+//                .anyRequest().authenticated().and()
+//                .formLogin().loginPage("/login").passwordParameter("pass")
+//                .permitAll().defaultSuccessUrl("/user", true)
+//                .failureUrl("/login?e=Wrong login information")
+//                .and().logout().permitAll();
+//        return http.build();
     }
 
 

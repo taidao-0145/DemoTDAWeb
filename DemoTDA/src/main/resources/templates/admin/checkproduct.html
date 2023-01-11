@@ -272,6 +272,7 @@
                     <th class="cell">Type</th>
                     <th class="cell">Company</th>
                     <th class="cell">Amount</th>
+                    <th class="cell">Can Sell</th>
                     <th class="cell">Price</th>
                     <th class="cell"> </th>
                     <th class="cell"> </th>
@@ -294,6 +295,16 @@
                           </div>
                           <div th:case="${list.soluong}>=10">
                             <span class="badge bg-success" th:text="${list.soluong}"> </span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div th:switch="true">
+                          <div th:case="${list.soluong}==${list.cansell}">
+                              <span th:text="${list.cansell}"> </span>
+                          </div>
+                          <div th:case="${list.soluong}!=${list.cansell}">
+                            <span class="badge bg-danger" th:text="${list.cansell}"> </span>
                           </div>
                         </div>
                       </td>

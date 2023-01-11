@@ -18,7 +18,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <!-- App CSS -->
   <link id="theme-style" rel="stylesheet" href="admin/css/portal.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="vendor/select2/dist/js/select2.min.js"></script>
 
 </head>
 
@@ -231,6 +234,10 @@
                   <label  class="form-label">Branch</label>
                   <input type="text" name="branch" class="form-control"  required>
                 </div>
+                  <div class="mb-3">
+                      <label  class="form-label">Date Export</label>
+                      <input type="datetime-local" name="dateadd" class="form-control"  required>
+                  </div>
                 <div class="mb-3">
                   <label  class="form-label">Note</label>
                   <input type="text" name="note" class="form-control"  required>
@@ -247,14 +254,13 @@
                   </thead>
                   <tbody>
                   <tr th:each="export, itemStart :*{exportProducts}">
-                    <td><input list="browsers" name="product" class="form-select w-auto" th:field="*{exportProducts[__${itemStart.index}__].product}">
-                      <datalist id="browsers">
-                        <select>
-                          <th:block th:each="proudct : ${products}">
-                            <option th:value="${proudct.id}" th:text="${proudct.nameproduct}"></option>
-                          </th:block>
-                        </select>
-                      </datalist></td>
+                      <td>
+                          <select  class="js-example-basic-single" name="product" th:field="*{exportProducts[__${itemStart.index}__].product}">
+                              <th:block th:each="proudct : ${products}">
+                                  <option th:value="${proudct.id}" th:text="${proudct.nameproduct}"></option>
+                              </th:block>
+                          </select>
+                      </td>
                     <td><input th:placeholder="Amount + ' ' + ${itemStart.count}" type="number" name="soluong" class="form-control" th:field="*{exportProducts[__${itemStart.index}__].quantity}" required></td>
                     <td><input th:placeholder="Price + ' ' + ${itemStart.count}" type="number" name="price" class="form-control" th:field="*{exportProducts[__${itemStart.index}__].price}" required></td>
 
@@ -294,31 +300,11 @@
 
 <!-- Page Specific JS -->
 <script src="admin/js/app.js"></script>
-<script>
-  $(document).ready(function(){
-    $("#add").click(function(){
-      $(".divcls").append(" <div><label  class=\"form-label\">Product</label> <a class=\"badge bg-success\" th:href=\"@{/addProduct}\">New Product</a></div>\n" +
-              "                <div class=\"mb-3\">\n" +
-              "                <input type=\"text\" list=\"products\" name=\"product\"  class=\"form-control\"/>\n" +
-              "                <datalist id=\"products\">\n" +
-              "                  <th:block th:each=\"p:${products}\">\n" +
-              "                  <option  th:value=\"${p.id}\"  th:text=\"${p.nameproduct}\"></option>\n" +
-              "                  </th:block>\n" +
-              "                </datalist>\n" +
-              "                </div>\n" +
-              "                <div class=\"mb-3\">\n" +
-              "                  <label  class=\"form-label\">Amount</label>\n" +
-              "                  <input type=\"number\" name=\"soluong\" class=\"form-control\"  required>\n" +
-              "                </div>\n" +
-              "                <div class=\"mb-3\">\n" +
-              "                  <label class=\"form-label\">Import Price</label>\n" +
-              "                  <input type=\"number\" name=\"price\" class=\"form-control\" placeholder=\"VND\" required>\n" +
-              "                </div>");
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".js-example-basic-single").select2();
+        // Thêm các tùy chọn của bạn vào đây.
     });
-    $("#btn2").click(function(){
-      $("ol").append("<li>Appended item</li>");
-    });
-  });
 </script>
 </body>
 </html>

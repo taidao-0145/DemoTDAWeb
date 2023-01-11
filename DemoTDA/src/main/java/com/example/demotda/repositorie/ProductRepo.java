@@ -26,9 +26,13 @@ public interface ProductRepo extends  JpaRepository<Product,Long> {
 
     @Transactional
     @Modifying
-    @Query(value="SELECT * FROM product WHERE soluong <10 order by soluong ASC limit 0,5", nativeQuery=true)
+    @Query(value="SELECT * FROM product WHERE soluong>0 and soluong <10 order by soluong ASC limit 0,5", nativeQuery=true)
     List<Product> checkAmount();
 
+    @Transactional
+    @Modifying
+    @Query(value="SELECT * FROM product WHERE soluong=0 ", nativeQuery=true)
+    List<Product> outOfStock();
 
     @Transactional
     @Modifying

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     private static Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ModelAndView exception(final Throwable throwable, final Model model) {
@@ -20,5 +21,12 @@ public class GlobalExceptionHandler {
         String errorMessage = (throwable != null ? throwable.toString() : "Unknown error");
         modelAndView.addObject("errorMessage", errorMessage);
         return modelAndView;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String exception(Exception exception){
+        logger.error(String.valueOf(exception));
+        exception.printStackTrace();
+        return "user/404";
     }
 }

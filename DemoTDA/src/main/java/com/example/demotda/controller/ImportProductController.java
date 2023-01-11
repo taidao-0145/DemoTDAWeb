@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -77,7 +82,11 @@ public class ImportProductController {
 
     @PostMapping("/addImportProduct")
     public String addImportProduct(@ModelAttribute ImportProductDto formImport,@RequestParam("supplier") Long supplier,
-                                   @RequestParam("note") String note,Model model,Principal principal){
+                                   @RequestParam("note") String note,Model model,Principal principal, @RequestParam("dateadd") String dateadd) throws ParseException {
+        LocalDateTime localDateTime = LocalDateTime.parse(dateadd);
+        Instant instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant();
+        Date date = Date.from(instant);
+
         String username=principal.getName();
         User user=userService.findUserByUsername(username);
         Supplier supp= supplierService.findById(supplier);
@@ -86,7 +95,17 @@ public class ImportProductController {
         for (ImportProduct importPro : list) {
             total+=importPro.getPrice()*importPro.getQuantity();
         }
-        ImportMaster importMaster= new ImportMaster(new Date(),total,total,supp,user,note);
+        for (ImportProduct importPro : list) {
+            if(importPro.getQuantity()<=0){
+                return "redirect:/importProduct?nhap lai so luong";
+            }
+        }
+        for (ImportProduct importPro : list) {
+            if(importPro.getPrice()<=0){
+                return "redirect:/importProduct?nhap lai gia ";
+            }
+        }
+        ImportMaster importMaster= new ImportMaster(date,total,total,supp,user,note);
         importMasterService.save(importMaster);
         for (ImportProduct importPro : list) {
             importPro.setImportMaster(importMaster);

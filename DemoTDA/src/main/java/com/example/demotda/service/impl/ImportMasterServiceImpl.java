@@ -36,4 +36,9 @@ public class ImportMasterServiceImpl implements ImportMasterService {
     public List<ImportMaster> findBySupp(Long id) {
         return importMasterRepo.findBySupp(id);
     }
+
+    @Override
+    public List<ImportMaster> findByUser(Long id) {
+        return importMasterRepo.findByUser(id);
+    }
 }

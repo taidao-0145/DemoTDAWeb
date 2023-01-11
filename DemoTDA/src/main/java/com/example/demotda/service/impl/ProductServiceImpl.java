@@ -117,4 +117,9 @@ public class ProductServiceImpl implements ProductService {
         productRepo.reportProduct(quantity, id);
     }
 
+    @Override
+    public List<Product> outOfStock() {
+        return productRepo.outOfStock();
+    }
+
 }

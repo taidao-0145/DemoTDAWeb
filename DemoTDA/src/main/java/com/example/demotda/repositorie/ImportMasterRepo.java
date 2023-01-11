@@ -20,4 +20,9 @@ public interface ImportMasterRepo extends JpaRepository<ImportMaster,Long> {
     @Transactional
     @Query(value="SELECT * FROM demotda.import_master where  supplier_id=?", nativeQuery=true)
     List<ImportMaster> findBySupp(Long id);
+
+    @Transactional
+    @Query(value="SELECT * FROM demotda.import_master where  user_id=?", nativeQuery=true)
+    List<ImportMaster> findByUser(Long id);
+
 }

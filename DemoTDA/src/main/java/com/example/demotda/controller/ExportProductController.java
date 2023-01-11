@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -81,7 +84,10 @@ public class ExportProductController {
 
     @PostMapping("/addExportProduct")
     public String exportProduct(@ModelAttribute ExportProductDto formExport, @RequestParam("branch") String branch,
-                                @RequestParam("note") String note, Model model, Principal principal){
+                                @RequestParam("note") String note, Model model, Principal principal, @RequestParam("dateadd") String dateadd){
+        LocalDateTime localDateTime = LocalDateTime.parse(dateadd);
+        Instant instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant();
+        Date date = Date.from(instant);
         String username=principal.getName();
         User user=userService.findUserByUsername(username);
         List<ExportProduct> list=formExport.getExportProducts();
@@ -89,7 +95,7 @@ public class ExportProductController {
         for (ExportProduct exportPro : list) {
             total+=exportPro.getPrice()*exportPro.getQuantity();
         }
-        ExportMaster exportMaster= new ExportMaster(new Date(),total,branch,note,user);
+        ExportMaster exportMaster= new ExportMaster(date,total,branch,note,user);
         exportMasterService.save(exportMaster);
         for (ExportProduct exportProduct : list) {
             exportProduct.setExportMaster(exportMaster);
@@ -97,6 +103,7 @@ public class ExportProductController {
         exportProductService.saveAll(list);
         for (ExportProduct exportProduct : list) {
             productService.updateExport(exportProduct.getQuantity(),exportProduct.getProduct().getId());
+            productService.reportProduct(exportProduct.getQuantity(),exportProduct.getProduct().getId());
         }
         return "redirect:/exProduct";
     }
@@ -114,7 +121,8 @@ public class ExportProductController {
     @PostMapping("/formReturnProduct")
     public String formReturnProduct(@RequestParam("num") int num,Model model,@RequestParam("max") int max,@RequestParam("id") Long id){
         if(0< num && num <=max){
-            List<Product> products= productService.listProduct();
+            List<ExportProduct> products=exportProductService.findByMaster(id);
+//            List<Product> products= productService.listProduct();
             model.addAttribute("products",products);
             ReturnProductDto formReturn= new ReturnProductDto();
             for (int i = 1; i <= num; i++) {
@@ -129,8 +137,9 @@ public class ExportProductController {
     }
 
     @PostMapping("/addReturnProduct")
-    public String addReturnProduct(@ModelAttribute ReturnProductDto formReturn,@RequestParam("note") String note,Model model,
+    public String addReturnProduct(@ModelAttribute ReturnProductDto formReturn, @RequestParam("note") String note, Model model,
                                    @RequestParam("branch") String branch){
+
         List<ReturnProduct> list= formReturn.getReturnProducts();
         ReturnProductMaster returnProductMaster= new ReturnProductMaster(new Date(),branch,note) ;
         returnMasterService.save(returnProductMaster);

@@ -126,7 +126,7 @@
                     </div>
                         <label>Phone</label>
                     <div class="form-group">
-                        <input class="input" type="tel" name="phone" th:value="${user.phone}"   required>
+                        <input class="input" type="tel" name="phone" th:value="${'0'+user.phone}"   required>
                     </div>
                     <button type="submit" class="primary-btn order-submit">Place order</button>
                     </form>

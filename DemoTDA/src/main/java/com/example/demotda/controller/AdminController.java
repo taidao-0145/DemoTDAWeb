@@ -32,6 +32,8 @@ public class AdminController {
     public String admin(Model model){
         List<Product> listHet=productService.listHet();
         model.addAttribute("listHet",listHet);
+        List<Product> listHetSach=productService.outOfStock();
+        model.addAttribute("listHet0",listHetSach);
         List<Product>  listInventory= productService.checkInventory();
         model.addAttribute("listInventory",listInventory);
         Date date = new Date();

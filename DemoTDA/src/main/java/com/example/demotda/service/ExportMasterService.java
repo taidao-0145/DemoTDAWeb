@@ -7,4 +7,5 @@ public interface ExportMasterService {
     List<ExportMaster> listAll();
 
     void save(ExportMaster exportMaster);
+    List<ExportMaster> findByUser(Long id);
 }
