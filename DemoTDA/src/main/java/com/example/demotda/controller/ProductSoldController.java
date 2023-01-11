@@ -142,6 +142,8 @@ public class ProductSoldController {
             Date startDatee = Date.from(instant1);
             Date endDatee2 = Date.from(instant2);
 
+
+
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String ennnDate = dateFormat.format(enDatee);
             DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -158,7 +160,6 @@ public class ProductSoldController {
             else {
                 listSold = productSoldService.findDateProductSold(startDatee, endDatee2);
             }
-
             model.addAttribute("listSold",listSold);
             model.addAttribute("startDate",startDate);
             model.addAttribute("endDate",endDate);

@@ -46,8 +46,6 @@ public interface ProductSoldRepo extends JpaRepository<ProductSold,Long> {
             + " or c.exportDate <= :endDate)")
     List<ProductSold> findDateProductSold(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
-
-
     @Query(value="select new com.example.demotda.model.TopSellingg(idProduct,nameProduct,sum(quantity)) FROM ProductSold group by idProduct,nameProduct order by sum(quantity) desc")
     List<TopSellingg> topSelling();
 
