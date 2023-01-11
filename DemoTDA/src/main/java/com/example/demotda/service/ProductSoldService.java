@@ -5,7 +5,9 @@ import com.example.demotda.model.TopSellingg;
 import com.example.demotda.model.ProductSold;
 import com.example.demotda.model.TopUser;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ProductSoldService {
@@ -22,6 +24,7 @@ public interface ProductSoldService {
     List<Revenue> revenue();
     long totalSold();
     Long countSold(Long id);
+    List<ProductSold> findDateProductSold(Date startDate, Date endDate);
 
 
 }

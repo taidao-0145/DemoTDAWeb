@@ -7,9 +7,11 @@ import com.example.demotda.model.TopUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -39,6 +41,12 @@ public interface ProductSoldRepo extends JpaRepository<ProductSold,Long> {
     @Modifying
     @Query(value="SELECT * FROM demotda.product_sold where export_date between ? and ?", nativeQuery=true)
     List<ProductSold> searchDateProductSold(String startDate, String endDate);
+
+    @Query("SELECT c FROM ProductSold c WHERE (:startDate is null or c.exportDate >= :startDate) and (:endDate is null"
+            + " or c.exportDate <= :endDate)")
+    List<ProductSold> findDateProductSold(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+
 
     @Query(value="select new com.example.demotda.model.TopSellingg(idProduct,nameProduct,sum(quantity)) FROM ProductSold group by idProduct,nameProduct order by sum(quantity) desc")
     List<TopSellingg> topSelling();

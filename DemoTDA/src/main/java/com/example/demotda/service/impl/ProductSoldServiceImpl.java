@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 public class ProductSoldServiceImpl implements ProductSoldService {
@@ -78,5 +79,10 @@ public class ProductSoldServiceImpl implements ProductSoldService {
     @Override
     public Long countSold(Long id) {
         return productSoldRepo.countSold(id);
+    }
+
+    @Override
+    public List<ProductSold> findDateProductSold(Date startDate, Date endDate) {
+        return productSoldRepo.findDateProductSold(startDate, endDate);
     }
 }

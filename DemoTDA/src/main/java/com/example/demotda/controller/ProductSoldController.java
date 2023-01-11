@@ -132,34 +132,33 @@ public class ProductSoldController {
             LocalDate datetime = LocalDate.parse(endDate, pattern);
             LocalDateTime localDateTime  = datetime.atTime(LocalTime.MAX);
             LocalDate datetime1 = LocalDate.parse(startDate, pattern);
-            LocalDateTime localDateTime1  = datetime.atTime(LocalTime.MIN);
+            LocalDateTime localDateTime1  = datetime1.atTime(LocalTime.MIN);
+            LocalDate datetime2 = LocalDate.parse(endDate, pattern);
+            LocalDateTime localDateTime2  = datetime2.atTime(LocalTime.MIN);
             Instant instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant();
             Instant instant1 = localDateTime1.atZone(ZoneId.systemDefault()).toInstant();
+            Instant instant2 = localDateTime2.atZone(ZoneId.systemDefault()).toInstant();
             Date enDatee = Date.from(instant);
             Date startDatee = Date.from(instant1);
+            Date endDatee2 = Date.from(instant2);
+
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String ennnDate = dateFormat.format(enDatee);
+            DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String startDateee = dateFormat1.format(startDatee);
             Date date = new Date();
             String today = new SimpleDateFormat("yyyy-MM-dd").format(date.getTime());
             System.out.println(ennnDate);
-            System.out.println(today);
+            System.out.println(enDatee);
+            System.out.println(startDatee);
             List<ProductSold> listSold;
-
-            if(startDate==" " && endDate==" ") {
-                listSold = productSoldService.listSoldDay(today);
-            } else if (startDate!=" " && endDate==" ") {
-                listSold = productSoldService.searchDateProductSold(startDate, today);
-            } else if (startDate==" " && endDate!=" ") {
-                listSold = productSoldService.searchDateProductSold(today, endDate);
+            if(startDate.equals(endDate)){
+                listSold = productSoldService.findDateProductSold(startDatee, enDatee);
             }
             else {
-                if(startDate.equals(endDate)){
-                    listSold = productSoldService.searchDateProductSold(startDate, ennnDate);
-                }
-                else {
-                    listSold = productSoldService.searchDateProductSold(startDate, endDate);
-                }
+                listSold = productSoldService.findDateProductSold(startDatee, endDatee2);
             }
+
             model.addAttribute("listSold",listSold);
             model.addAttribute("startDate",startDate);
             model.addAttribute("endDate",endDate);
