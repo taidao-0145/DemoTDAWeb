@@ -17,4 +17,5 @@ public interface SupplierService {
     void updateDebtSupplier(long quantity,Long id);
 
     void updateDebtSupplierContinuePayment(long quantity,Long id);
+    void deleteSupplier(Long id);
 }
