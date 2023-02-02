@@ -47,4 +47,9 @@ public class SupplierServiceImpl implements SupplierService {
     public void updateDebtSupplierContinuePayment(long quantity, Long id) {
         supplierRepo.updateDebtSupplierContinuePayment(quantity,id);
     }
+
+    @Override
+    public void deleteSupplier(Long id) {
+        supplierRepo.deleteById(id);
+    }
 }

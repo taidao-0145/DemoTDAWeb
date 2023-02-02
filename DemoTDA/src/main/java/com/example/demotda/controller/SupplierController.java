@@ -1,7 +1,6 @@
 package com.example.demotda.controller;
 
 import com.example.demotda.model.ImportMaster;
-import com.example.demotda.model.Product;
 import com.example.demotda.model.Supplier;
 import com.example.demotda.service.ImportMasterService;
 import com.example.demotda.service.SupplierService;
@@ -65,5 +64,24 @@ public class SupplierController {
         Supplier supplier= supplierService.findById(idSupplier);
         model.addAttribute("supplier",supplier);
         return "admin/detailsupplier";
+    }
+
+    @GetMapping("/updateSupplier")
+    public String updateSupplier(@RequestParam("id") Long id, Model model){
+        Supplier supplier= supplierService.findById(id);
+        model.addAttribute("supplier",supplier);
+        return "admin/updatesupplier";
+    }
+    @GetMapping("/deleteSupplier")
+    public String deleteSupplier(@RequestParam("id") Long id){
+        Supplier supplier= supplierService.findById(id);
+        if(supplier.getDebt()>0){
+            return "redirect:/supplierManagement?d=ko the xoa supplier";
+        }
+        else {
+            supplierService.deleteSupplier(id);
+            return "redirect:/supplierManagement";
+        }
+
     }
 }
