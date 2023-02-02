@@ -3,6 +3,7 @@ package com.example.demotda.service;
 import com.example.demotda.model.Cart;
 import com.example.demotda.model.Oder;
 
+
 import java.util.List;
 
 public interface OderService {
@@ -17,5 +18,6 @@ public interface OderService {
      void deleteOder(Long id);
      long countOder();
      long countOderShip();
+     List<Oder> oderNew(String today);
 
 }

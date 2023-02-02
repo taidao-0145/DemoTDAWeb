@@ -1,6 +1,9 @@
 package com.example.demotda.service.impl;
 
+import com.example.demotda.model.Revenue;
+import com.example.demotda.model.TopSellingg;
 import com.example.demotda.model.ProductSold;
+import com.example.demotda.model.TopUser;
 import com.example.demotda.repositorie.ProductSoldRepo;
 import com.example.demotda.service.ProductSoldService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 public class ProductSoldServiceImpl implements ProductSoldService {
@@ -36,7 +40,7 @@ public class ProductSoldServiceImpl implements ProductSoldService {
         return productSoldRepo.listSoldWeek();
     }
     @Override
-    public long revenueYesterday(String today1, String today2){
+    public Long revenueYesterday(String today1, String today2){
         return productSoldRepo.revenueYesterday(today1,today2);
     }
     @Override
@@ -49,7 +53,36 @@ public class ProductSoldServiceImpl implements ProductSoldService {
 
     }
     @Override
-    public List<ProductSold> TopSelling() {
-        return productSoldRepo.TopSelling();
+    public List<TopSellingg> topSelling() {
+        return productSoldRepo.topSelling();
+    }
+
+    @Override
+    public List<TopUser> topUser() {
+        return productSoldRepo.topUser();
+    }
+    @Override
+    public List<ProductSold> boughtProduct(Long id) {
+        return productSoldRepo.boughtProduct(id);
+    }
+
+    @Override
+    public List<Revenue> revenue() {
+        return productSoldRepo.revenue();
+    }
+
+    @Override
+    public long totalSold() {
+        return productSoldRepo.totalSold();
+    }
+
+    @Override
+    public Long countSold(Long id) {
+        return productSoldRepo.countSold(id);
+    }
+
+    @Override
+    public List<ProductSold> findDateProductSold(Date startDate, Date endDate) {
+        return productSoldRepo.findDateProductSold(startDate, endDate);
     }
 }

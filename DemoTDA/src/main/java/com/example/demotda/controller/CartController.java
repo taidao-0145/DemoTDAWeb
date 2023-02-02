@@ -34,7 +34,7 @@ public class CartController {
         this.oderService=oderService;
     }
     @GetMapping("/addToCart")
-    public String AddToCart(@RequestParam("id") Long id, Principal principal){
+    public String addToCart(@RequestParam("id") Long id, Principal principal){
         String username=principal.getName();
         User user= userService.findUserByUsername(username);
         Product product= productService.getProduct(id);
@@ -70,7 +70,7 @@ public class CartController {
 
     @GetMapping("/deleteCart")
     public String deleteCart(@RequestParam("id") Long id){
-        cartService.DeleteCart(id);
+        cartService.deleteCart(id);
         return "redirect:/viewCart";
     }
 
@@ -109,7 +109,7 @@ public class CartController {
         }
     }
     @GetMapping("/numCart")
-    public String NumCart(@RequestParam("id") Long id,@RequestParam("check") String check,@RequestParam("num") int num){
+    public String numCart(@RequestParam("id") Long id,@RequestParam("check") String check,@RequestParam("num") int num){
         if(check.equals("plus")){
             cartService.updatePlusQuantity(id);
         }

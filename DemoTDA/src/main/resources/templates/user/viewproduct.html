@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/header :: header">
 </head>
 <body>
@@ -53,13 +53,7 @@
   </div>
   <!-- /container -->
 </nav>
-<!-- /NAVIGATION -->
 
-<!-- BREADCRUMB -->
-
-<!-- /BREADCRUMB -->
-
-<!-- SECTION -->
 <div class="section">
   <!-- container -->
   <div class="container">
@@ -119,7 +113,7 @@
             <div class="qty-label">
               Qty
               <div class="input-number">
-                <input type="number" th:value="${num}" name="num">
+                <input type="number" name="num">
                 <span class="qty-up">+</span>
                 <span class="qty-down">-</span>
               </div>

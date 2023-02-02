@@ -46,4 +46,9 @@ public interface OderRepo extends JpaRepository<Oder,Long> {
     @Transactional
     @Query(value="SELECT count(*) FROM oder WHERE idstatus =3;", nativeQuery=true)
     long countOderShip();
+
+    @Transactional
+    @Modifying
+    @Query(value="SELECT * FROM oder where (date) between ? and now() limit 0,3", nativeQuery=true)
+    List<Oder> oderNew(String today);
 }

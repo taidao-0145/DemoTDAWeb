@@ -1,5 +1,6 @@
 package com.example.demotda.service;
 
+import com.example.demotda.dto.ProductDto;
 import com.example.demotda.model.Product;
 import org.springframework.data.domain.Page;
 
@@ -10,17 +11,22 @@ public interface ProductService {
 
     List<Product> listProduct();
     Product getProduct(Long id);
-    void save(Product product);
+    void save(ProductDto productDto);
+    void updateProduct(ProductDto productDto);
     Page<Product> listAll(int pageNumber);
     Page<Product> listStoreAll(int pageNumber);
     void saveProduct(Product product);
-    void UpdateExport(int quantity,Long idProduct);
+    void updateExport(int quantity,Long idProduct);
     List<Product> listHet();
     List<Product> checkInventory();
-    void Delete(Long id);
+    void delete(Long id);
     List<Product> listNew();
     List<Product> listSale();
     List<Product> searchProduct(String keyword);
 
+    void updateImport(int quantity,int canSell,Long id);
+    void updateExportProduct(int quantity,Long id);
+    void reportProduct(int quantity,Long id);
+    List<Product> outOfStock();
 }
 

@@ -71,4 +71,9 @@ public class OderServiceImpl implements OderService {
         return oderRepo.countOderShip();
     }
 
+    @Override
+    public List<Oder> oderNew(String today) {
+        return oderRepo.oderNew(today);
+    }
+
 }

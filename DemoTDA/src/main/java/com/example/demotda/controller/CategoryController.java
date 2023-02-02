@@ -17,11 +17,11 @@ public class CategoryController {
     }
 
     @GetMapping("/addCategory")
-    public String ViewAddCategory(){
+    public String viewAddCategory(){
         return "admin/add-category";
     }
     @PostMapping("/addCategory")
-    public String AddCategory(@RequestParam("category") String category){
+    public String addCategory(@RequestParam("category") String category){
         Category c= new Category(category);
         categoryService.save(c);
         return "redirect:/addProduct";

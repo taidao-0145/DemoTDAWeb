@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -112,9 +112,8 @@
             <div class="form-group">
               <input class="input" type="hidden" name="id" placeholder="Full Name" th:value="${userprofile.id}" required >
             </div>
-            <label>User Name</label>
             <div class="form-group">
-              <input class="input" type="text" name="username" placeholder="Username" th:value="${userprofile.user.username}">
+              <input class="input" type="hidden" name="username" placeholder="Username" th:value="${userprofile.user.username}">
             </div>
             <label>Email</label>
             <div class="form-group">
@@ -158,66 +157,32 @@
         <div class="section-title text-center">
           <h3 class="title">Your Order</h3>
         </div>
+        <h5 style="color:red; text-align: center" th:if="${param.d}"><span>Sản phẩm không còn trong shop</span></h5 >
         <div class="order-summary">
-          <div class="order-col">
-            <div><strong>PRODUCT</strong></div>
-            <div><strong>TOTAL</strong></div>
-          </div>
-          <div class="order-products">
-            <div class="order-col">
-              <div th:text="${quantity}"></div> <div> x</div><div th:text="${nameproduct}"></div>
-              <div th:text="${total}"></div>
-            </div>
+          <table class="table shopping-summery">
+            <thead>
+            <tr class="main-hading">
+              <th class="text-center">PRODUCT</th>
+              <th class="text-center">QUANTITY</th>
+              <th class="text-center">TOTAL</th>
+              <th class="text-center">REPURCHASE</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="oder : ${boughtProduct}">
+              <tr>
+                <td class="price" data-title="Price"><span th:text="${oder.nameProduct}"> </span></td>
+                <td class="price" data-title="Price"><span th:text="${oder.quantity}"> </span></td>
+                <td class="total-amount" data-title="Total"><span th:text="${oder.total}"> </span><span>vnđ</span></td>
+                <td class="action" data-title="Remove"><a th:href="@{/repurchase(id=${oder.idProduct})}"><i style="color: red">Mua lại</i></a></td>
+              </tr>
+            </th:block>
 
-          </div>
-          <div class="order-col">
-            <div>Shiping</div>
-            <div><strong>FREE</strong></div>
-          </div>
-          <div class="order-col">
-            <div><strong>TOTAL</strong></div>
-            <div><strong class="order-total" th:text="${total}"></strong></div>
-          </div>
+            </tbody>
+          </table>
+
         </div>
-        <div class="payment-method">
-          <div class="input-radio">
-            <input type="radio" name="payment" id="payment-1">
-            <label for="payment-1">
-              <span></span>
-              Direct Bank Transfer
-            </label>
-            <div class="caption">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-          </div>
-          <div class="input-radio">
-            <input type="radio" name="payment" id="payment-2">
-            <label for="payment-2">
-              <span></span>
-              Cheque Payment
-            </label>
-            <div class="caption">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-          </div>
-          <div class="input-radio">
-            <input type="radio" name="payment" id="payment-3">
-            <label for="payment-3">
-              <span></span>
-              Paypal System
-            </label>
-            <div class="caption">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-          </div>
-        </div>
-        <div class="input-checkbox">
-          <input type="checkbox" id="terms">
-          <label for="terms">
-            <span></span>
-            I've read and accept the <a href="#">terms & conditions</a>
-          </label>
-        </div>
+
 
       </div>
       <!-- /Order Details -->
@@ -278,7 +243,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
             <ul class="footer-links">
               <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-              <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
+
               <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
             </ul>
           </div>
@@ -330,7 +295,6 @@
     <!-- /container -->
   </div>
   <!-- /top footer -->
-
   <!-- bottom footer -->
   <div id="bottom-footer" class="section">
     <div class="container">

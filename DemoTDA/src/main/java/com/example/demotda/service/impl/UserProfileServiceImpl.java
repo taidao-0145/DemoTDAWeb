@@ -21,7 +21,7 @@ public class UserProfileServiceImpl implements UserProfileService {
         userProfileRepo.save(userProfile);
     }
     @Override
-    public void UpdateProfile(UserProfile userProfile){
+    public void updateProfile(UserProfile userProfile){
         userProfileRepo.save(userProfile);
     }
     @Override

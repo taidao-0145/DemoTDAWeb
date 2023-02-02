@@ -1,5 +1,7 @@
 package com.example.demotda.dto;
 
+import com.example.demotda.model.Category;
+import com.example.demotda.model.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,7 @@ public class ProductDto {
     private int price;
     private int sale;
     private Date dateadd;
-    private Long categoryId;
-    private Long supplierId;
+    private Category category;
+    private Supplier supplier;
+    private String newString;
 }
