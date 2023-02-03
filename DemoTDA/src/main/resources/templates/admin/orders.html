@@ -297,7 +297,7 @@
                     <td class="cell"><span th:text="${oder.cart.user.username}"> </span></td>
                     <td class="cell"><span th:text="${#dates.format(oder.date,'hh:mm dd-MM-yyyy')}"> </span></td>
                     <td class="cell"><span class="badge bg-success">Đặt hàng</span></td>
-                    <td class="cell"><span th:text="${#numbers.formatCurrency(oder.total)}"> </span></td>
+                    <td class="cell"><span th:text="${#numbers.formatDecimal(oder.total, 0, 'COMMA', 0, 'POINT')}+' đ'"></span></td>
                     <td class="cell"><a class="btn-sm app-btn-secondary" th:href="@{/ship(id=${oder.id})}">Giao shipper</a></td>
                   </tr>
                   </th:block>

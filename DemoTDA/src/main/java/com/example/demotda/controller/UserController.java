@@ -37,7 +37,7 @@ public class UserController {
         if(principal==null){
             return "login/login";
         }
-        User user = userService.findUserByUsername( principal.getName());
+        User user = userService.findUserByUsername(principal.getName());
         List<Product> listNew= productService.listNew();
         List<Product> listSale= productService.listSale();
         model.addAttribute("listSale",listSale);

@@ -39,7 +39,6 @@ public class ProductSoldController {
     }
     @GetMapping("/productSold")
     public String viewSold(Model model){
-
         return listByPage(model,1);
     }
     @GetMapping("/pageSold")
