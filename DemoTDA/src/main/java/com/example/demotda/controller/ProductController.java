@@ -49,11 +49,14 @@ public class ProductController {
         Page<Product> page= productService.listAll(currentPage);
         long totalItems= page.getTotalElements();
         int totalPages= page.getTotalPages();
-        List<Product> listAllProduct= page.getContent();
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("totalItems", totalItems);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("listAllProduct", listAllProduct);
+        if(totalPages >0){
+            List<Product> listAllProduct= page.getContent();
+            model.addAttribute("currentPage", currentPage);
+            model.addAttribute("totalItems", totalItems);
+            model.addAttribute("totalPages", totalPages);
+            model.addAttribute("listAllProduct", listAllProduct);
+        }
+
         return "admin/product";
     }
     @GetMapping("/deleteProduct")

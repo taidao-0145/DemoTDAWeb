@@ -1,7 +1,6 @@
 package com.example.demotda.controller;
 
 import com.example.demotda.dto.ExportProductDto;
-import com.example.demotda.dto.ImportProductDto;
 import com.example.demotda.dto.ReturnProductDto;
 import com.example.demotda.model.*;
 import com.example.demotda.service.*;
@@ -57,6 +56,9 @@ public class ExportProductController {
         Page<ExportProduct> page= exportProductService.listAll(currentPage);
         long totalItems= page.getTotalElements();
         int totalPages= page.getTotalPages();
+        if(totalPages <1){
+            totalPages=1;
+        }
         List<ExportProduct> listAll= page.getContent();
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalItems", totalItems);
