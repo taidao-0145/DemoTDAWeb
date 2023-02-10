@@ -1,5 +1,7 @@
 package com.example.demotda.controller;
 
+import com.example.demotda.constant.Constants;
+import com.example.demotda.constant.Enum;
 import com.example.demotda.dto.ProductDto;
 import com.example.demotda.model.Category;
 import com.example.demotda.model.Product;
@@ -40,7 +42,7 @@ public class ProductController {
         this.returnProductService=returnProductService;
         this.productSoldService=productSoldService;
     }
-    @GetMapping("/productAdmin")
+    @GetMapping(value = Constants.UrlPath.URL_PRODUCT_ADMIN)
     public String productAdmin(Model model){
         return listByPage(model,1);
     }
@@ -56,37 +58,38 @@ public class ProductController {
             model.addAttribute("totalPages", totalPages);
             model.addAttribute("listAllProduct", listAllProduct);
         }
-
         return "admin/product";
     }
-    @GetMapping("/deleteProduct")
+    @GetMapping(value = Constants.UrlPath.URL_DELETE_PRODUCT_ADMIN)
     public String viewDelete(@RequestParam("id") Long id, Model model){
         Product product= productService.getProduct(id);
         model.addAttribute("product", product);
         return "admin/deleteproduct";
     }
 
-    @GetMapping("/confirmDelete")
+    @GetMapping(value = Constants.UrlPath.URL_CONFIRM_DELETE_ADMIN)
     public String confirmDelete(@RequestParam("id") Long id){
         productService.delete(id);
         return "redirect:/productAdmin";
     }
 
-    @GetMapping("/addProduct")
+    @GetMapping(value = Constants.UrlPath.URL_VIEW_ADD_PRODUCT_ADMIN)
     public String viewAddProduct(Model model){
         List<Category> categories= categoryService.getListAll();
         model.addAttribute("categories", categories);
         List<Supplier> suppliers= supplierService.listAll();
         model.addAttribute("suppliers", suppliers);
+        String a= String.valueOf(Enum.TEST);
+        System.err.println(a);
         return "admin/addproduct";
     }
 
-    @PostMapping("/addProduct")
+    @PostMapping(value = Constants.UrlPath.URL_ADD_PRODUCT_ADMIN)
     public String addProduct(@ModelAttribute ProductDto productDto){
         productService.save(productDto);
         return "redirect:/productAdmin";
     }
-    @GetMapping("/updateProduct")
+    @GetMapping(value = Constants.UrlPath.URL_VIEW_UPDATE_PRODUCT_ADMIN)
     public String viewUpdate(@RequestParam("id") Long id, Model model){
         Product product=  productService.getProduct(id);
         model.addAttribute("product", product);
@@ -96,12 +99,12 @@ public class ProductController {
         model.addAttribute("suppliers", suppliers);
         return "admin/updateproduct";
     }
-    @PostMapping("/updateProduct")
+    @PostMapping(value = Constants.UrlPath.URL_UPDATE_PRODUCT_ADMIN)
     public String update(@ModelAttribute ProductDto productDto){
         productService.updateProduct(productDto);
         return "redirect:/productAdmin";
     }
-    @GetMapping("/viewProduct")
+    @GetMapping(value = Constants.UrlPath.URL_VIEW_PRODUCT)
     public String viewProduct(@RequestParam("id") Long id, Model model){
         Product product= productService.getProduct(id);
         model.addAttribute("product",product);

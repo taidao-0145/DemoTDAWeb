@@ -286,7 +286,7 @@
                       <td class="cell"><span th:text="${import.product.nameproduct}"> </span></td>
                       <td class="cell"><span th:text="${import.quantity}"> </span></td>
                       <td class="cell"><span th:text="${import.importMaster.supplier.supplier}"> </span></td>
-                      <td class="cell"><span th:text="${#numbers.formatCurrency(import.price)}"> </span></td>
+                      <td class="cell"><span th:text="${#numbers.formatDecimal(import.price, 0, 'COMMA', 0, 'POINT')}+' đ'"></span></td>
                       <td class="cell"><span th:text="${#dates.format(import.importMaster.dateadd,'hh:mm dd-MM-yyyy')}"> </span></td>
                     </tr>
                   </th:block>
