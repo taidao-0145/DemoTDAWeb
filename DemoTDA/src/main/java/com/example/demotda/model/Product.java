@@ -44,6 +44,10 @@ public class Product {
     @JsonManagedReference
     private List<ReportProduct> reportProducts;
 
+    @OneToMany(mappedBy = "product",cascade =CascadeType.ALL)
+    @JsonManagedReference
+    private List<Comment> comments;
+
 
     public Product(String nameproduct, int soluong, String img, int price, int sale, Date dateadd, Category category, Supplier supplier) {
         this.nameproduct = nameproduct;

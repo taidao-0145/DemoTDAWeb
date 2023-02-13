@@ -3,6 +3,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/header :: header">
 </head>
+<link rel="stylesheet" href="style.css">
+
+<!-- App CSS -->
 <body>
 <!-- HEADER -->
 <header>
@@ -141,7 +144,67 @@
           </ul>
 
         </div>
+
       </div>
+      <div><br>
+        <br></div>
+
+<!--      <div class="col-md-5">-->
+<!--      </div>-->
+
+
+
+      <form action="/comment" method="post">
+        <div class="form-group">
+          <input class="input" type="hidden" name="productId"  th:value="${product.id}">
+        </div>
+        <div class="order-notes">
+          <textarea class="input" placeholder="Comment" name="comment"></textarea>
+        </div>
+        <button type="submit" class="primary-btn order-submit">Comment</button>
+      </form>
+      <div class="container-xl">
+        <div class="position-relative mb-3">
+          <div class="row g-3 justify-content-between">
+
+          </div>
+        </div>
+
+
+        <section class="blog-single section">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 col-10">
+                <div class="blog-single-main">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="comments">
+                        <h3 class="comment-title">Comments <span th:text="'('+${size}+')'"></span></h3>
+                        <!-- Single Comment -->
+                        <th:block th:each=" cmt: ${listComment}">
+                        <div class="single-comment">
+                          <img th:src="${cmt.user.img}" alt="#">
+                          <div class="content">
+                            <h4 th:text="${cmt.user.username}"></h4> &nbsp   <span th:text="${#dates.format(cmt.createDate, 'HH:mm dd-MM-yyyy')}"></span>
+                            <p th:text="${cmt.comment}"></p>
+                          </div>
+                        </div>
+                        </th:block>
+                        <!-- End Single Comment -->
+                        <!-- Single Comment -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+      </div><!--//container-fluid-->
+
       <!-- /Product details -->
 
       <!-- Product tab -->

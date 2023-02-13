@@ -4,6 +4,7 @@ import com.example.demotda.constant.Constants;
 import com.example.demotda.constant.Enum;
 import com.example.demotda.dto.ProductDto;
 import com.example.demotda.model.Category;
+import com.example.demotda.model.Comment;
 import com.example.demotda.model.Product;
 import com.example.demotda.model.Supplier;
 import com.example.demotda.service.*;
@@ -28,12 +29,13 @@ public class ProductController {
     private ExportProductService exportProductService;
     private ReturnProductService returnProductService;
     private ProductSoldService productSoldService;
+    private CommentService commentService;
 
     @Autowired
     public ProductController(ProductService productService,CategoryService categoryService,
                              SupplierService supplierService,ImportProductService importProductService,
                              ExportProductService exportProductService,ReturnProductService returnProductService,
-                             ProductSoldService productSoldService) {
+                             ProductSoldService productSoldService,CommentService commentService) {
         this.categoryService=categoryService;
         this.productService = productService;
         this.supplierService=supplierService;
@@ -41,6 +43,7 @@ public class ProductController {
         this.exportProductService=exportProductService;
         this.returnProductService=returnProductService;
         this.productSoldService=productSoldService;
+        this.commentService=commentService;
     }
     @GetMapping(value = Constants.UrlPath.URL_PRODUCT_ADMIN)
     public String productAdmin(Model model){
@@ -107,7 +110,10 @@ public class ProductController {
     @GetMapping(value = Constants.UrlPath.URL_VIEW_PRODUCT)
     public String viewProduct(@RequestParam("id") Long id, Model model){
         Product product= productService.getProduct(id);
+        List<Comment> list= commentService.findCommentByProduct(product);
+        model.addAttribute("listComment",list);
         model.addAttribute("product",product);
+        model.addAttribute("size",list.size());
         return "user/viewproduct";
     }
     @GetMapping("/store")
@@ -176,6 +182,13 @@ public class ProductController {
         model.addAttribute("countSold",countSold);
         return "admin/checkgoods";
     }
-
+    @GetMapping(value = Constants.UrlPath.URL_VIEW_PRODUCT_ADMIN)
+    public String viewProductAdmin(@RequestParam("id") Long id, Model model){
+        Product product= productService.getProduct(id);
+        model.addAttribute("product",product);
+        List<Comment> listComment= commentService.findCommentByProduct(product);
+        model.addAttribute("listComment",listComment);
+        return "admin/viewproduct";
+    }
 
 }
