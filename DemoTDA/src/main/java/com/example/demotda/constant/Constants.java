@@ -14,6 +14,7 @@ public class Constants {
         public static final String URL_ADD_PRODUCT_ADMIN="/addProduct";
         public static final String URL_VIEW_UPDATE_PRODUCT_ADMIN="/updateProduct";
         public static final String URL_UPDATE_PRODUCT_ADMIN="/updateProduct";
+        public static final String URL_VIEW_PRODUCT_ADMIN="/viewProductAdmin";
 
         //UrlPath_User
         public static final String URL_VIEW_PRODUCT="/viewProduct";

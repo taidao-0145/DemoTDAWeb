@@ -3,15 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>ADMIN</title>
+
+  <!-- Meta -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
   <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
   <link rel="shortcut icon" href="favicon.ico">
+
   <!-- FontAwesome JS-->
   <script defer src="admin/plugins/fontawesome/js/all.min.js"></script>
   <script defer src="/admin/js/active-page.js"> </script>
+
   <!-- App CSS -->
   <link id="theme-style" rel="stylesheet" href="admin/css/portal.css">
 
@@ -26,7 +31,7 @@
   <div class="app-content pt-3 p-md-3 p-lg-4">
     <div class="container-xl">
 
-      <h1 class="app-page-title">Check Goods</h1>
+      <h1 class="app-page-title">Product Detail</h1>
       <div class="row gy-4">
         <div class="col-12 col-lg-6">
           <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
@@ -49,7 +54,7 @@
               <div class="item border-bottom py-3">
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
-                    <div class="item-label mb-2"><strong>Product</strong></div>
+                    <div class="item-label mb-2"><strong>Photo</strong></div>
                     <div class="item-data"><img class="profile-image" th:src="${product.img}" alt=""></div>
                   </div><!--//col-->
                 </div><!--//row-->
@@ -57,7 +62,7 @@
               <div class="item border-bottom py-3">
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
-                    <div class="item-label"><strong>Name Product</strong></div>
+                    <div class="item-label"><strong>NameProduct</strong></div>
                     <div class="item-data" th:text="${product.nameproduct}"></div>
                   </div><!--//col-->
                 </div><!--//row-->
@@ -65,28 +70,21 @@
               <div class="item border-bottom py-3">
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
-                    <div class="item-label"><strong>Category</strong></div>
-                    <div class="item-data" th:text="${product.category.name}"></div>
+                    <div class="item-label"><strong>Email</strong></div>
+                    <div class="item-data" th:text="${product.id}"></div>
                   </div><!--//col-->
                 </div><!--//row-->
               </div><!--//item-->
+
               <div class="item border-bottom py-3">
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
-                    <div class="item-label"><strong>Company</strong></div>
-                    <div class="item-data" th:text="${product.supplier.supplier}">
+                    <div class="item-label"><strong>Phone</strong></div>
+                    <div class="item-data" th:text="${'0'+product.id}">
                     </div>
                   </div><!--//col-->
                 </div><!--//row-->
               </div><!--//item-->
-                <div class="row justify-content-between align-items-center">
-                  <div class="col-auto">
-                    <div class="item-label"><strong>Price</strong></div>
-                    <div class="item-data" th:text="${product.price}">
-                    </div>
-                  </div><!--//col-->
-                </div><!--//row-->
-
             </div><!--//app-card-body-->
 
           </div><!--//app-card-->
@@ -104,7 +102,7 @@
 
                 </div><!--//col-->
                 <div class="col-auto">
-                  <h4 class="app-card-title">Quantity Check</h4>
+                  <h4 class="app-card-title">Preferences</h4>
                 </div><!--//col-->
               </div><!--//row-->
             </div><!--//app-card-header-->
@@ -113,82 +111,84 @@
               <div class="item border-bottom py-3">
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
-                    <div class="item-label"><strong>In Stock </strong></div>
-<!--                    <div class="item-data" th:text="${product.soluong}"></div>-->
-                    <div class="item-data" th:switch="true">
-                      <div th:case="${product.soluong}==0">
-                        <span class="badge bg-danger" th:text="${product.soluong}"> </span>
-                      </div>
-                      <div th:case="${product.soluong}<10">
-                        <span class="badge bg-warning" th:text="${product.soluong}"> </span>
-                      </div>
-                      <div th:case="${product.soluong}>=10">
-                        <span class="badge bg-success" th:text="${product.soluong}"> </span>
-                      </div>
-                    </div>
+                    <div class="item-label"><strong>FullName </strong></div>
+                    <div class="item-data" th:text="${product.id}"></div>
                   </div><!--//col-->
                 </div><!--//row-->
               </div><!--//item-->
               <div class="item border-bottom py-3">
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
-                    <div class="item-label"><strong> Import</strong></div>
-                    <div class="item-data" th:text="${countImport}"></div>
+                    <div class="item-label"><strong> Address1</strong></div>
+                    <div class="item-data" th:text="${product.id}"></div>
                   </div><!--//col-->
                 </div><!--//row-->
               </div><!--//item-->
               <div class="item border-bottom py-3">
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
-                    <div class="item-label"><strong>Export</strong></div>
-                    <div class="item-data" th:text="${countExport}"></div>
+                    <div class="item-label"><strong>Address2</strong></div>
+                    <div class="item-data" th:text="${product.id}"></div>
                   </div><!--//col-->
                 </div><!--//row-->
               </div><!--//item-->
               <div class="item border-bottom py-3">
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
-                    <div class="item-label"><strong>Return</strong></div>
-                    <div class="item-data" th:text="${countReturn}"></div>
+                    <div class="item-label"><strong>Street</strong></div>
+                    <div class="item-data" th:text="${product.id}"></div>
                   </div><!--//col-->
                 </div><!--//row-->
               </div><!--//item-->
               <div class="item border-bottom py-3">
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
-                    <div class="item-label"><strong>Sold</strong></div>
-                    <div class="item-data" th:text="${countSold}"></div>
-                  </div><!--//col-->
-                </div><!--//row-->
-              </div><!--//item-->
-              <div class="item border-bottom py-3">
-                <div class="row justify-content-between align-items-center">
-                  <div class="col-auto">
-                    <div class="item-label"><strong>In Stock = Import - Export + Return - Sold</strong></div>
-                  </div><!--//col-->
-                  <div class="col text-end">
-                    <div th:switch="true">
-                      <div th:case="${product.soluong}==(${countImport}-${countExport}+${countReturn}-${countSold})">
-                        <span class="badge bg-success" > OK</span>
-                      </div>
-                      <div th:case="${product.soluong}!=(${countImport}-${countExport}+${countReturn}-${countSold})">
-                        <span class="badge bg-warning" >Warning </span>
-                      </div>
-                    </div>
+                    <div class="item-label"><strong>City</strong></div>
+                    <div class="item-data" th:text="${product.id}"></div>
                   </div><!--//col-->
                 </div><!--//row-->
               </div><!--//item-->
             </div><!--//app-card-body-->
-
-
           </div><!--//app-card-->
         </div><!--//col-->
-
-
       </div><!--//row-->
+    </div><!--//container-fluid-->
+    <br>
+    <div class="container-xl">
+      <div class="position-relative mb-3">
+        <div class="row g-3 justify-content-between">
+          <div class="col-auto">
+            <h1 class="app-page-title mb-0">Comment</h1>
+          </div>
+        </div>
+      </div>
+
+      <th:block th:each=" cmt: ${listComment}">
+      <div class="app-card app-card-notification shadow-sm mb-4">
+        <div class="app-card-header px-4 py-3">
+          <div class="row g-3 align-items-center">
+            <div class="col-12 col-lg-auto text-center text-lg-start">
+              <img class="profile-image" src="img/np.jpg" alt="">
+            </div><!--//col-->
+            <div class="col-12 col-lg-auto text-center text-lg-start">
+              <h4 class="notification-title mb-1" th:text="${cmt.user.username}"></h4>
+              <ul class="notification-meta list-inline mb-0">
+                <li class="list-inline-item" th:text="${#dates.format(cmt.createDate, 'HH:mm dd-MM-yyyy')}"></li>
+
+              </ul>
+            </div><!--//col-->
+          </div><!--//row-->
+        </div><!--//app-card-header-->
+        <div class="app-card-body p-4">
+          <div class="notification-content" th:text="${cmt.comment}"></div>
+        </div><!--//app-card-body-->
+      </div><!--//app-card-->
+      </th:block>
+
 
     </div><!--//container-fluid-->
   </div><!--//app-content-->
+
 
 
 </div><!--//app-wrapper-->
