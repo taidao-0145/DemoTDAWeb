@@ -42,7 +42,7 @@
               <div class="mb-2"><strong>Name Product:</strong> <span th:text="${product.nameproduct}"></span></div>
               <div class="mb-2"><strong>Type:</strong> <span th:text="${product.category.name}"></span></div>
               <div class="mb-2"><strong>Supplier:</strong> <span th:text="${product.supplier.supplier}"></span></div>
-              <div class="mb-4"><strong>Price:</strong> <span th:text="${product.price}"></span></div>
+              <div class="mb-4"><strong>Price:</strong> <span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}+' đ'"></span></div>
               <div class="row justify-content-between">
                 <div class="col-auto">
                   <a class="btn app-btn-primary" th:href="@{/confirmDelete(id=${product.id})}"> DELETE </a>

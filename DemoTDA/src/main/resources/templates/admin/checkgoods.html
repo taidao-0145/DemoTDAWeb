@@ -82,7 +82,7 @@
                 <div class="row justify-content-between align-items-center">
                   <div class="col-auto">
                     <div class="item-label"><strong>Price</strong></div>
-                    <div class="item-data" th:text="${product.price}">
+                    <div class="item-data" th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}+' đ'">
                     </div>
                   </div><!--//col-->
                 </div><!--//row-->

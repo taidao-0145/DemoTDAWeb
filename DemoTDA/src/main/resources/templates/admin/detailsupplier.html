@@ -85,7 +85,7 @@
                                         <div class="row justify-content-between align-items-center">
                                             <div class="col-auto">
                                                 <div class="item-label"><strong>Total amount owed</strong></div>
-                                                <div class="item-data" th:text="${#numbers.formatCurrency(supplier.debt)}"></div>
+                                                <div class="item-data" th:text="${#numbers.formatDecimal(supplier.debt, 0, 'COMMA', 0, 'POINT')}+' đ'"></div>
                                             </div><!--//col-->
                                             <div class="col text-end">
                                                 <a class="btn-sm app-btn-secondary" href="#">Set up</a>
@@ -185,8 +185,8 @@
                                         <tr>
                                             <td class="cell" ><span th:text="${list.id}"> </span></td>
                                             <td class="cell"><span th:text="${#dates.format(list.dateadd,'hh:mm dd-MM-yyyy')}"> </span></td>
-                                            <td class="cell"><span th:text="${#numbers.formatCurrency(list.total)}"> </span></td>
-                                            <td class="cell"><span th:text="${#numbers.formatCurrency(list.debt)}"> </span></td>
+                                            <td class="cell"><span th:text="${#numbers.formatDecimal(list.total, 0, 'COMMA', 0, 'POINT')}+' đ'"> </span></td>
+                                            <td class="cell"><span th:text="${#numbers.formatDecimal(list.debt, 0, 'COMMA', 0, 'POINT')}+' đ'"> </span></td>
                                             <td class="cell" >
                                                 <div th:switch="true">
                                                     <div th:case="${list.debt}==0">

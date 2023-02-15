@@ -110,7 +110,7 @@
                       <td class="cell"><span th:text="${sold.category}"> </span></td>
                       <td class="cell"><span th:text="${sold.supplier}"> </span></td>
                       <td class="cell"><span th:text="${sold.quantity}"> </span></td>
-                      <td class="cell"><span th:text="${#numbers.formatCurrency(sold.total)}"> </span></td>
+                      <td class="cell"><span th:text="${#numbers.formatDecimal(sold.total, 0, 'COMMA', 0, 'POINT')}+' đ'"> </span></td>
                       <td class="cell"><span th:text="${#dates.format(sold.exportDate,'hh:mm dd-MM-yyyy')}"> </span></td>
                     </tr>
                   </th:block>
@@ -153,13 +153,6 @@
     </div><!--//container-fluid-->
   </div><!--//app-content-->
 
-  <footer class="app-footer">
-    <div class="container text-center py-3">
-      <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-      <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-
-    </div>
-  </footer><!--//app-footer-->
 
 </div><!--//app-wrapper-->
 

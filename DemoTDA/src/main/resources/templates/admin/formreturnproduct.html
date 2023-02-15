@@ -88,9 +88,7 @@
                                             <td class="cell" ><span th:text="${list.product.id}"> </span></td>
                                             <td class="cell"><span th:text="${list.product.nameproduct}"> </span></td>
                                             <td class="cell"><span th:text="${list.quantity}"> </span></td>
-
-                                            <td class="cell"><span th:text="${list.price}"> </span></td>
-
+                                            <td class="cell"><span th:text="${#numbers.formatDecimal(list.price, 0, 'COMMA', 0, 'POINT')}+' đ'"> </span></td>
                                         </tr>
                                     </th:block>
                                     </tbody>

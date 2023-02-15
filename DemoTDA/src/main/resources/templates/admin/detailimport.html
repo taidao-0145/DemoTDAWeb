@@ -95,7 +95,7 @@
                     <div class="row justify-content-between align-items-center">
                       <div class="col-auto">
                         <div class="item-label"><strong>Total Bill</strong></div>
-                        <div class="item-data" th:text="${#numbers.formatCurrency(importMaster.total)}"></div>
+                        <div class="item-data" th:text="${#numbers.formatDecimal(importMaster.total, 0, 'COMMA', 0, 'POINT')}+' đ'"></div>
                       </div><!--//col-->
                       <div class="col text-end">
                         <a class="btn-sm app-btn-secondary" href="#">Set up</a>
@@ -163,7 +163,7 @@
                     <div class="row justify-content-between align-items-center">
                       <div class="col-auto">
                         <div class="item-label"><strong>Debt</strong></div>
-                        <div class="item-data" th:text="${#numbers.formatCurrency(importMaster.debt)}"></div>
+                        <div class="item-data" th:text="${#numbers.formatDecimal(importMaster.debt, 0, 'COMMA', 0, 'POINT')}+' đ'"></div>
                       </div><!--//col-->
                       <div class="col text-end">
                         <a class="btn-sm app-btn-secondary" href="#">Set up</a>
@@ -207,8 +207,7 @@
                       <td class="cell" ><span th:text="${list.product.id}"> </span></td>
                       <td class="cell"><span th:text="${list.product.nameproduct}"> </span></td>
                       <td class="cell"><span th:text="${list.quantity}"> </span></td>
-<!--                      <td class="cell"><span th:text="${list.quantity}"> </span></td>-->
-                      <td class="cell"><span th:text="${list.price}"> </span></td>
+                      <td class="cell"><span th:text="${#numbers.formatDecimal(list.price, 0, 'COMMA', 0, 'POINT')}+' đ'"> </span></td>
 
                     </tr>
                   </th:block>
