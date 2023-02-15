@@ -116,7 +116,7 @@ public class ProductController {
         model.addAttribute("size",list.size());
         return "user/viewproduct";
     }
-    @GetMapping("/store")
+    @GetMapping(value = Constants.UrlPath.URL_VIEW_STORE)
     public String viewStoreUser(Model model){
         return listByPageStore(model,1);
     }
@@ -151,7 +151,7 @@ public class ProductController {
         model.addAttribute("listAllProduct", listAllProduct);
         return "admin/checkproduct";
     }
-    @GetMapping("/checkProduct")
+    @GetMapping(value = Constants.UrlPath.URL_CHECK_PRODUCT)
     public String viewCheckProduct(Model model){
         return listByPageCheck(model,1);
     }

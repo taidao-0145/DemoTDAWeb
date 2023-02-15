@@ -154,7 +154,7 @@
                       <td class="cell"><span th:text="${oder.cart.user.username}"> </span></td>
                       <td class="cell"><span th:text="${#dates.format(oder.date,'hh:mm dd-MM-yyyy')}"> </span></td>
                       <td class="cell"><span class="badge bg-success">Đang vận chuyển</span></td>
-                      <td class="cell"><span th:text="${#numbers.formatCurrency(oder.total)}"> </span></td>
+                      <td class="cell"><span th:text="${#numbers.formatDecimal(oder.total, 0, 'COMMA', 0, 'POINT')}+' đ'"></span></td>
                       <td class="cell"><a class="btn-sm app-btn-secondary" th:href="@{/doneShip(id=${oder.id})}">Giao thành công</a></td>
                     </tr>
                   </th:block>
@@ -189,7 +189,7 @@
                       <td class="cell"><span th:text="${oder.cart.user.username}"> </span></td>
                       <td class="cell"><span th:text="${#dates.format(oder.date,'hh:mm dd-MM-yyyy')}"> </span></td>
                       <td class="cell"><span class="badge bg-success">Giao thành công</span></td>
-                      <td class="cell"><span th:text="${#numbers.formatCurrency(oder.total)}"> </span></td>
+                      <td class="cell"><span th:text="${#numbers.formatDecimal(oder.total, 0, 'COMMA', 0, 'POINT')}+' đ'"></span></td>
                       <td class="cell"><a class="btn-sm app-btn-secondary" th:href="@{/exportProduct(idOder=${oder.id})}">Xuất hàng</a></td>
                     </tr>
                   </th:block>
@@ -224,7 +224,7 @@
                       <td class="cell"><span th:text="${oder.cart.user.username}"> </span></td>
                       <td class="cell"><span th:text="${#dates.format(oder.date,'hh:mm dd-MM-yyyy')}"> </span></td>
                       <td class="cell"><span class="badge bg-danger">Cancelled</span></td>
-                      <td class="cell"><span th:text="${#numbers.formatCurrency(oder.total)}"> </span></td>
+                      <td class="cell"><span th:text="${#numbers.formatDecimal(oder.total, 0, 'COMMA', 0, 'POINT')}+' đ'"></span></td>
                       <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
                     </tr>
                   </th:block>
@@ -237,17 +237,9 @@
       </div><!--//tab-content-->
 
 
-
     </div><!--//container-fluid-->
   </div><!--//app-content-->
 
-  <footer class="app-footer">
-    <div class="container text-center py-3">
-      <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-      <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-
-    </div>
-  </footer><!--//app-footer-->
 
 </div><!--//app-wrapper-->
 
