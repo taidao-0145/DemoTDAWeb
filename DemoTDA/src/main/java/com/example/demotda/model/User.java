@@ -38,6 +38,9 @@ public class User {
     @JsonManagedReference
     private List<ExportMaster> exportMasters;
 
+    @OneToMany(mappedBy = "user",cascade =CascadeType.ALL)
+    @JsonManagedReference
+    private List<Comment> comments;
 
     public User(String username, String email, int phone, String pass, String img) {
         this.username = username;
