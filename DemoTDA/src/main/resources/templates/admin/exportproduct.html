@@ -116,7 +116,7 @@
                 <a class="page-link" th:if="${currentPage > 1}" th:href="@{/pageExportProduct(page=${currentPage}-1)}" aria-disabled="true">Previous</a>
               </li>
               <span th:each="i :${#numbers.sequence(1,totalPages)}">
-              <li class="page-item active"><a class="page-link" th:href="@{/pageExportProduct(page=${i})}"><span class="page-item active" th:text="${i}"></span></a></li>
+             <li th:class="${currentPage!=i}? 'page-item' :'page-item active' "><a class="page-link" th:href="@{/pageImportProduct(page=${i})}"><span class="page-item active" th:text="${i}"></span></a></li>
               </span>
               <li class="page-item">
                 <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{/pageExportProduct(page=${currentPage}+1)}" aria-disabled="true">Next</a>
