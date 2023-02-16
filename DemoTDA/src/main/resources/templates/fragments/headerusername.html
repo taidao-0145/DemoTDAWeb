@@ -11,7 +11,8 @@
         <ul class="header-links pull-right">
             <li><a href="/testuser"><i class="fa fa-dollar"></i> USD</a></li>
             <li><a href="#" > <i class="fa fa-user-o"></i> <label th:text="${session.username}"></label></a></li>
-            <form th:action="@{/logout}" method="post"><input type="submit" value="Logout"> </form>
+            <li><a href="/logout"><i class="fa login"></i> Logout</a></li>
+
 
         </ul>
     </div>

@@ -100,7 +100,8 @@ public class UserServiceImpl implements UserService {
             return "login/register";
         }
         else {
-            user.setRole("USER");
+            user.setRole("ROLE_USER");
+            user.setImg("img/avt.png");
             user.setPass(new BCryptPasswordEncoder().encode(user.getPass()));
             session.setAttribute("user",user);
             int code= (int) (Math.random()*100000);

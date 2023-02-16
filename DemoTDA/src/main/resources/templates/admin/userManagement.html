@@ -92,6 +92,7 @@
                                         <th class="cell">UserName</th>
                                         <th class="cell">Email</th>
                                         <th class="cell">Phone</th>
+                                        <th class="cell">Role</th>
                                         <th class="cell"></th>
                                         <th class="cell"></th>
                                     </tr>
@@ -103,6 +104,17 @@
                                             <td class="cell"><span th:text="${user.username}"> </span></td>
                                             <td class="cell"><span th:text="${user.email}"> </span></td>
                                             <td class="cell"><span th:text="'0'+${user.phone}"> </span></td>
+                                            <td class="cell" >
+                                                <div th:switch="true">
+                                                    <div th:case="${user.role}=='ROLE_ADMIN'">
+                                                        <span class="badge bg-success" th:text="${user.role}"> </span>
+                                                    </div>
+                                                    <div th:case="${user.role}=='ROLE_USER'">
+                                                        <span class="badge-dark" th:text="${user.role}"> </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+
                                             <td class="cell"><a class="btn-sm app-btn-secondary"
                                                                 th:href="@{/profileUserManagement(id=${user.id})}">Profile</a>
                                             </td>
