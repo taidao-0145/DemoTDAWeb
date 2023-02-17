@@ -29,10 +29,10 @@ public class SecurityConfig  {
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .antMatchers("/home","/","/register","/forgotpassword","/mailforgot","/changepassword").permitAll()
+                .antMatchers("/home","/","/register","/forgotpassword","/mailforgot","/changepassword","/checkmail").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user").hasRole("USER")
-                .antMatchers("/login/**","/user/**","/img/**","/js/**").permitAll()
+                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/login/**","/user_static/**","/img/**","/js/**").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .formLogin().loginPage("/login").passwordParameter("pass")
@@ -40,6 +40,7 @@ public class SecurityConfig  {
                 .failureUrl("/login?e=Wrong login information")
                 .and().logout().permitAll().and().rememberMe().key("AbcdefgHiJKlmnOpqrsut0123456789").tokenValiditySeconds(3*24*60*60);
         return http.build();
+
 
 //                .anyRequest().permitAll().and().csrf().disable()
 //                .formLogin().loginPage("/login").passwordParameter("pass")

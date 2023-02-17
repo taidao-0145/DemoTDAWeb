@@ -21,4 +21,6 @@ public interface UserService {
 
     String signUp(UserDto userDto, String rePass, Model model, HttpSession session);
 
+    String addAccount(UserDto userDto,Model model);
+
 }

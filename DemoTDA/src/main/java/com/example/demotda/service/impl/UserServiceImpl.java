@@ -116,4 +116,46 @@ public class UserServiceImpl implements UserService {
             return "login/checkmail";
         }
     }
+
+    @Override
+    public String addAccount(UserDto userDto,Model model) {
+        User user= new User();
+        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
+        user.setPhone(userDto.getPhone());
+        user.setPass(userDto.getPass());
+        user.setRole(userDto.getRole());
+        user.setImg("img/avt.png");
+
+        User checkUser= userRepo.findUserByUsername(userDto.getUsername());
+
+        String emailPattern = "^[a-zA-Z0-9][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$";
+        String passPattern="(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
+        int test=0;
+
+        if(checkUser != null){
+            model.addAttribute("messusername","Tên đăng nhập đã tồn tại");
+            test=1;
+        }
+        if(!Pattern.matches(passPattern,user.getPass())){
+            model.addAttribute("messpass","Mật khẩu chưa đủ mạnh(> 8 ký tự,hoa,thường,kí tự...)");
+            test=1;
+        }
+        if(!Pattern.matches(emailPattern,user.getEmail())){
+            model.addAttribute("messmail","Nhập sai định dạng Email");
+            test=1;
+        }
+        if(test==1){
+            model.addAttribute("username",user.getUsername());
+            model.addAttribute("email",user.getEmail());
+            model.addAttribute("phone",user.getPhone());
+            model.addAttribute("pass",user.getPass());
+            return "admin/addAccount";
+        }
+        else {
+            user.setPass(new BCryptPasswordEncoder().encode(user.getPass()));
+            userRepo.save(user);
+            return "redirect:/userManagement";
+        }
+    }
 }

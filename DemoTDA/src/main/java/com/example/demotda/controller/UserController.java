@@ -1,5 +1,6 @@
 package com.example.demotda.controller;
 
+import com.example.demotda.dto.UserDto;
 import com.example.demotda.dto.UserProfileDto;
 import com.example.demotda.model.*;
 import com.example.demotda.service.*;
@@ -117,4 +118,16 @@ public class UserController {
     public String help(){
         return "admin/help";
     }
+
+
+    @GetMapping("/addAccount")
+    public String viewAddAccount(){
+        return "admin/addAccount";
+    }
+
+    @PostMapping("/addAccount")
+    public String addAccount(@ModelAttribute UserDto userDto,Model model){
+        return userService.addAccount(userDto, model);
+    }
+
 }
