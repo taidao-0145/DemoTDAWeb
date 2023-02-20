@@ -40,6 +40,6 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         System.err.println("Customer's name: "+name);
         //    userDetailsService.processOAuthPostLogin(email);
         super.onAuthenticationSuccess(request, response, authentication);
-        response.sendRedirect("/user");
+
     }
 }

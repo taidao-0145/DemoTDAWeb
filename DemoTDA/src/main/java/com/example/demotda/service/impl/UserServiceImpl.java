@@ -158,6 +158,10 @@ public class UserServiceImpl implements UserService {
             return "admin/addAccount";
         }
         else {
+
+            UserProfile userProfile= new UserProfile("update","update","update","update","update");
+            user.setUserProfile(userProfile);
+            userProfile.setUser(user);
             user.setPass(new BCryptPasswordEncoder().encode(user.getPass()));
             userRepo.save(user);
             return "redirect:/userManagement";
@@ -188,8 +192,14 @@ public class UserServiceImpl implements UserService {
         user.setEmail(email);
         user.setUsername(email);
         user.setAuthProvider(provider);
+        user.setImg("img/avt.png");
+
+        UserProfile userProfile= new UserProfile("update","update","update","update","update");
+        user.setUserProfile(userProfile);
+        userProfile.setUser(user);
 
         userRepo.save(user);
+
         session.setAttribute("user",user);
     }
 }

@@ -18,7 +18,7 @@ public class OderController {
     public OderController(OderService oderService){
         this.oderService=oderService;
     }
-    @GetMapping("/oderManagement")
+    @GetMapping("/admin/oderManagement")
     public String listOder(Model model){
         List<Oder> listOder = oderService.getOderByStatus(1);
         model.addAttribute("listOder", listOder);
@@ -68,6 +68,6 @@ public class OderController {
     @GetMapping("/cancelOder")
     public String cancelOder(@RequestParam("id") Long idOder){
         oderService.cancelOder(idOder);
-        return "redirect:/odercancel";
+        return "redirect:/oderCancel";
     }
 }

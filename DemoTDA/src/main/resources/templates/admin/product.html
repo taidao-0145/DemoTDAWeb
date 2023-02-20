@@ -14,11 +14,11 @@
   <link rel="shortcut icon" href="favicon.ico">
 
   <!-- FontAwesome JS-->
-  <script defer src="admin/plugins/fontawesome/js/all.min.js"></script>
-  <script defer src="/admin/js/active-page.js"> </script>
+  <script defer th:src="@{/admin/plugins/fontawesome/js/all.min.js}"></script>
+  <script defer th:src="@{/admin/js/active-page.js}"> </script>
 
   <!-- App CSS -->
-  <link id="theme-style" rel="stylesheet" href="admin/css/portal.css">
+  <link id="theme-style" rel="stylesheet" th:href="@{/admin/css/portal.css}">
 
 </head>
 
@@ -96,6 +96,7 @@
                     <th class="cell">Price</th>
                     <th class="cell"> </th>
                     <th class="cell"> </th>
+                    <th class="cell"> </th>
                   </tr>
                   </thead>
                   <tbody>
@@ -169,13 +170,13 @@
 
 
 <!-- Javascript -->
-<script src="admin/plugins/popper.min.js"></script>
-<script src="admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script th:src="@{/admin/plugins/popper.min.js}"></script>
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.min.js}"></script>
 
 
 
 <!-- Page Specific JS -->
-<script src="admin/js/app.js"></script>
+<script th:src="@{/admin/js/app.js}"></script>
 
 </body>
 </html>

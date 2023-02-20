@@ -131,6 +131,7 @@ public class UserController {
 
     @PostMapping("/addAccount")
     public String addAccount(@ModelAttribute UserDto userDto,Model model){
+
         return userService.addAccount(userDto, model);
     }
 

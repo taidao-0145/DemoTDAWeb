@@ -7,7 +7,7 @@ public class Constants {
 
         // UrlPath_Admin
         public static final String URL_INDEX="/admin";
-        public static final String URL_PRODUCT_ADMIN="/productAdmin";
+        public static final String URL_PRODUCT_ADMIN="/admin/productAdmin";
         public static final String URL_DELETE_PRODUCT_ADMIN="/deleteProduct";
         public static final String URL_CONFIRM_DELETE_ADMIN="/confirmDelete";
         public static final String URL_VIEW_ADD_PRODUCT_ADMIN="/addProduct";
@@ -18,6 +18,6 @@ public class Constants {
         public static final String URL_VIEW_PRODUCT_ADMIN="/viewProductAdmin";
         //UrlPath_User
         public static final String URL_VIEW_PRODUCT="/user/viewProduct";
-        public static final String URL_VIEW_STORE="/store";
+        public static final String URL_VIEW_STORE="/user/store";
     }
 }

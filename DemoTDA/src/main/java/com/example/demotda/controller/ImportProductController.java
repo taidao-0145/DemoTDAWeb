@@ -41,7 +41,7 @@ public class ImportProductController {
         this.userService=userService;
     }
 
-    @GetMapping("/importProduct")
+    @GetMapping("/admin/importProduct")
     public String viewImportProduct(Model model){
         List<ImportMaster> listMaster=importMasterService.listAll();
         model.addAttribute("listMaster",listMaster);
@@ -76,7 +76,7 @@ public class ImportProductController {
             return "admin/formimportproduct";
         }
         else {
-            return "redirect:/importProduct";
+            return "redirect:/admin/importProduct?nhap so lon hon 0";
         }
     }
 
@@ -97,12 +97,12 @@ public class ImportProductController {
         }
         for (ImportProduct importPro : list) {
             if(importPro.getQuantity()<=0){
-                return "redirect:/importProduct?nhap lai so luong";
+                return "redirect:/admin/importProduct?nhap lai so luong";
             }
         }
         for (ImportProduct importPro : list) {
             if(importPro.getPrice()<=0){
-                return "redirect:/importProduct?nhap lai gia ";
+                return "redirect:/admin/importProduct?nhap lai gia ";
             }
         }
         ImportMaster importMaster= new ImportMaster(date,total,total,supp,user,note);
@@ -129,7 +129,7 @@ public class ImportProductController {
         importMasterService.paymentImport(money,id);
         Long debt= total-money;
         supplierService.updateDebtSupplier(debt,idSupplier);
-        return "redirect:/importProduct";
+        return "redirect:/admin/importProduct";
     }
     @GetMapping("continuePayment")
     public String viewContinuedPayment(@RequestParam("id") Long id, Model model){
@@ -145,13 +145,13 @@ public class ImportProductController {
         }
         importMasterService.paymentImport(money,id);
         supplierService.updateDebtSupplierContinuePayment(money,idSupplier);
-        return "redirect:/importProduct";
+        return "redirect:/admin/importProduct";
     }
 
     @GetMapping("/cancelPayment")
     public String cancelPayment(@RequestParam("id") Long id,@RequestParam("debt") long debt){
         supplierService.updateDebtSupplier(debt,id);
-        return "redirect:/importProduct";
+        return "redirect:/admin/importProduct";
 
     }
     @GetMapping("/detailImport")

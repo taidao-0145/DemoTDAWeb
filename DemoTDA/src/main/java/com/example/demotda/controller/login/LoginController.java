@@ -18,7 +18,11 @@ public class LoginController {
     private UserService userService;
 
     @GetMapping("/login")
-    public String viewLogin(Model model){
+    public String viewLogin(Model model,Principal principal){
+        if(principal != null){
+            return "redirect:/user";
+        }
+
         return "login/login";
     }
 
@@ -27,8 +31,8 @@ public class LoginController {
         String userName= principal.getName();
         User user= userService.findUserByUsername(userName);
         String role= user.getRole();
-        if(role.equals("ROLE_ADMIN")){
-            return "redirect:/admin";
+        if(role.equals("ROLE_ADMIN") || role.equals("ROLE_MANAGE") || role.equals("ROLE_STAFF")){
+            return "redirect:/admin/index";
         }
         else {
             return "redirect:/user";

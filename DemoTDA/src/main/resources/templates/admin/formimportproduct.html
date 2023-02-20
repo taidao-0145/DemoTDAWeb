@@ -42,17 +42,6 @@
             <div class="app-card-body">
 
               <form class="settings-form" action="/addImportProduct"  th:object="${formImport}" method="post">
-<!--                  <div class="mb-3">-->
-<!--                      <label  class="form-label">Supplier</label>-->
-<!--                      <input list="supp" name="supplier" class="form-select w-auto">-->
-<!--                      <datalist id="supp">-->
-<!--                          <select>-->
-<!--                              <th:block th:each="supplier : ${suppliers}">-->
-<!--                                  <option th:value="${supplier.id}" th:text="${supplier.supplier}"></option>-->
-<!--                              </th:block>-->
-<!--                          </select>-->
-<!--                      </datalist>-->
-<!--                  </div>-->
                   <div class="mb-3">
                       <label  class="form-label">Supplier</label>
                       <select  class="js-example-basic-single" name="supplier">
@@ -110,7 +99,7 @@
                       <button type="submit" class="btn app-btn-primary" > ADD PRODUCT</button>
                       </div>
                       <div class="col-auto">
-                          <a class="btn app-btn-secondary" href="/importProduct">Cancel Plan</a>
+                          <a class="btn app-btn-secondary" th:href="@{/admin/importProduct}">Cancel Plan</a>
                       </div>
                   </div>
               </form>
@@ -128,8 +117,8 @@
 
 
 <!-- Javascript -->
-<script src="admin/plugins/popper.min.js"></script>
-<script src="admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script th:src="@{/admin/plugins/popper.min.js}"></script>
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.min.js}"></script>
 
 
 

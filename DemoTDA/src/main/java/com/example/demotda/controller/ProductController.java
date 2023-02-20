@@ -90,7 +90,7 @@ public class ProductController {
     @PostMapping(value = Constants.UrlPath.URL_ADD_PRODUCT_ADMIN)
     public String addProduct(@ModelAttribute ProductDto productDto){
         productService.save(productDto);
-        return "redirect:/productAdmin";
+        return "redirect:/admin/productAdmin";
     }
     @GetMapping(value = Constants.UrlPath.URL_VIEW_UPDATE_PRODUCT_ADMIN)
     public String viewUpdate(@RequestParam("id") Long id, Model model){

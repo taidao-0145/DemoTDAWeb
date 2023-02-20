@@ -62,7 +62,7 @@ public class SecurityConfig  {
         http.authorizeHttpRequests()
                 .antMatchers("/oauth2/**").permitAll()
                 .antMatchers("/home","/","/register","/forgotpassword","/mailforgot","/changepassword","/checkmail").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN","MANAGE","STAFF")
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/login/**","/user_static/**","/img/**","/js/**").permitAll()
                 .anyRequest().authenticated()
