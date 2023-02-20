@@ -3,6 +3,7 @@ package com.example.demotda.service.impl;
 import com.example.demotda.config.MailConfig;
 import com.example.demotda.dto.UserDto;
 import com.example.demotda.dto.UserProfileDto;
+import com.example.demotda.model.AuthenticationProvider;
 import com.example.demotda.model.User;
 import com.example.demotda.model.UserProfile;
 import com.example.demotda.repositorie.UserRepo;
@@ -14,11 +15,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    HttpSession session;
     private UserRepo userRepo;
     private MailConfig mailConfig;
     @Autowired
@@ -157,5 +162,34 @@ public class UserServiceImpl implements UserService {
             userRepo.save(user);
             return "redirect:/userManagement";
         }
+    }
+
+    @Override
+    public void processOAuthPostLogin(String email){
+        User user = userRepo.findByEmail(email);
+        if(user == null){
+            user.setImg("20190913_224545.jpg");
+            user.setEmail(email);
+            user.setUsername(email);
+            user.setRole("ROLE_USER");
+        }
+        session.setAttribute("emailUser", email);
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
+
+    @Override
+    public void createNewUserOAuthPostLoginSuccess(String email, AuthenticationProvider provider) {
+        User user= new User();
+        user.setRole("ROLE_USER");
+        user.setEmail(email);
+        user.setUsername(email);
+        user.setAuthProvider(provider);
+
+        userRepo.save(user);
+        session.setAttribute("user",user);
     }
 }

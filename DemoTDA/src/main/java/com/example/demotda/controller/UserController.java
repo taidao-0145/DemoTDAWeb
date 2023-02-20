@@ -33,17 +33,21 @@ public class UserController {
         this.importMasterService=importMasterService;
         this.exportMasterService=exportMasterService;
     }
+
+
     @GetMapping("/user")
-    public String viewUser(Model model,Principal principal){
+    public String viewUser(Model model,Principal principal,HttpSession session){
         if(principal==null){
             return "login/login";
         }
         User user = userService.findUserByUsername(principal.getName());
+//        User user = (User) session.getAttribute("user");
         List<Product> listNew= productService.listNew();
         List<Product> listSale= productService.listSale();
         model.addAttribute("listSale",listSale);
         model.addAttribute("listNew",listNew);
         model.addAttribute("username",user.getUsername());
+
         return "user/user";
     }
     @ModelAttribute("username")
