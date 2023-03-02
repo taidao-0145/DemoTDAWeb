@@ -105,7 +105,7 @@ public class ProductController {
     @PostMapping(value = Constants.UrlPath.URL_UPDATE_PRODUCT_ADMIN)
     public String update(@ModelAttribute ProductDto productDto){
         productService.updateProduct(productDto);
-        return "redirect:/productAdmin";
+        return "redirect:/admin/productAdmin";
     }
     @GetMapping(value = Constants.UrlPath.URL_VIEW_PRODUCT)
     public String viewProduct(@RequestParam("id") Long id, Model model){

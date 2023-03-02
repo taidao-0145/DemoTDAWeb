@@ -122,7 +122,7 @@
                       <td class="cell"><span th:text="${list.cansell}"> </span></td>
                       <td class="cell"><span th:text="${#numbers.formatDecimal(list.price, 0, 'COMMA', 0, 'POINT')}+' đ'"></span></td>
                       <td class="cell"><a class="badge bg-success" th:href="@{/viewProductAdmin(id=${list.id})}">View</a></td>
-                      <td class="cell"><a class="badge bg-success" th:href="@{/updateProduct(id=${list.id})}">Update</a></td>
+                      <td class="cell"><a class="badge bg-success" th:href="@{/admin/updateProduct(id=${list.id})}">Update</a></td>
                       <td class="cell"><a class="badge bg-danger" th:href="@{/deleteProduct(id=${list.id})}">Delete</a></td>
                     </tr>
                   </th:block>

@@ -72,4 +72,14 @@ public class Product {
         this.supplier = supplier;
 
     }
+
+    public Product(String nameproduct, int soluong, String img, int price, int sale, Date dateadd, int cansell) {
+        this.nameproduct = nameproduct;
+        this.soluong = soluong;
+        this.img = img;
+        this.price = price;
+        this.sale = sale;
+        this.dateadd = dateadd;
+        this.cansell = cansell;
+    }
 }

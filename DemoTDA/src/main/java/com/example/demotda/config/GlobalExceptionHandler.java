@@ -29,13 +29,13 @@ public class GlobalExceptionHandler {
 //    }
 
 
-    @ExceptionHandler(value = { ConfigDataResourceNotFoundException.class })
-    public ModelAndView handleResourceNotFoundException(ConfigDataResourceNotFoundException ex) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/404"); // Chuyển hướng đến trang lỗi 404
-        modelAndView.addObject("message", ex.getMessage()); // Truyền thông tin lỗi cho trang lỗi
-        return modelAndView;
-    }
+//    @ExceptionHandler(value = { ConfigDataResourceNotFoundException.class })
+//    public ModelAndView handleResourceNotFoundException(ConfigDataResourceNotFoundException ex) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("user/404"); // Chuyển hướng đến trang lỗi 404
+//        modelAndView.addObject("message", ex.getMessage()); // Truyền thông tin lỗi cho trang lỗi
+//        return modelAndView;
+//    }
 
 
 //    @ExceptionHandler(Exception.class)

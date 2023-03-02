@@ -14,10 +14,10 @@
   <link rel="shortcut icon" href="favicon.ico">
 
   <!-- FontAwesome JS-->
-  <script defer src="admin/plugins/fontawesome/js/all.min.js"></script>
-  <script defer src="/admin/js/active-page.js"> </script>
+  <script defer th:src="@{/admin/plugins/fontawesome/js/all.min.js}"></script>
+  <script defer th:src="@{/admin/js/active-page.js}"> </script>
   <!-- App CSS -->
-  <link id="theme-style" rel="stylesheet" href="admin/css/portal.css">
+  <link id="theme-style" rel="stylesheet" th:href="@{/admin/css/portal.css}">
 
 </head>
 
@@ -39,7 +39,7 @@
           <div class="app-card app-card-settings shadow-sm p-4">
 
             <div class="app-card-body">
-              <form class="settings-form" action="/updateProduct" method="post">
+              <form class="settings-form" action="/admin/updateProduct" method="post">
                 <div class="mb-3">
                   <input type="hidden" name="id" class="form-control" th:value="${product.id}" required>
                 </div>
@@ -100,12 +100,12 @@
 
 
 <!-- Javascript -->
-<script src="admin/plugins/popper.min.js"></script>
-<script src="admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script th:src="@{/admin/plugins/popper.min.js}"></script>
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.min.js}"></script>
 
 
 <!-- Page Specific JS -->
-<script src="admin/js/app.js"></script>
+<script th:src="@{/admin/js/app.js}"></script>
 
 </body>
 </html>
