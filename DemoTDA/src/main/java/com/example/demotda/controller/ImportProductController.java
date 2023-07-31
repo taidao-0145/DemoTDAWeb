@@ -1,5 +1,7 @@
 package com.example.demotda.controller;
 
+import com.example.demotda.config.ConfigPay;
+import com.example.demotda.config.PaymentConfig;
 import com.example.demotda.dto.ImportProductDto;
 import com.example.demotda.model.*;
 import com.example.demotda.service.*;
@@ -12,14 +14,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.Principal;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ImportProductController {
@@ -161,6 +166,70 @@ public class ImportProductController {
         ImportMaster importMaster= importMasterService.findById(idImportMaster);
         model.addAttribute("importMaster",importMaster);
         return "admin/detailimport";
+    }
+
+    @GetMapping("/paymentVNPay")
+    public String payment(@RequestParam("amount") double amount) throws UnsupportedEncodingException {
+        Random random = new Random();
+
+        // lấy số ngẫu nhiên trong khoảng từ 0 đến 99
+        int randomNumber = random.nextInt(100000);
+
+        DecimalFormat df = new DecimalFormat("###");
+        String total_tax_f = df.format(amount*100);
+        System.out.println(total_tax_f);
+
+        Map<String,String> vnp_Params = new HashMap<>();
+        vnp_Params.put("vnp_Version", PaymentConfig.VERSIONVNPAY);
+        vnp_Params.put("vnp_Command", PaymentConfig.COMMAND);
+        vnp_Params.put("vnp_TmnCode", PaymentConfig.TMNCODE);
+        vnp_Params.put("vnp_Amount", String.valueOf(total_tax_f));
+        vnp_Params.put("vnp_CurrCode", "VND");
+        vnp_Params.put("vnp_BankCode", "NCB");
+        vnp_Params.put("vnp_TxnRef", randomNumber+"");
+        vnp_Params.put("vnp_OrderInfo", "thanh toan ve xem phim");
+        vnp_Params.put("vnp_OrderType", PaymentConfig.ORDERTYPE);
+        vnp_Params.put("vnp_Locale", PaymentConfig.LOCALEDEFAULT);
+        vnp_Params.put("vnp_ReturnUrl", "https://www.google.com/");
+        vnp_Params.put("vnp_IpAddr", PaymentConfig.IPDEFAULT);
+        Date cld = new Date();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+        String vnp_CreateDate = formatter.format(cld);
+        vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
+
+
+        List fieldNames = new ArrayList(vnp_Params.keySet());
+        Collections.sort(fieldNames);
+        StringBuilder hashData = new StringBuilder();
+        StringBuilder query = new StringBuilder();
+        Iterator itr = fieldNames.iterator();
+        while (itr.hasNext()) {
+            String fieldName = (String) itr.next();
+            String fieldValue = (String) vnp_Params.get(fieldName);
+            if ((fieldValue != null) && (fieldValue.length() > 0)) {
+                //Build hash data
+                hashData.append(fieldName);
+                hashData.append('=');
+                hashData.append(URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII.toString()));
+                //Build query
+                query.append(URLEncoder.encode(fieldName, StandardCharsets.US_ASCII.toString()));
+                query.append('=');
+                query.append(URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII.toString()));
+                if (itr.hasNext()) {
+                    query.append('&');
+                    hashData.append('&');
+                }
+            }
+        }
+        String queryUrl = query.toString();
+        String vnp_SecureHash = ConfigPay.hmacSHA512(PaymentConfig.CHECKSUM, hashData.toString());
+        queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
+        String paymentUrl = ConfigPay.vnp_PayUrl + "?" + queryUrl;
+
+
+        return "redirect:"+paymentUrl;
+
     }
 
 

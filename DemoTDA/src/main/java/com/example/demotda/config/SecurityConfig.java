@@ -1,27 +1,17 @@
 package com.example.demotda.config;
 
-import com.example.demotda.service.CustomOAuth2UserService;
+import com.example.demotda.config.oauth.CustomOAuth2UserService;
 import com.example.demotda.service.UserService;
-import com.example.demotda.service.impl.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -66,8 +56,6 @@ public class SecurityConfig  {
 
                 .antMatchers("/admin").hasAnyRole("ADMIN","MANAGE","STAFF")
                 .antMatchers("/admin/updateProduct","/admin/importProduct","/admin/exProduct").hasAnyRole("ADMIN","MANAGE")
-
-
 
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/login/**","/user_static/**","/img/**","/js/**").permitAll()

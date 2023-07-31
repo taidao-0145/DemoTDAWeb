@@ -10,10 +10,12 @@
         </ul>
         <ul class="header-links pull-right">
             <li><a href="/testuser"><i class="fa fa-dollar"></i> USD</a></li>
-            <li><a href="#" > <i class="fa fa-user-o"></i> <label th:text="${session.username}"></label></a></li>
+
+            <th:block sec:authorize="isAuthenticated()">
+                <li><a href="#" > <i class="fa fa-user-o"></i> <label th:text="${#authentication.name}"></label></a></li>
+            </th:block>
+
             <li><a href="/logout"><i class="fa login"></i> Logout</a></li>
-
-
         </ul>
     </div>
 </div>

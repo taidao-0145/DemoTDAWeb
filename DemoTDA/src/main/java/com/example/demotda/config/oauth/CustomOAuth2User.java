@@ -1,4 +1,4 @@
-package com.example.demotda.config;
+package com.example.demotda.config.oauth;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
