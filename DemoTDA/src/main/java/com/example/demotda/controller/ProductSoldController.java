@@ -70,7 +70,7 @@ public class ProductSoldController {
         oderService.deleteOder(idOder);
         productService.updateExport(quantity,idProduct);
         productService.reportProduct(quantity,idProduct);
-        return "redirect:/productSold";
+        return "redirect:admin/productSold";
     }
 
     @GetMapping("/admin/productSoldDay")

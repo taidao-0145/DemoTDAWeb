@@ -33,12 +33,12 @@ public class OderController {
     @GetMapping("/ship")
     public String shipping(@RequestParam("id") Long id){
         oderService.shipOder(id);
-        return "redirect:/oderManagement";
+        return "redirect:/admin/oderManagement";
     }
     @GetMapping("/doneShip")
     public String doneShip(@RequestParam("id") Long id){
         oderService.doneShip(id);
-        return "redirect:/oderManagement";
+        return "redirect:/admin/oderManagement";
     }
 
     @GetMapping("/oderShip")
