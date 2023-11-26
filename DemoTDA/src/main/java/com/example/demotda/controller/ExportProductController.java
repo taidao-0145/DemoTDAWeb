@@ -43,7 +43,7 @@ public class ExportProductController {
         this.returnMasterService=returnMasterService;
     }
 
-    @GetMapping("/exProduct")
+    @GetMapping("/admin/exProduct")
     public String viewExportProduct(Model model){
         List<ExportMaster> listMaster=exportMasterService.listAll();
         model.addAttribute("listMaster",listMaster);
@@ -107,7 +107,7 @@ public class ExportProductController {
             productService.updateExport(exportProduct.getQuantity(),exportProduct.getProduct().getId());
             productService.reportProduct(exportProduct.getQuantity(),exportProduct.getProduct().getId());
         }
-        return "redirect:/exProduct";
+        return "redirect:/admin/exProduct";
     }
 
     @GetMapping("/viewReturnProduct")
@@ -152,6 +152,6 @@ public class ExportProductController {
         for (ReturnProduct returnProduct : list) {
             productService.updateImport(returnProduct.getQuantity(),returnProduct.getQuantity(),returnProduct.getProduct().getId());
         }
-        return "redirect:/exProduct";
+        return "redirect:/admin/exProduct";
     }
 }

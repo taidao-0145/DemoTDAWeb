@@ -28,13 +28,14 @@
     <div id="responsive-nav">
       <!-- NAV -->
       <ul class="main-nav nav navbar-nav">
-        <li class="active"><a href="/user">Home</a></li>
-        <li><a href="/store">Store</a></li>
+        <li ><a href="/user">Home</a></li>
+        <li class="active"><a href="/store">Store</a></li>
         <li><a href="/viewCart">Cart</a></li>
 
         <li><a href="/oder">Oder</a></li>
         <li><a href="/oderCancel">OderCancel</a></li>
         <li><a href="/oderShip">OderShip</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
       <!-- /NAV -->
     </div>
@@ -207,10 +208,10 @@
           <div class="col-md-4 col-xs-6">
             <div class="product">
               <div class="product-img">
-                <img th:src="${product.img}" alt="">
+                <img th:src="${'/'+product.img}" alt="">
               </div>
               <div class="product-body">
-                <a th:href="@{/viewproduct(id=${product.id})}">	<h3 class="product-name" th:text="${product.nameproduct}" ></h3> </a>
+                <a th:href="@{/user/viewProduct(id=${product.id})}">	<h3 class="product-name" th:text="${product.nameproduct}" ></h3> </a>
                 <div class="product-price" ><label th:text="${product.price}-(${product.price}*${product.sale}/100)"></label> <del class="product-old-price" th:text="${product.price}"></del></div>
                 <label>Số lượng còn :</label> <lable  th:text="${product.soluong}"></lable>
 

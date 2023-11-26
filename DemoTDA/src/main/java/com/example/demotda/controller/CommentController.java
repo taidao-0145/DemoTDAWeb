@@ -36,7 +36,7 @@ public class CommentController {
         User user= userService.findUserByUsername(username);
         Comment cmt= new Comment(comment,user,product,new Date());
         commentService.saveComment(cmt);
-        return "redirect:/viewProduct?id="+productId;
+        return "redirect:/user/viewProduct?id="+productId;
     }
 
 }

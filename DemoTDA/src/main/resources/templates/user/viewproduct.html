@@ -3,7 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/header :: header">
 </head>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" th:href="@{/user_static/style/style.css}">
 
 <!-- App CSS -->
 <body>
@@ -20,7 +20,7 @@
       <ul class="header-links pull-right">
         <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
         <li><a href="/userProfile"><i class="fa fa-user-o"></i> My Account</a></li>
-        <li><a href="/dangnhap"><i class=""></i> Login</a></li>
+        <li><a href="/logout"><i class=""></i> Logout</a></li>
       </ul>
     </div>
   </div>
@@ -43,7 +43,7 @@
       <!-- NAV -->
       <ul class="main-nav nav navbar-nav">
         <li class="active"><a href="/user">Home</a></li>
-        <li><a href="/store">Store</a></li>
+        <li><a href="/user/store">Store</a></li>
         <li><a href="/viewCart">Cart</a></li>
 
         <li><a href="/oder">Oder</a></li>
@@ -66,7 +66,7 @@
       <div class="col-md-5 col-md-push-2">
         <div id="product-main-img">
           <div class="product-preview">
-            <img th:src="${product.img}" alt="">
+            <img th:src="'/'+${product.img}" alt="">
           </div>
 
 
@@ -78,7 +78,7 @@
       <div class="col-md-2  col-md-pull-5">
         <div id="product-imgs">
           <div class="product-preview">
-            <img th:src="${product.img}" alt="">
+            <img th:src="'/'+${product.img}" alt="">
           </div>
 
 
@@ -183,7 +183,7 @@
                         <!-- Single Comment -->
                         <th:block th:each=" cmt: ${listComment}">
                         <div class="single-comment">
-                          <img th:src="${cmt.user.img}" alt="#">
+                          <img th:src="'/'+${cmt.user.img}" alt="#">
                           <div class="content">
                             <h4 th:text="${cmt.user.username}"></h4> &nbsp   <span th:text="${#dates.format(cmt.createDate, 'HH:mm dd-MM-yyyy')}"></span>
                             <p th:text="${cmt.comment}"></p>
@@ -205,11 +205,7 @@
 
       </div><!--//container-fluid-->
 
-      <!-- /Product details -->
 
-      <!-- Product tab -->
-
-      <!-- /product tab -->
     </div>
     <!-- /row -->
   </div>
@@ -217,13 +213,6 @@
 </div>
 <!-- /SECTION -->
 
-<!-- Section -->
-
-<!-- /Section -->
-
-<!-- NEWSLETTER -->
-<
-<!-- /NEWSLETTER -->
 
 <!-- FOOTER -->
 <footer id="footer" th:include="fragments/footer :: footer">

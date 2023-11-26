@@ -16,6 +16,9 @@ public interface UserRepo extends JpaRepository<User,Long> {
     User findUserByUsernameAndPass(String username, String pass);
 
     User findByUsernameAndEmail(String username, String email);
+
+    User findByEmail(String email);
+
     @Transactional
     @Modifying
     @Query(value="UPDATE user set pass=? where  username=?", nativeQuery=true)

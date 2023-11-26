@@ -3,24 +3,19 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>ADMIN</title>
-
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
     <link rel="shortcut icon" href="favicon.ico">
-
     <!-- FontAwesome JS-->
     <script defer src="admin/plugins/fontawesome/js/all.min.js"></script>
     <script defer src="/admin/js/active-page.js"> </script>
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="admin/css/portal.css">
-
 </head>
-
 <body class="app">
 <div th:replace="fragments/headeradmin :: headeradmin">
 </div><!--//app-header-->
@@ -61,15 +56,11 @@
                                 </select>
                             </div>
                             <div class="col-auto">
-                                <a class="btn app-btn-secondary" href="#">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download me-1"
-                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                              d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                                        <path fill-rule="evenodd"
-                                              d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                                <a class="btn app-btn-secondary" href="/addAccount">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
                                     </svg>
-                                    Download CSV
+                                    Add Account
                                 </a>
                             </div>
                         </div><!--//row-->
@@ -97,6 +88,7 @@
                                         <th class="cell">UserName</th>
                                         <th class="cell">Email</th>
                                         <th class="cell">Phone</th>
+                                        <th class="cell">Role</th>
                                         <th class="cell"></th>
                                         <th class="cell"></th>
                                     </tr>
@@ -108,11 +100,38 @@
                                             <td class="cell"><span th:text="${user.username}"> </span></td>
                                             <td class="cell"><span th:text="${user.email}"> </span></td>
                                             <td class="cell"><span th:text="'0'+${user.phone}"> </span></td>
-                                            <td class="cell"><a class="btn-sm app-btn-secondary"
-                                                                th:href="@{/profileUserManagement(id=${user.id})}">Profile</a>
+                                            <td class="cell" >
+                                                <div th:switch="true">
+                                                    <div th:case="${user.role}=='ROLE_ADMIN'">
+                                                        <span class="badge bg-success" th:text="${user.role}"> </span>
+                                                    </div>
+                                                    <div th:case="${user.role}!='ROLE_ADMIN'">
+                                                        <span class="badge-dark" th:text="${user.role}"> </span>
+                                                    </div>
+                                                </div>
                                             </td>
-                                            <td class="cell"><a class="btn-sm app-btn-secondary"
-                                                                th:href="@{/deleteUser(id=${user.id})}">Delete</a></td>
+
+                                            <td class="cell" >
+                                                <div th:switch="true">
+                                                    <div th:case="${user.role}=='ROLE_ADMIN'">
+                                                    </div>
+                                                    <div th:case="${user.role}!='ROLE_ADMIN'">
+                                                        <a class="btn-sm app-btn-secondary"
+                                                           th:href="@{/profileUserManagement(id=${user.id})}">Profile</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="cell" >
+                                                <div th:switch="true">
+                                                    <div th:case="${user.role}=='ROLE_ADMIN'">
+                                                    </div>
+                                                    <div th:case="${user.role}!='ROLE_ADMIN'">
+                                                        <a class="btn-sm app-btn-secondary"
+                                                           th:href="@{/deleteUser(id=${user.id})}">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     </th:block>
                                     </tbody>
@@ -144,16 +163,6 @@
         </div><!--//container-fluid-->
     </div><!--//app-content-->
 
-    <footer class="app-footer">
-        <div class="container text-center py-3">
-            <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-            <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart"
-                                                                                       style="color: #fb866a;"></i> by
-                <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for
-                developers</small>
-
-        </div>
-    </footer><!--//app-footer-->
 
 </div><!--//app-wrapper-->
 
@@ -167,4 +176,3 @@
 
 </body>
 </html>
-

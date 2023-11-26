@@ -11,10 +11,10 @@
   <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
   <link rel="shortcut icon" href="favicon.ico">
   <!-- FontAwesome JS-->
-  <script defer src="admin/plugins/fontawesome/js/all.min.js"></script>
-  <script defer src="/admin/js/active-page.js"> </script>
+  <script defer th:src="@{/admin/plugins/fontawesome/js/all.min.js}"></script>
+  <script defer th:src="@{/admin/js/active-page.js}"> </script>
   <!-- App CSS -->
-  <link id="theme-style" rel="stylesheet" href="admin/css/portal.css">
+  <link id="theme-style" rel="stylesheet" th:href="@{/admin/css/portal.css}">
 </head>
 
 <body class="app">
@@ -116,7 +116,7 @@
                 <a class="page-link" th:if="${currentPage > 1}" th:href="@{/pageExportProduct(page=${currentPage}-1)}" aria-disabled="true">Previous</a>
               </li>
               <span th:each="i :${#numbers.sequence(1,totalPages)}">
-              <li class="page-item active"><a class="page-link" th:href="@{/pageExportProduct(page=${i})}"><span class="page-item active" th:text="${i}"></span></a></li>
+             <li th:class="${currentPage!=i}? 'page-item' :'page-item active' "><a class="page-link" th:href="@{/pageImportProduct(page=${i})}"><span class="page-item active" th:text="${i}"></span></a></li>
               </span>
               <li class="page-item">
                 <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{/pageExportProduct(page=${currentPage}+1)}" aria-disabled="true">Next</a>
@@ -172,12 +172,12 @@
 
 
 <!-- Javascript -->
-<script src="admin/plugins/popper.min.js"></script>
-<script src="admin/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script th:src="@{/admin/plugins/popper.min.js}"></script>
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.min.js}"></script>
 
 
 <!-- Page Specific JS -->
-<script src="admin/js/app.js"></script>
+<script th:src="@{/admin/js/app.js}"></script>
 
 </body>
 </html>

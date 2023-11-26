@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/index")
 public class AdminController {
     private OderService oderService;
     private ProductService productService;

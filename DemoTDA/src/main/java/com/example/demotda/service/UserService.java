@@ -3,6 +3,7 @@ package com.example.demotda.service;
 
 import com.example.demotda.dto.UserDto;
 import com.example.demotda.dto.UserProfileDto;
+import com.example.demotda.model.AuthenticationProvider;
 import com.example.demotda.model.User;
 import org.springframework.ui.Model;
 
@@ -21,4 +22,10 @@ public interface UserService {
 
     String signUp(UserDto userDto, String rePass, Model model, HttpSession session);
 
+    String addAccount(UserDto userDto,Model model);
+
+    void processOAuthPostLogin(String email);
+    User findUserByEmail(String email);
+
+    void createNewUserOAuthPostLoginSuccess(String email, AuthenticationProvider provider);
 }

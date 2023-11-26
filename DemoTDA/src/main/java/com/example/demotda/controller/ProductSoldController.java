@@ -37,7 +37,7 @@ public class ProductSoldController {
         this.productService=productService;
         this.productSoldService=productSoldService;
     }
-    @GetMapping("/productSold")
+    @GetMapping("/admin/productSold")
     public String viewSold(Model model){
         return listByPage(model,1);
     }
@@ -70,10 +70,10 @@ public class ProductSoldController {
         oderService.deleteOder(idOder);
         productService.updateExport(quantity,idProduct);
         productService.reportProduct(quantity,idProduct);
-        return "redirect:/productSold";
+        return "redirect:admin/productSold";
     }
 
-    @GetMapping("/productSoldDay")
+    @GetMapping("/admin/productSoldDay")
     public String productSolDay(Model model){
         Date date = new Date();
         String today = new SimpleDateFormat("dd/MM/yyyy").format(date.getTime());
@@ -89,7 +89,7 @@ public class ProductSoldController {
         return "admin/productsoldday";
     }
 
-    @GetMapping("/productSoldWeek")
+    @GetMapping("/admin/productSoldWeek")
     public String productSoldWeek(Model model){
         List<ProductSold> listSoldWeek= productSoldService.listSoldWeek();
         model.addAttribute("listSoldWeek",listSoldWeek);

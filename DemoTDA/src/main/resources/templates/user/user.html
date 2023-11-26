@@ -3,6 +3,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/header :: header">
 </head>
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
+
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "106227308727505");
+  chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml            : true,
+      version          : 'v16.0'
+    });
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 <body>
 <!-- HEADER -->
 <header>
@@ -16,8 +46,8 @@
       </ul>
       <ul class="header-links pull-right">
         <li><a href="/testuser"><i class="fa fa-dollar"></i> USD</a></li>
-        <li><a href="/userProfile" > <i class="fa fa-user-o"></i> <label th:text="${username}"></label></a></li>
-        <form th:action="@{/logout}" method="post"><input type="submit" value="Logout"> </form>
+        <li><a href="/userProfile" > <i class="fa fa-user-o"></i> <label th:text="${#authentication.name}"></label></a></li>
+        <li><a href="/logout"><i class="fa login"></i> Logout</a></li>
 
       </ul>
     </div>
@@ -41,13 +71,13 @@
       <!-- NAV -->
       <ul class="main-nav nav navbar-nav">
         <li class="active"><a href="/user">Home</a></li>
-        <li><a href="/store">Store</a></li>
+        <li><a href="/user/store">Store</a></li>
         <li><a href="/viewCart">Cart</a></li>
 
         <li><a href="/oder">Oder</a></li>
         <li><a href="/oderCancel">OderCancel</a></li>
         <li><a href="/oderShip">OderShip</a></li>
-        <li><a href="/admin">Admin</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
       <!-- /NAV -->
     </div>
@@ -100,7 +130,7 @@
                     </div>
                     <div class="product-body">
 
-                      <a th:href="@{/viewProduct(id=${product.id})}">	<h3 class="product-name" th:text="${product.nameproduct}" ></h3> </a>
+                      <a th:href="@{/user/viewProduct(id=${product.id})}">	<h3 class="product-name" th:text="${product.nameproduct}" ></h3> </a>
                       <div class="product-price" ><label th:text="${product.price}-(${product.price}*${product.sale}/100)"></label> <del class="product-old-price" th:text="${product.price}"></del></div>
                       <label>Số lượng còn :</label> <lable  th:text="${product.soluong}"></lable>
 

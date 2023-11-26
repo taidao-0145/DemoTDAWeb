@@ -48,10 +48,6 @@ public class ProductServiceImpl implements ProductService {
         ImportProduct importProduct= new ImportProduct();
 
         if(num>0){
-            importProduct.setProduct(product);
-//            importProduct.setDateadd(new Date());
-            importProduct.setQuantity(num);
-            importProductRepo.save(importProduct);
             productRepo.save(product);
         }
         else {
